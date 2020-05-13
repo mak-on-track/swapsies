@@ -7,20 +7,12 @@ const ItemSchema = new Schema({
   service: Boolean,
   category: {
     type: String,
-    enum: [
-      "Furniture",
-      "Plants",
-      "Food"
-    ]
+    enum: ["Furniture", "Plants", "Food"],
   },
   description: String,
   status: {
     type: String,
-    enum: [
-      "Available", 
-      "Pending", 
-      "Sold"
-    ]
+    enum: ["Available", "Pending", "Sold"],
   },
   favourites: Number,
   owner: { type: Schema.Types.ObjectId, ref: "User" },
