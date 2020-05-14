@@ -66,16 +66,15 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// delete specific item
-// router.delete('/:id', (req, res) => {
-
+//delete specific item
+// router.delete("/:id", (req, res) => {
 //   Item.findByIdAndDelete(req.params.id)
-//     .then(item => {
-//       return Item.deleteMany({ _id: { $in: user.inventory } }).then(() => {
-//         res.status(200).json({ message: 'ok' });
+//     .then((item) => {
+//       return User.findByIdAndUpdate(item.owner, { $pull: user.inventory } }).then(() => {
+//         res.status(200).json({ message: "ok" });
 //       });
 //     })
-//     .catch(err => {
+//     .catch((err) => {
 //       res.json(err);
 //     });
 // });
