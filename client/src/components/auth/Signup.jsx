@@ -44,6 +44,7 @@ class Signup extends Component {
   render() {
     return (
       <div>
+      <h2>Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor='username'>Username:</label>
           <input

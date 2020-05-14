@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Dashboard extends Component {
+
+class Favourites extends Component {
   state = {  }
   render() { 
-    console.log('dash')
     return ( <div>
-      Dashboard
+      Favourites
     </div> );
   }
 }
  
-export default Dashboard;
+export default Favourites;
