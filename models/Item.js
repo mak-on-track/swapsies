@@ -4,7 +4,6 @@ const { Schema, model } = mongoose;
 const ItemSchema = new Schema({
   name: String,
   img: String,
-  type: enum[("Service", "Item")],
   service: Boolean,
   category: {
     type: String,
