@@ -7,6 +7,7 @@ const userSchema = new Schema(
     password: String,
     profileImg: String,
     bio: String,
+    wishList: [String],
     location: {
       type: String,
       enum: ["Prenzlauer Berg", "Mitte", "Kreuzberg"],

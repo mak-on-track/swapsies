@@ -33,12 +33,11 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route
             exact
-            path="/edit/:userId"
+            path="/edit"
             render={(props) => (
-              <EditProfile setUser={this.setUser} {...props} />
-            )} //Not yet working
+              <EditProfile user={this.state.user} {...props} />
+            )}
           />
-
           <Route
             exact
             path="/signup"
@@ -49,31 +48,29 @@ class App extends Component {
             path="/login"
             render={(props) => <Login setUser={this.setUser} {...props} />}
           />
-          <Route
-            exact
-            path="/add"
-            render={(props) => <AddItem setUser={this.setUser} {...props} />}
-          />
+          <Route exact path="/add" render={(props) => <AddItem {...props} />} />
           <Route
             exact
             path="/finduser"
-            render={(props) => <FindUser setUser={this.setUser} {...props} />}
+            render={(props) => <FindUser {...props} />}
           />
           <Route
             exact
             path="/search"
-            render={(props) => <ItemSearch setUser={this.setUser} {...props} />}
+            render={(props) => <ItemSearch {...props} />}
           />
           <Route
             exact
             path="/myfavs"
-            render={(props) => <Favourites setUser={this.setUser} {...props} />}
+            render={(props) => <Favourites {...props} />}
           />
           <Route
             exact
-            path="/:userId"
-            render={(props) => <Dashboard setUser={this.setUser} {...props} />} //Not yet working
+            path="/dashboard"
+            render={(props) => <Dashboard user={this.state.user} {...props} />} //Not yet working
           />
+          {/*           Add Not found route
+           */}{" "}
         </Switch>
       </div>
     );

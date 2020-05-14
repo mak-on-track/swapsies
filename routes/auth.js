@@ -66,6 +66,7 @@ authRoutes.post("/login", (req, res) => {
 });
 
 authRoutes.delete("/logout", (req, res) => {
+  
   req.logout();
   res.json({ message: "Successful logout" });
 });

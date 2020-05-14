@@ -5,8 +5,10 @@ import { logout } from './services/AuthService';
 
 
 const handleLogout = props => {
+
   logout().then(() => {
-    this.props.setUser(null);
+    console.log('loggedout', props)
+    props.setUser(null);
   });
 }
 
@@ -20,7 +22,7 @@ class Navbar extends Component {
           <ul>
             <li>Welcome, {this.props.user.username}</li>
             <li>
-              <Link to="/:userId">Dashboard</Link>
+              <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
               <Link to="/search">Search for Item/Search</Link> 
