@@ -12,6 +12,7 @@ import AddItem from "./components/AddItem";
 import ItemSearch from "./components/ItemSearch";
 import FindUser from "./components/FindUser";
 import Favourites from "./components/Favourites";
+import NotFound from "./components/NotFound";
 
 class App extends Component {
   state = {
@@ -68,8 +69,7 @@ class App extends Component {
             path="/dashboard"
             render={(props) => <Dashboard user={this.state.user} {...props} />} //Not yet working
           />
-          {/*           Add Not found route
-           */}{" "}
+        <Route exact path="/:notfound" component={NotFound} />
         </Switch>
       </div>
     );

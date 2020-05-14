@@ -5,12 +5,11 @@ const User = require("../models/User"); //needed for .populate("owner")
 
 //add item
 router.post("/", (req, res) => {
-  const name = req.body.name;
+  const {name, description, itemimg, type, category } = req.body.name;
   const description = req.body.description;
-  //const owner = req.body.owner;
+  //NEED ADDITIONAL LOGIC HERE TO MARK OWNER AND STATUS AND FAVS (WHICH STARTS AT 0)
   Item.create({
-    name,
-    description,
+    name, description, itemimg, type, category 
   })
     .then((item) => {
       res.status(201).json(item);

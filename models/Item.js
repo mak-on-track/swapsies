@@ -3,8 +3,12 @@ const { Schema, model } = mongoose;
 
 const ItemSchema = new Schema({
   name: String,
-  img: String,
-  service: Boolean,
+  itemImg: String,
+  type: {
+    type: String,
+    enum: ["Service", "Thing"],
+  },
+
   category: {
     type: String,
     enum: ["Furniture", "Plants", "Food"],
