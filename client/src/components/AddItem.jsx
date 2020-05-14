@@ -23,21 +23,22 @@ class AddItem extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const { name, category, description, /* CLOUDINARY */ type } = this.state;
+    let { name, category, description, /* CLOUDINARY */ type } = this.state;
     console.log("submitted");
-    console.log(this.state);
+    console.log(category);
 
-    /*  if({type} === "Service") {{category} === null} */
+    if(type === "Service") {category = null}
+    /* if(type === "Service") {IMAGE IS NULL} */
 
     return axios
       .post("/api/items", {
         owner: this.props.user._id,
         favourites: 0,
         status: "Available",
-        name: { name },
-        description: { description },
-        type: { type },
-        category: { category },
+        name,
+        description,
+        type,
+        category,
         /* IMAGE */
       })
       .then(() => {
