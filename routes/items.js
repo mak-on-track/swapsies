@@ -67,16 +67,19 @@ router.put("/:id", (req, res) => {
 });
 
 //delete specific item
-// router.delete("/:id", (req, res) => {
-//   Item.findByIdAndDelete(req.params.id)
-//     .then((item) => {
-//       return User.findByIdAndUpdate(item.owner, { $pull: user.inventory } }).then(() => {
-//         res.status(200).json({ message: "ok" });
-//       });
-//     })
-//     .catch((err) => {
-//       res.json(err);
-//     });
-// });
+router.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  Item.findByIdAndDelete(id)
+    .then((item) => {
+      return User.findByIdAndUpdate(item.owner, { $pull: { user: id } }).then(
+        () => {
+          res.status(200).json({ message: "ok" });
+        }
+      );
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 
 module.exports = router;

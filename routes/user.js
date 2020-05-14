@@ -50,7 +50,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//delete a specific user AND the items connected to the user
+//delete a specific user AND the items connected to the user (line 57-58)
 router.delete("/:id", (req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then((user) => {
