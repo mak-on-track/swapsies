@@ -1,22 +1,26 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Navbar as Nav } from "react-bootstrap";
+/* import { logout } from './services/AuthService';
+ */
+
+
+/* const handleLogout = props => {
+  logout().then(() => {
+    this.props.setUser(null);
+  });
+} */
+
 
 class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loggedInUser: null };
-  }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ ...this.state, loggedInUser: nextProps["userInSession"] });
-  }
   render() {
-    if (this.state.loggedInUser) {
+
+
+    if (this.props.user) {
       return (
         <nav>
           <ul>
-            <li>Welcome, {this.state.loggedInUser.username}</li>
+            <li>Welcome, {this.props.user.username}</li>
             <li>
               <Link to="/dashboard">Dashboard</Link>
             </li>
