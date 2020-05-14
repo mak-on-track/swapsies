@@ -10,64 +10,39 @@ import Login from "./components/auth/Login";
 import CreateProfile from "./components/Createprofile";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { loggedInUser: null };
-  }
+  state = {
+    user: this.props.user,
+  };
 
-  fetchUser() {
-    if (this.state.loggedInUser === null) {
-      this.service
-        .loggedin()
-        .then((response) => {
-          this.setState({
-            loggedInUser: response,
-          });
-        })
-        .catch((err) => {
-          this.setState({
-            loggedInUser: false,
-          });
-        });
-    }
-  }
-
-  getTheUser = (userObj) => {
+  setUser = (user) => {
     this.setState({
-      loggedInUser: userObj,
+      user: user,
     });
   };
 
   render() {
-    this.fetchUser();
+    console.log('is this working')
 
-    if (this.state.loggedInUser) {
-      return (
-        <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/create" component={CreateProfile} />
-          </Switch>
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
-          <Navbar userInSession={this.state.loggedInUser} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route
-              exact
-              path="/signup"
-              render={() => <Signup getUser={this.getTheUser} />}
-            />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/create" component={CreateProfile} />
-          </Switch>
-        </div>
-      );
-    }
+    return (
+      <div className="App">
+        <Navbar userInSession={this.state.loggedInUser} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/create" component={CreateProfile} />
+          <Route
+            exact
+            path="/signup"
+            render={(props) => <Signup setUser={this.setUser} {...props} />}
+          />
+
+          <Route
+            exact
+            path="/login"
+            render={(props) => <Login setUser={this.setUser} {...props} />}
+          />
+        </Switch>
+      </div>
+    );
   }
 }
 
