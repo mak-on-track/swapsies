@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
-
-class CreateProfile extends Component {
+class ItemDetail extends Component {
   state = {  }
   render() { 
     return ( <div>
-      Create a profile
+      Item Detail
     </div> );
   }
 }
  
-export default CreateProfile;
+export default ItemDetail;
