@@ -18,12 +18,12 @@ const router = express.Router();
 //edit user profile
 router.put("/:id", (req, res) => {
   const id = req.params.id;
-  const { username, profileImg, bio, location } = req.body;
+  const { username, profileImg, bio, location, wishList } = req.body;
   console.log(req.body, "this is the req.body");
   console.log(req.params.id, "this is the id");
   User.findByIdAndUpdate(
     id,
-    { username, profileImg, bio, location },
+    { username, profileImg, bio, location, wishList },
     { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
   )
     .then((user) => {
