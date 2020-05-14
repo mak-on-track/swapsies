@@ -68,15 +68,13 @@ app.use(favicon(path.join(__dirname, "public", "images", "favicon.ico")));
 // default value for title local
 app.locals.title = "Express - Generated with IronGenerator";
 
-const index = require("./routes/index");
-app.use("/", index);
+// const index = require("./routes/index");
+// app.use("/", index);
 
 app.use("/api/items", require("./routes/item"));
 app.use("/api/auth", require("./routes/auth"));
-app.use("/", require("./routes/index"));
+// app.use("/", require("./routes/index"));
+// app.use("/api/chat", require("./routes/chat"));
+// app.use("/api/user", require("./routes/user"));
 
 module.exports = app;
-
-app.listen(5555, () => {
-  console.log("Server listening on Port 5555");
-});
