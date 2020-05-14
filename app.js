@@ -75,6 +75,6 @@ app.use("/api/items", require("./routes/items"));
 app.use("/api/auth", require("./routes/auth"));
 // app.use("/", require("./routes/index"));
 // app.use("/api/chat", require("./routes/chat"));
-// app.use("/api/user", require("./routes/user"));
+app.use("/api/user", require("./routes/user"));
 
 module.exports = app;
