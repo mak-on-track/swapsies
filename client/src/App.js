@@ -48,7 +48,7 @@ class App extends Component {
             path="/login"
             render={(props) => <Login setUser={this.setUser} {...props} />}
           />
-          <Route exact path="/add" render={(props) => <AddItem {...props} />} />
+          <Route exact path="/add" render={(props) => <AddItem user={this.state.user} {...props} />} />
           <Route
             exact
             path="/finduser"

@@ -3,7 +3,8 @@ const { Schema, model } = mongoose;
 
 const ItemSchema = new Schema({
   name: String,
-  itemImg: String,
+  itemImgName: String, //name on cloudinary
+  itemImgPath: String, //name on cloudinary
   type: {
     type: String,
     enum: ["Service", "Thing"],
