@@ -20,7 +20,7 @@ class Navbar extends Component {
           <ul>
             <li>Welcome, {this.props.user.username}</li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/:userId">Dashboard</Link>
               </li>
               <li>
               <Link to="/search">Search for Item/Search</Link> 
