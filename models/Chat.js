@@ -6,7 +6,6 @@ const ChatSchema = new Schema(
     subject: String,
     participant1: { type: Schema.Types.ObjectId, ref: "User" },
     participant2: { type: Schema.Types.ObjectId, ref: "User" },
-    type: enum[("Service", "Item")],
     messages: [
       {
         type: Schema.Types.ObjectId,
