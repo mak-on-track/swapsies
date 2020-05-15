@@ -40,8 +40,7 @@ class App extends Component {
     });
   };
 
-  //Used to trigger updating user inventory when an item is added.
-  //Could be a component is updated?
+
   getData = () => {
     axios
       .get("/api/items")
@@ -56,6 +55,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.user)
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
