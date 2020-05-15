@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { login } from "../services/AuthService";
 import { Link } from "react-router-dom";
+import "./Login.css"
 
 
 class Login extends Component {
@@ -39,37 +40,48 @@ class Login extends Component {
   };
 
   render() {
-    return (<div><h2>Login</h2>
-      <form onSubmit={this.handleSubmit}>
-        <label htmlFor='username'>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-          id='username'
+    return (
+      <div className="field login">
 
-        />
+        <div class="field">
+          <label class="label">Username</label>
+          <div class="control">
+            <input 
+              class="input" 
+              type="text" 
+              placeholder="My username"
+            />
+          </div>
+        </div>
 
-        <label htmlFor='password'>Password:</label>
-        <input
-          type="text"
-          name="password"
-          onChange={this.handleChange}
-            id='password'
-        />
-
-        <input type="submit" value="Login" />
-
-  
-        {this.state.message && (
-          <p>{this.state.message}</p>
-        )}
-      </form>
-      <p>
-        Already have account?
-        <Link to={"/login"}> Login</Link>
-      </p></div>);
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input 
+              class="input" 
+              type="password" 
+              placeholder="My password" 
+              value=""
+            />
+          </div>
+        </div>
+        
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Submit</button>
+          </div>
+          <div class="control">
+            <button class="button is-link is-light">Cancel</button>
+          </div>
+        </div>
+        
+        <form>
+          <p>Jello</p>
+          {this.state.message && (
+            <p>{this.state.message}</p>
+          )}
+        </form>
+      </div>);
   }
 }
 
