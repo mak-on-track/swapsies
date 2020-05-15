@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { login } from "../services/AuthService";
-import { Link } from "react-router-dom";
-import "./Login.css"
+import "./style.css"
 
 
 class Login extends Component {
@@ -42,8 +41,8 @@ class Login extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <div className="field login">
-
+        <div className="field input-form">
+          <h1>Login</h1>
           <div class="field">
             <label class="label">Username</label>
             <div class="control">
@@ -73,7 +72,11 @@ class Login extends Component {
               />
             </div>
           </div>
-          
+          <div className="notice">
+            {this.state.message && (
+              <p>{this.state.message}</p>
+            )}
+          </div>
           <div class="field is-grouped">
             <div class="control">
               <button type="submit" value="Login" class="button is-link is-light">Login</button>

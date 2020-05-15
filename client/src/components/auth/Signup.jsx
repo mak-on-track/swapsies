@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { signup } from '../services/AuthService';
+import "./style.css"
 
 class Signup extends Component {
   state = {
@@ -38,11 +38,10 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="field login">
-
-        <form onSubmit={this.handleSubmit}>
-          
-        <div class="field">
+      <form onSubmit={this.handleSubmit}>
+        <div className="field input-form">
+          <h1>Sign Up</h1>  
+          <div class="field">
             <label class="label">Username</label>
             <div class="control">
               <input 
@@ -71,26 +70,22 @@ class Signup extends Component {
               />
             </div>
           </div>
-          <div>
+          <div className="notice">
             {this.state.message && (
               <p>{this.state.message}</p>
             )}
           </div>
           <div class="field is-grouped">
             <div class="control">
-              <button type="submit" value="Login" class="button is-link is-light">Sign up</button>
+              <button type="submit" value="Signup" class="button is-link is-light">Sign up</button>
             </div>
             <div class="control">
               <button class="button is-link is-light">Cancel</button>
             </div>
           </div>
-    
-
-        </form>
-        <p>
-          
-        </p>
-      </div>
+  
+        </div>
+      </form>
     );
   }
 }
