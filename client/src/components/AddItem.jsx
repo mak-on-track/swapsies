@@ -60,60 +60,104 @@ class AddItem extends Component {
   render() {
     const { name, description, /* CLOUDINARY */ type } = this.state;
     return (
-      <div>
-        <h2>Add an Item</h2>
+      <form onSubmit={this.handleSubmit}>
+        <div class="field">
+          <label class="label">Add new item</label>
+        </div>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="type">Is this a product or thing? </label>
-          <select id="type" name="type" onChange={this.handleChange}>
-            <option value="">Select</option>
-            <option value="Thing">Thing</option>
-            <option value="Service">Service</option>
-          </select>
-          <br />
-          {type !== "Service" && (
-            <>
-              <label htmlFor="type">Category: </label>
-              <select
-                id="category"
-                name="category"
+        {/* Dropdown for selecting thing or service */}
+        <div class="field">
+          <label class="label">Is this a product or thing?</label>
+          <div class="control">
+            <div class="select">
+              <select 
+                id="type" 
+                name="type" 
                 onChange={this.handleChange}
               >
                 <option value="">Select</option>
-                <option value="Furniture">Furniture</option>
-                <option value="Plants">Plants</option>
+                <option value="Thing">Thing</option>
+                <option value="Service">Service</option>
               </select>
-            </>
-          )}
-          <br />
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={this.handleChange}
-            name="name"
-            id="name"
-          ></input>
-          <br />
-          <label htmlFor="description">Description:</label>
-          <textarea
-            value={description}
-            onChange={this.handleChange}
-            name="description"
-            id="description"
-          />
-          <br />
+            </div>
+          </div>
+        </div>
 
-          {type !== "Service" && (
-            <>
-              <label>Add image:</label>
-              <input type="file" name="itemImg"></input> <br />{" "}
-            </>
-          )}
+        {/* Only displays when selected type is "thing" */}
+        {type !== "Service" && (
+          <>
+            {/* Dropdown for selecting category */}
+            <div class="field">
+              <label class="label">Category</label>
+              <div class="control">
+              <div class="select">
+                <select
+                  id="category"
+                  name="category"
+                  onChange={this.handleChange}
+                >
+                    <option value="">Select</option>
+                    <option value="Furniture">Furniture</option>
+                    <option value="Plants">Plants</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
 
-          <button type="submit">Add!</button>
-        </form>
-      </div>
+        {/* Name of item */}
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input 
+              class="input" 
+              type="text"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+              id="name"
+              placeholder="Name of item"
+            />
+          </div>
+        </div>
+
+        {/* Description of item */}
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+            <input 
+              class="input" 
+              type="text"
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+              id="description"
+              placeholder="Add a description"
+            />
+          </div>
+        </div>
+
+        {/* Check for whether type is thing to have functionality of adding image */}
+        {type !== "Service" && (
+          <>
+            <div class="field">
+              <label class="label">Add image</label>
+              <div class="control">
+                <input
+                  type="file" 
+                  name="itemImg"
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {/* Submit button */}
+        <div class="control">
+          <button type="submit" value="add" class="button is-link is-light">Add</button>
+        </div>
+      </form>
     );
   }
 }
