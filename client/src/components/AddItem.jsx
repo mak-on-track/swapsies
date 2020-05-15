@@ -47,6 +47,7 @@ class AddItem extends Component {
           category: "",
         });
         this.props.setUser(data.data);
+        console.log(data)
         this.props.getData();
       })
       .then(() => {

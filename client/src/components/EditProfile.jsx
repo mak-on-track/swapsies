@@ -8,7 +8,7 @@ class EditProfile extends Component {
     bio: this.props.user.bio,
     location: this.props.user.location,
     email: this.props.user.email,
-    locationOptions: ["Prenzlauer Berg", "Mitte", "Kreuzberg"],
+    locationOptions: ["Select Kiez","Prenzlauer Berg", "Mitte", "Kreuzberg", "Outside Ring"],
   };
 
   handleChange = (event) => {
@@ -43,6 +43,9 @@ class EditProfile extends Component {
         console.log(res);
         const userData = res.data;
         this.props.setUser(userData); //setUser method to change user in app.js
+      })
+      .then(() => {
+        this.props.history.push("/dashboard");
       })
       .catch((err) => {
         console.log("Error updating user info", err);

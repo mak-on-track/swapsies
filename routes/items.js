@@ -32,9 +32,9 @@ router.post("/", (req, res) => {
          item.owner ,
         { $push: { inventory: item } },
         { new: true }
-      ).populate("Items")
-        .then((user) => {
-          res.status(201).json(user.data);
+      ) .then((user) => {
+        console.log(user)
+          res.status(201).json(user);
         });
     })
     .catch((err) => {

@@ -15,7 +15,6 @@ import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
 import axios from "axios";
 
-
 class App extends Component {
   state = {
     user: this.props.user,
@@ -41,8 +40,7 @@ class App extends Component {
     });
   };
 
-  //Used to trigger updating user inventory when an item is added.
-  //Could be a component is updated?
+
   getData = () => {
     axios
       .get("/api/items")
@@ -57,6 +55,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(this.state.user)
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
@@ -103,7 +102,13 @@ class App extends Component {
           <Route
             exact
             path="/search"
-            render={(props) => <ItemSearch {...props} />}
+            render={(props) => (
+              <ItemSearch
+                itemsList={this.state.allItems}
+                user={this.state.user}
+                {...props}
+              />
+            )}
           />
           <Route
             exact

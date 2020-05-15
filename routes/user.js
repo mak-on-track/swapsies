@@ -55,7 +55,19 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//delete a specific user AND the items connected to the user (line 57-58)
+
+//get all users
+router.get("/", (req, res) => {
+  User.find()
+  .then((items) => {
+    res.status(200).json(items);
+  })
+  .catch((err) => {
+    res.json(err);
+  });
+});
+
+//delete a specific user AND the items connected to the user
 router.delete("/:id", (req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then((user) => {

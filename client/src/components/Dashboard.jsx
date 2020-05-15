@@ -17,10 +17,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    console.log("props: ", this.props);
-    console.log("userID: ", this.props.user._id);
     const user = this.state.user;
-    console.log("user: ", user);
 
     const {
       username,
@@ -29,11 +26,8 @@ class Dashboard extends Component {
       bio,
       messages,
       inventory,
-
       _id,
     } = user;
-
-    console.log(username, profileImg, location, bio, messages, inventory, _id);
   
 
     return (
@@ -48,16 +42,16 @@ class Dashboard extends Component {
               <img
                 src={
                   profileImg
-                    ? { profileImg }
+                    ?  profileImg 
                     : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
                 }
                 alt="profileImg"
               />
             </li>
             <li>
-              Location: {location ? { location } : "Location not yet added"}
+              Location: {location ?  location  : "Location not yet added"}
             </li>
-            <li>Bio: {bio ? { bio } : "Tell us about yourself"}</li>
+            <li>Bio: {bio ?  bio  : "Tell us about yourself"}</li>
             <Link to="/edit">Edit profile</Link>
           </ul>
         </div>
