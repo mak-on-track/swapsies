@@ -23,16 +23,42 @@ class ItemSearch extends Component {
       });
   }
 
+  handleSearchChange = (event) => {
+    this.setState({
+      search: event.target.value,
+    });
+  };
+
+  handleTypeSelect = (event) => {
+    this.setState({
+      type: event.target.value,
+    });
+  };
+
+  handleCategorySelect = (event) => {
+    this.setState({
+      category: event.target.value,
+    });
+  };
+
   render() {
+    console.log(this.state.search);
     const userId = this.props.user._id;
-    console.log(this.state.userList);
+
     const filteredItems = this.props.itemsList.filter((item) => {
-      //All Filter Functions Here
-      return item;
+      if (item.name.toLowerCase().includes(this.state.search.toLowerCase()))
+        return item;
+      if (item.category.toLowerCase().includes(this.state.search.toLowerCase()))
+        return item;
+      if (
+        item.description.toLowerCase().includes(this.state.search.toLowerCase())
+      )
+        return item;
     });
 
     const filteredThings = filteredItems.filter((thing) => {
-      return thing.type === "Thing";
+      if (this.state.category === "") return thing.type === "Thing";
+      return thing.type === "Thing" && thing.category === this.state.category;
     });
 
     const filteredServices = filteredItems.filter((thing) => {
@@ -49,8 +75,6 @@ class ItemSearch extends Component {
         <div>
           <hr />
           <ul>
-            {thing.owner === userId && <li>This is your item</li>}
-
             <li>Photo (need to start cloudinary)</li>
             <li>Category: {thing.category}</li>
             <li>Name: {thing.name}</li>
@@ -60,14 +84,44 @@ class ItemSearch extends Component {
             <li>
               <button type="button">Add to Favourites</button>
             </li>
-            <li>Posted by: {itemOwner(thing.owner)} <Link to={`/user/${thing.owner}`}>Visit Page</Link></li>
+            {thing.owner === userId ? (
+              <li>Posted by You!</li>
+            ) : (
+              <li>
+                Posted by: {itemOwner(thing.owner)}{" "}
+                <Link to={`/user/${thing.owner}`}>Visit Page</Link>
+              </li>
+            )}
+          </ul>
+        </div>
+      );
+    });
+
+    const displayServices = filteredServices.map((service) => {
+      return (
+        <div>
+          <hr />
+          <ul>
+            <li>Name: {service.name}</li>
+            <li>Description: {service.description}</li>
+            <li>Favourites: {service.favourites}</li>
+            <li>
+              <button type="button">Add to Favourites</button>
+            </li>
+            {service.owner === userId ? (
+              <li>Posted by You!</li>
+            ) : (
+              <li>
+                Posted by: {itemOwner(service.owner)}
+                <Link to={`/user/${service.owner}`}>Visit Page</Link>
+              </li>
+            )}
           </ul>
         </div>
       );
     });
 
     /* const filteredService = */
-    console.log(this.props.itemsList);
     /* const itemService =  */
 
     /*     const itemThing =
@@ -77,13 +131,53 @@ class ItemSearch extends Component {
      */ return (
       <div>
         <h2>What are you looking for?</h2>
+        <select id="type" onChange={this.handleTypeSelect}>
+          <option value="">Select Thing or Service</option>
+          <option value="Thing">Thing</option>
+          <option value="Service">Service</option>
+        </select>
+
+        {this.state.type === "Thing" && (
+          <>
+            <h2>Find by Category</h2>
+            <select id="category" onChange={this.handleCategorySelect}>
+              <option value="">All</option>
+              <option value="Plants">Plants</option>
+              <option value="Furniture">Furniture</option>
+            </select>
+          </>
+        )}
+
+      
+        <form>
+          <input
+            type="text"
+            placeholder="Search"
+            name="search"
+            id="search"
+            value={this.state.search}
+            onChange={this.handleSearchChange}
+          />
+        </form>
+
+        <hr />
         <div>
-          <h4>Things</h4>
-          <div className="itemslist">{displayThings}</div>
+          {this.state.type === "Thing" && (
+            <>
+              <h4>Things</h4>
+              <div className="itemslist">{displayThings}</div>
+            </>
+          )}
         </div>
+        <hr />
         <div>
-          <h4>Services</h4>
-          <div className="serviceList"></div>
+          {this.state.type === "Service" && (
+            <>
+              {" "}
+              <h4>Services</h4>
+              <div className="serviceList">{displayServices}</div>
+            </>
+          )}
         </div>
       </div>
     );
