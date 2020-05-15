@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import ItemInventory from "./ItemInventory";
+import ServiceInventory from "./ServiceInventory";
 
 class Dashboard extends Component {
   state = {};
   render() {
-    console.log(this.props.user);
-
     const {
       username,
       profileImg,
@@ -15,6 +15,7 @@ class Dashboard extends Component {
       inventory,
     } = this.props.user;
 
+    //Component Did Update - get items
 
     return (
       <div>
@@ -39,10 +40,8 @@ class Dashboard extends Component {
         <div>
         <h3>My Stuff</h3>
         <Link to="/add">Add</Link>
-        <h4>Services</h4>
-        <p>List of Services</p>
-        <h4>Things</h4>
-        <p>List of Services (flexbox?)</p>
+       <ServiceInventory />
+       <ItemInventory />
        {/*  For these two lists, make logic so that if there
         are no items either is blank or something like "this user has nothing for you" */}
         </div>

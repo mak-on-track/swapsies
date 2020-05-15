@@ -5,10 +5,18 @@ const User = require("../models/User"); //needed for .populate("owner")
 
 //add item
 router.post("/", (req, res) => {
-  const { name, description, type, category, owner, favourites, status } = req.body;
+  const {
+    name,
+    description,
+    type,
+    category,
+    owner,
+    favourites,
+    status,
+  } = req.body;
 
-console.log(req.body) 
- 
+  //Can add required logic here
+
   Item.create({
     name,
     description,
@@ -16,10 +24,18 @@ console.log(req.body)
     category,
     owner,
     favourites,
-    status
+    status,
   })
     .then((item) => {
-      res.status(201).json(item);
+      console.log(`adding item to user: ${item}`);
+      User.findByIdAndUpdate(
+         item.owner ,
+        { $push: { inventory: item } },
+        { new: true }
+      ).populate("Items")
+        .then((user) => {
+          res.status(201).json(user.data);
+        });
     })
     .catch((err) => {
       res.json(err);

@@ -12,7 +12,7 @@ const ItemSchema = new Schema({
 
   category: {
     type: String,
-    enum: ["Furniture", "Plants", "Food"],
+    enum: ["None", "Furniture", "Plants", "Food"],
   },
   description: String,
   status: {

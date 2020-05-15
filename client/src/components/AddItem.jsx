@@ -13,9 +13,6 @@ class AddItem extends Component {
   handleChange = (event) => {
     const { name, value } = event.target;
 
-    //console.log(name)
-    //console.log(value)
-
     this.setState({
       [name]: value,
     });
@@ -24,10 +21,10 @@ class AddItem extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let { name, category, description, /* CLOUDINARY */ type } = this.state;
-    console.log("submitted");
-    console.log(category);
 
-    if(type === "Service") {category = null}
+    if (type === "Service") {
+      category = "None";
+    }
     /* if(type === "Service") {IMAGE IS NULL} */
 
     return axios
@@ -41,7 +38,7 @@ class AddItem extends Component {
         category,
         /* IMAGE */
       })
-      .then(() => {
+      .then((data) => {
         this.setState({
           name: "",
           description: "",
@@ -49,10 +46,11 @@ class AddItem extends Component {
           type: "",
           category: "",
         });
-        // update state in dashboard by executing getData()
-        /*   this.props.getData(); */
-      }).then(() => {
-        this.props.history.push("/dashboard")
+        this.props.setUser(data.data);
+        this.props.getData();
+      })
+      .then(() => {
+        this.props.history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +73,6 @@ class AddItem extends Component {
           <br />
           {type !== "Service" && (
             <>
-              {" "}
               <label htmlFor="type">Category: </label>
               <select
                 id="category"
