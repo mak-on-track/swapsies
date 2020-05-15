@@ -48,7 +48,7 @@ class Navbar extends Component {
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a className="button is-light" href="/" onClick={() => handleLogout(this.props)}>Logout</a>
+                  <a className="button is-danger is-light" href="/" onClick={() => handleLogout(this.props)}>Logout</a>
                 </div>
               </div>
             </div>
@@ -57,14 +57,21 @@ class Navbar extends Component {
       );
     } else {
       return (
-        <div className="navbar-end">
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <a className="navbar-item" href="/">
+              <img src="/icon_swap.png" alt="" height="28" />
+            </a>
+          </div>
           <div className="navbar-item">
             <div className="buttons">
-              <a className="button is-primary" href="/signup"><strong>Sign up</strong></a>
-              <a className="button is-light" href="/login">Log in</a>
+              <a className="button is-primary is-light" href="/signup">Sign up</a>
+              <a className="button is-link is-light" href="/login">Log in</a>
             </div>
           </div>
-        </div>
+
+
+        </nav>
       )
     }
   }
