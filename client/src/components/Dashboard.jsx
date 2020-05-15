@@ -13,33 +13,6 @@ class Dashboard extends Component {
     editForm: false,
   };
 
-  //to get another user's profile data
-  // getUserData = () => {
-  //   const userId = this.props.user._id;
-  //   axios
-  //     .get(`/api/user/${userId}`)
-  //     .then((res) => {
-  //       console.log(res);
-  //       const userData = res.data;
-  //       this.setState({
-  //         user: userData,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log("Error getting user info", err);
-  //     });
-  // };
-
-  // componentDidMount() {
-  //   this.getUserData();
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps !== this.props) {
-  //     this.getUserData();
-  //   }
-  // }
-
   render() {
     console.log("props: ", this.props);
     console.log("userID: ", this.props.user._id);

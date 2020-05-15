@@ -16,23 +16,28 @@ const router = express.Router();
 // });
 
 //edit user profile
-router.put("/:id", (req, res) => {
-  const id = req.params.id;
-  const { username, profileImg, bio, location, wishList } = req.body;
-  console.log(req.body, "this is the req.body");
-  console.log(req.params.id, "this is the id");
-  User.findByIdAndUpdate(
-    id,
-    { username, profileImg, bio, location, wishList },
-    { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
-  )
-    .then((user) => {
-      res.status(200).json(user);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
+router.put(
+  "/:id",
+  //need to add cloudinary middleware here
+  //uploadCloud.single(“imageUrl”),
+  (req, res) => {
+    const id = req.params.id;
+    const { username, profileImg, bio, location, email, wishList } = req.body;
+    console.log(req.body, "this is the req.body");
+    console.log(req.params.id, "this is the id");
+    User.findByIdAndUpdate(
+      id,
+      { username, profileImg, bio, location, wishList, email },
+      { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
+    )
+      .then((user) => {
+        res.status(200).json(user);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  }
+);
 
 //return a specific user
 router.get("/:id", (req, res) => {
