@@ -1,11 +1,27 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import EditProfile from "./EditProfile";
+import axios from "axios";
 import ItemInventory from "./ItemInventory";
 import ServiceInventory from "./ServiceInventory";
 
+
 class Dashboard extends Component {
-  state = {};
+  state = {
+    user: this.props.user,
+    email: "",
+    profileImg: "",
+    bio: "",
+    location: "",
+    editForm: false,
+  };
+
   render() {
+    console.log("props: ", this.props);
+    console.log("userID: ", this.props.user._id);
+    const user = this.state.user;
+    console.log("user: ", user);
+
     const {
       username,
       profileImg,
@@ -13,37 +29,47 @@ class Dashboard extends Component {
       bio,
       messages,
       inventory,
-    } = this.props.user;
 
-    //Component Did Update - get items
+      _id,
+    } = user;
+
+    console.log(username, profileImg, location, bio, messages, inventory, _id);
+  
 
     return (
       <div>
         <hr />
         <div>
-          <div>
-            <h3>Welcome {username}</h3>
-            <ul>
-              <li>
-                <img src={profileImg} alt="profileImg" />
-              </li>
-              <li>Location: {location}</li>
-              <li>About: {bio}</li>
-              <Link to="/edit">Edit Profile</Link>
-            </ul>
-          </div>
-          <div>
-            <h3>WishList</h3>
-          <p>This will a list of items from the wishList array</p>
-          </div>
+
+          <h3>Welcome {username}</h3>
+
+          <ul>
+            <li>
+              <img
+                src={
+                  profileImg
+                    ? { profileImg }
+                    : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
+                }
+                alt="profileImg"
+              />
+            </li>
+            <li>
+              Location: {location ? { location } : "Location not yet added"}
+            </li>
+            <li>Bio: {bio ? { bio } : "Tell us about yourself"}</li>
+            <Link to="/edit">Edit profile</Link>
+          </ul>
         </div>
         <div>
-        <h3>My Stuff</h3>
+          <h3>WishList</h3>
+          {/* this will be a foreach function need to add this:
+            <h3>My Stuff</h3>
         <Link to="/add">Add</Link>
        <ServiceInventory />
        <ItemInventory />
-       {/*  For these two lists, make logic so that if there
-        are no items either is blank or something like "this user has nothing for you" */}
+           */}
+
         </div>
       </div>
     );

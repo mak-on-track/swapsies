@@ -15,6 +15,7 @@ import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
 import axios from "axios";
 
+
 class App extends Component {
   state = {
     user: this.props.user,
@@ -56,7 +57,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.state.allItems);
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
@@ -66,7 +66,11 @@ class App extends Component {
             exact
             path="/edit"
             render={(props) => (
-              <EditProfile user={this.state.user} {...props} />
+              <EditProfile
+                user={this.state.user}
+                setUser={this.setUser}
+                {...props}
+              />
             )}
           />
           <Route
