@@ -12,11 +12,27 @@ import AddItem from "./components/AddItem";
 import ItemSearch from "./components/ItemSearch";
 import FindUser from "./components/FindUser";
 import Favourites from "./components/Favourites";
+import NotFound from "./components/NotFound";
+import axios from "axios";
 
 class App extends Component {
   state = {
     user: this.props.user,
+    allItems: [],
   };
+
+  componentDidMount() {
+    axios
+      .get("/api/items")
+      .then((response) => {
+        this.setState({
+          allItems: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   setUser = (user) => {
     this.setState({
@@ -24,7 +40,23 @@ class App extends Component {
     });
   };
 
+  //Used to trigger updating user inventory when an item is added.
+  //Could be a component is updated?
+  getData = () => {
+    axios
+      .get("/api/items")
+      .then((response) => {
+        this.setState({
+          allItems: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
+    console.log(this.state.allItems);
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
@@ -47,7 +79,18 @@ class App extends Component {
             path="/login"
             render={(props) => <Login setUser={this.setUser} {...props} />}
           />
-          <Route exact path="/add" render={(props) => <AddItem {...props} />} />
+          <Route
+            exact
+            path="/add"
+            render={(props) => (
+              <AddItem
+                user={this.state.user}
+                setUser={this.setUser}
+                getData={this.getData}
+                {...props}
+              />
+            )}
+          />
           <Route
             exact
             path="/finduser"
@@ -68,8 +111,7 @@ class App extends Component {
             path="/dashboard"
             render={(props) => <Dashboard user={this.state.user} {...props} />} //Not yet working
           />
-          {/*           Add Not found route
-           */}{" "}
+          <Route exact path="/:notfound" component={NotFound} />
         </Switch>
       </div>
     );
