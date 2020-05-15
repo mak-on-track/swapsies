@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signup } from '../services/AuthService';
 
-
-
 class Signup extends Component {
   state = {
     username: '',
     password: '',
     message: ''
   };
-
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -39,41 +36,59 @@ class Signup extends Component {
     });
   };
 
-
-
   render() {
     return (
-      <div>
-      <h2>Sign Up</h2>
+      <div className="field login">
+
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor='username'>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleChange}
-            id='username'
+          
+        <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input 
+                class="input" 
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+                placeholder="My username"
+              />
+            </div>
+          </div>
 
-          />
-
-          <label htmlFor='password'>Password:</label>
-          <input
-            type="text"
-            name="password"
-            onChange={this.handleChange}
-              id='password'
-          />
-
-          <input type="submit" value="Signup" />
-
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input 
+                class="input"
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+                placeholder="My password" 
+              />
+            </div>
+          </div>
+          <div>
+            {this.state.message && (
+              <p>{this.state.message}</p>
+            )}
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button type="submit" value="Login" class="button is-link is-light">Sign up</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light">Cancel</button>
+            </div>
+          </div>
     
-          {this.state.message && (
-            <p>{this.state.message}</p>
-          )}
+
         </form>
         <p>
-          Already have account?
-          <Link to={"/login"}> Login</Link>
+          
         </p>
       </div>
     );
