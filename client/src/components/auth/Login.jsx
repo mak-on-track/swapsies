@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { login } from "../services/AuthService";
-import { Link } from "react-router-dom";
+import "./style.css"
 
 
 class Login extends Component {
@@ -33,43 +33,62 @@ class Login extends Component {
       } else {
 
         this.props.setUser(data);
-        this.props.history.push("/");
+        this.props.history.push("/dashboard");
       }
     });
   };
 
   render() {
-    return (<div><h2>Login</h2>
+    return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor='username'>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-          id='username'
+        <div className="field input-form">
+          <h1>Login</h1>
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input 
+                class="input" 
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+                placeholder="My username"
+              />
+            </div>
+          </div>
 
-        />
-
-        <label htmlFor='password'>Password:</label>
-        <input
-          type="text"
-          name="password"
-          onChange={this.handleChange}
-            id='password'
-        />
-
-        <input type="submit" value="Login" />
-
-  
-        {this.state.message && (
-          <p>{this.state.message}</p>
-        )}
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input 
+                class="input"
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+                placeholder="My password" 
+              />
+            </div>
+          </div>
+          <div className="notice">
+            {this.state.message && (
+              <p>{this.state.message}</p>
+            )}
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button type="submit" value="Login" class="button is-link is-light">Login</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light">Cancel</button>
+            </div>
+          </div>
+          
+        </div>
       </form>
-      <p>
-        Already have account?
-        <Link to={"/login"}> Login</Link>
-      </p></div>);
+    )
   }
 }
 

@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import axios from "axios";
+import ItemInventory from "./ItemInventory";
+import ServiceInventory from "./ServiceInventory";
+
 
 class Dashboard extends Component {
   state = {
@@ -26,15 +29,18 @@ class Dashboard extends Component {
       bio,
       messages,
       inventory,
+
       _id,
     } = user;
 
     console.log(username, profileImg, location, bio, messages, inventory, _id);
+  
 
     return (
       <div>
         <hr />
         <div>
+
           <h3>Welcome {username}</h3>
 
           <ul>
@@ -57,8 +63,13 @@ class Dashboard extends Component {
         </div>
         <div>
           <h3>WishList</h3>
-          {/* this will be a foreach function
-           */}{" "}
+          {/* this will be a foreach function need to add this:
+            <h3>My Stuff</h3>
+        <Link to="/add">Add</Link>
+       <ServiceInventory />
+       <ItemInventory />
+           */}
+
         </div>
       </div>
     );

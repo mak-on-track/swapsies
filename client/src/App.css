@@ -1,0 +1,28 @@
+/* Alternative palettes: */
+/* 
+:root {
+  --primary-color: #342ead;
+  --secondary-color: #ea6227;
+  --third-color: #f2a51a;
+  --fourth-color: #b9ebcc;
+}  */
+
+/* 
+:root {
+  --primary-color: #f40552;
+  --secondary-color: #fc7e2f;
+  --third-color: #c3edea;
+  --fourth-color: #f8f3eb;
+} */
+
+:root {
+  --primary-color: #10375c;
+  --secondary-color: #844685;
+  --third-color: #f3c623;
+  --fourth-color: #faf4ff;
+}
+
+* {
+  background-color: var(--fourth-color);
+  color: var(--secondary-color);
+}
