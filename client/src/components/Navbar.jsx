@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { logout } from './services/AuthService';
-
-
+import './Navbar.css'
+import "bulma/css/bulma.css"
 
 const handleLogout = props => {
 
@@ -12,53 +11,63 @@ const handleLogout = props => {
   });
 }
 
-
 class Navbar extends Component {
-
   render() {
     if (this.props.user) {
       return (
-        <nav>
-          <ul>
-            <li>Welcome, {this.props.user.username}</li>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-              </li>
-              <li>
-              <Link to="/search">Search for Item/Search</Link> 
-              </li>
-              <li>
-              <Link to="/finduser">Find a User</Link> {/* Could this also be a search bar? */}
-              </li>
-              <li>
-              <Link to="/add">Add Item</Link>
-            </li>
-            <li>
-              <Link to="/myfavs">Favourites</Link>
-            </li>
-              <li>
-              <Link to='/' onClick={() => handleLogout(this.props)}>
-              Logout
-            </Link>
-            </li>
-          </ul>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+              <img src="/icon_swap.png" alt="" height="28" />
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+              
+              <div class="navbar-item">Welcome, {this.props.user.username}</div>
+              <a class="navbar-item" href="/dashboard">Dashboard</a>
+              <a class="navbar-item" href="/add">Add Item</a>
+              <a class="navbar-item" href="/myfavs">Favourites</a>
+
+              <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">Search</a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" href="/search">Search an item</a>
+                  <a class="navbar-item" href="/finduser">Find a User</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="navbar-end">
+              <div class="navbar-item" href="/">
+                <div class="buttons">
+                  <a class="button is-light" href="/" onClick={() => handleLogout(this.props)}>Logout</a>
+                </div>
+              </div>
+            </div>
+          </div>
         </nav>
       );
     } else {
       return (
-        <nav>
-          <ul>
-            <li>
-              <Link to="/signup">Signup</Link>
-            </li>
-            <li>
-              <Link to="/login">Log In</Link>
-            </li>
-          </ul>
-        </nav>
-      );
+        <div class="navbar-end">
+          <div class="navbar-item" href="/">
+            <div class="buttons">
+              <a class="button is-primary" href="/signup"><strong>Sign up</strong></a>
+              <a class="button is-light" href="/login">Log in</a>
+            </div>
+          </div>
+        </div>
+      )
     }
   }
 }
-
+   
 export default Navbar;
