@@ -8,6 +8,9 @@ class ItemSearch extends Component {
     category: "",
     type: "",
     userList: [],
+    availableCheck: true,
+    reservedCheck: true,
+    swappedCheck: true,
   };
 
   componentDidMount() {
@@ -22,6 +25,24 @@ class ItemSearch extends Component {
         console.log(err);
       });
   }
+
+  handleAvailableCheck = (event) => {
+    this.setState({
+      availableCheck: event.target.checked,
+    });
+  };
+
+  handleReservedCheck = (event) => {
+    this.setState({
+      reservedCheck: event.target.checked,
+    });
+  };
+
+  handleSwappedCheck = (event) => {
+    this.setState({
+      swappedCheck: event.target.checked,
+    });
+  };
 
   handleSearchChange = (event) => {
     this.setState({
@@ -42,7 +63,6 @@ class ItemSearch extends Component {
   };
 
   render() {
-    console.log(this.state.search);
     const userId = this.props.user._id;
 
     const filteredItems = this.props.itemsList.filter((item) => {
@@ -61,6 +81,32 @@ class ItemSearch extends Component {
       return thing.type === "Thing" && thing.category === this.state.category;
     });
 
+    const isAvailable = (thing) => {
+      if (this.state.availableCheck) {
+        return thing.status === "Available";
+      } else return false;
+    };
+
+    const isReserved = (thing) => {
+      if (this.state.reservedCheck) {
+        return thing.status === "Reserved";
+      } else return false;
+    };
+
+    const isSwapped = (thing) => {
+      if (this.state.swappedCheck) {
+        return thing.status === "Swapped";
+      } else return false;
+    };
+
+    const statusThings = filteredThings.filter((thing) => {
+      if (isAvailable(thing)) return true;
+      if (isReserved(thing)) return true;
+      if (isSwapped(thing)) return true;
+
+      return false;
+    });
+
     const filteredServices = filteredItems.filter((thing) => {
       return thing.type === "Service";
     });
@@ -70,7 +116,7 @@ class ItemSearch extends Component {
         if (postedBy === owner._id) return owner.username;
       });
 
-    const displayThings = filteredThings.map((thing) => {
+    const displayThings = statusThings.map((thing) => {
       return (
         <div>
           <hr />
@@ -148,17 +194,49 @@ class ItemSearch extends Component {
           </>
         )}
 
-      
-        <form>
-          <input
-            type="text"
-            placeholder="Search"
-            name="search"
-            id="search"
-            value={this.state.search}
-            onChange={this.handleSearchChange}
-          />
-        </form>
+        {this.state.type !== "" && (
+          <>
+            <form>
+              <input
+                type="text"
+                placeholder="Search"
+                name="search"
+                id="search"
+                value={this.state.search}
+                onChange={this.handleSearchChange}
+              />
+            </form>
+          </>
+        )}
+
+        {this.state.type === "Thing" && (
+          <>
+            <label htmlFor="available">Available</label>
+            <input
+              type="checkbox"
+              name="Available"
+              id="available"
+              checked={this.state.availableCheck}
+              onChange={this.handleAvailableCheck}
+            />
+            <label htmlFor="reserved">Reserved</label>
+            <input
+              type="checkbox"
+              name="Reserved"
+              id="reserved"
+              checked={this.state.reservedCheck}
+              onChange={this.handleReservedCheck}
+            />
+            <label htmlFor="swapped">Swapped</label>
+            <input
+              type="checkbox"
+              name="Swapped"
+              id="swapped"
+              checked={this.state.swappedCheck}
+              onChange={this.handleSwappedCheck}
+            />
+          </>
+        )}
 
         <hr />
         <div>
