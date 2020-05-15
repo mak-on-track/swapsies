@@ -17,7 +17,7 @@ const ItemSchema = new Schema({
   description: String,
   status: {
     type: String,
-    enum: ["Available", "Pending", "Sold"],
+    enum: ["Available", "Reserved", "Swapped"],
   },
   favourites: Number,
   owner: { type: Schema.Types.ObjectId, ref: "User" },
