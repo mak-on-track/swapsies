@@ -117,7 +117,7 @@ class App extends Component {
           <Route
             exact
             path="/dashboard"
-            render={(props) => <Dashboard user={this.state.user} {...props} />} //Not yet working
+            render={(props) => <Dashboard  itemsList={this.state.allItems} user={this.state.user} />}
           />
           <Route exact path="/:notfound" component={NotFound} />
         </Switch>

@@ -68,7 +68,7 @@ class AddItem extends Component {
 
         {/* Dropdown for selecting thing or service */}
         <div class="field">
-          <label class="label">Is this a product or thing?</label>
+          <label class="label">Is this a service or thing?</label>
           <div class="control">
             <div class="select">
               <select 
