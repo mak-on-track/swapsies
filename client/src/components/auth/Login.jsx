@@ -41,47 +41,51 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="field login">
+      <form onSubmit={this.handleSubmit}>
+        <div className="field login">
 
-        <div class="field">
-          <label class="label">Username</label>
-          <div class="control">
-            <input 
-              class="input" 
-              type="text" 
-              placeholder="My username"
-            />
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input 
+                class="input" 
+                type="text"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleChange}
+                id="username"
+                placeholder="My username"
+              />
+            </div>
           </div>
-        </div>
 
-        <div class="field">
-          <label class="label">Password</label>
-          <div class="control">
-            <input 
-              class="input" 
-              type="password" 
-              placeholder="My password" 
-              value=""
-            />
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input 
+                class="input"
+                type="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+                id="password"
+                placeholder="My password" 
+              />
+            </div>
           </div>
+          
+          <div class="field is-grouped">
+            <div class="control">
+              <button type="submit" value="Login" class="button is-link is-light">Login</button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light">Cancel</button>
+            </div>
+          </div>
+          
         </div>
-        
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Submit</button>
-          </div>
-          <div class="control">
-            <button class="button is-link is-light">Cancel</button>
-          </div>
-        </div>
-        
-        <form>
-          <p>Jello</p>
-          {this.state.message && (
-            <p>{this.state.message}</p>
-          )}
-        </form>
-      </div>);
+      </form>
+    )
   }
 }
 
