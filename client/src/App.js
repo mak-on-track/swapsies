@@ -15,7 +15,6 @@ import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
 import axios from "axios";
 
-
 class App extends Component {
   state = {
     user: this.props.user,
@@ -103,7 +102,13 @@ class App extends Component {
           <Route
             exact
             path="/search"
-            render={(props) => <ItemSearch {...props} />}
+            render={(props) => (
+              <ItemSearch
+                itemsList={this.state.allItems}
+                user={this.state.user}
+                {...props}
+              />
+            )}
           />
           <Route
             exact
