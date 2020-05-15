@@ -13,6 +13,7 @@ import AddItem from "./components/AddItem";
 import ItemSearch from "./components/ItemSearch";
 import FindUser from "./components/FindUser";
 import Favourites from "./components/Favourites";
+import Axios from "axios";
 
 class App extends Component {
   state = {
@@ -26,6 +27,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("this is thte state:", this.state);
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
@@ -35,7 +37,11 @@ class App extends Component {
             exact
             path="/edit"
             render={(props) => (
-              <EditProfile user={this.state.user} {...props} />
+              <EditProfile
+                user={this.state.user}
+                setUser={this.setUser}
+                {...props}
+              />
             )}
           />
           <Route
