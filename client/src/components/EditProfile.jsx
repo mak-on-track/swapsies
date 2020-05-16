@@ -8,7 +8,13 @@ class EditProfile extends Component {
     bio: this.props.user.bio,
     location: this.props.user.location,
     email: this.props.user.email,
-    locationOptions: ["Select Kiez","Prenzlauer Berg", "Mitte", "Kreuzberg", "Outside Ring"],
+    locationOptions: [
+      "Select Kiez",
+      "Prenzlauer Berg",
+      "Mitte",
+      "Kreuzberg",
+      "Outside Ring",
+    ],
   };
 
   handleChange = (event) => {
