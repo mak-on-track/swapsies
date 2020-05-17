@@ -15,6 +15,7 @@ import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
 import axios from "axios";
 import OtherUser from "./components/OtherUser";
+//const uploadCloud = require("../config/cloudinary.js");
 
 class App extends Component {
   state = {
@@ -40,7 +41,6 @@ class App extends Component {
       user: user,
     });
   };
-
 
   getData = () => {
     axios
@@ -99,7 +99,7 @@ class App extends Component {
             path="/finduser"
             render={(props) => <FindUser {...props} />}
           />
-            <Route
+          <Route
             exact
             path="/user/:userId"
             render={(props) => <OtherUser user={this.state.user} {...props} />}
@@ -123,7 +123,12 @@ class App extends Component {
           <Route
             exact
             path="/dashboard"
-            render={(props) => <Dashboard  itemsList={this.state.allItems} user={this.state.user} />}
+            render={(props) => (
+              <Dashboard
+                itemsList={this.state.allItems}
+                user={this.state.user}
+              />
+            )}
           />
           <Route exact path="/:notfound" component={NotFound} />
         </Switch>

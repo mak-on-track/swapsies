@@ -10,6 +10,7 @@ router.post("/", (req, res) => {
     description,
     type,
     category,
+    location,
     owner,
     favourites,
     status,
@@ -20,6 +21,7 @@ router.post("/", (req, res) => {
   Item.create({
     name,
     description,
+    location,
     type,
     category,
     owner,
@@ -29,13 +31,13 @@ router.post("/", (req, res) => {
     .then((item) => {
       console.log(`adding item to user: ${item}`);
       User.findByIdAndUpdate(
-         item.owner ,
+        item.owner,
         { $push: { inventory: item } },
         { new: true }
-      ) .then((user) => {
-        console.log(user)
-          res.status(201).json(user);
-        });
+      ).then((user) => {
+        console.log(user);
+        res.status(201).json(user);
+      });
     })
     .catch((err) => {
       res.json(err);

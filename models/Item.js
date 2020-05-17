@@ -20,6 +20,7 @@ const ItemSchema = new Schema({
     enum: ["Available", "Reserved", "Swapped"],
   },
   favourites: Number,
+  location: String,
   owner: { type: Schema.Types.ObjectId, ref: "User" },
   // Optional:
   // Comments from other Users
