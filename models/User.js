@@ -16,7 +16,7 @@ const userSchema = new Schema(
     inventory: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Items",
+        ref: "Item",
       },
     ],
     messages: [

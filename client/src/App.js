@@ -14,6 +14,7 @@ import FindUser from "./components/FindUser";
 import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
 import axios from "axios";
+import OtherUser from "./components/OtherUser";
 
 class App extends Component {
   state = {
@@ -97,6 +98,11 @@ class App extends Component {
             exact
             path="/finduser"
             render={(props) => <FindUser {...props} />}
+          />
+            <Route
+            exact
+            path="/user/:userId"
+            render={(props) => <OtherUser user={this.state.user} {...props} />}
           />
           <Route
             exact

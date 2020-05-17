@@ -49,7 +49,6 @@ class ItemSearch extends Component {
   };
 
   render() {
-
     const userId = this.props.user._id;
 
     const filteredItems = this.props.itemsList.filter((item) => {
@@ -117,7 +116,9 @@ class ItemSearch extends Component {
             ) : (
               <li>
                 Posted by:
-                <Link to={`/user/${thing.owner._id}`}>{thing.owner.username}</Link>
+                <Link to={`/user/${thing.owner._id}`}>
+                  {thing.owner.username}
+                </Link>
               </li>
             )}
             <button type="button">Message User</button>
@@ -141,8 +142,10 @@ class ItemSearch extends Component {
               <li>Posted by You!</li>
             ) : (
               <li>
-                Posted by: 
-                <Link to={`/user/${service.owner._id}`}>{service.owner.username}</Link>
+                Posted by:
+                <Link to={`/user/${service.owner._id}`}>
+                  {service.owner.username}
+                </Link>
               </li>
             )}
             <button type="button">Message User</button>
@@ -151,9 +154,7 @@ class ItemSearch extends Component {
       );
     });
 
-
-
-     return (
+    return (
       <div>
         <h2>What are you looking for?</h2>
         <select id="type" onChange={this.handleTypeSelect}>
@@ -230,7 +231,6 @@ class ItemSearch extends Component {
         <div>
           {this.state.type === "Service" && (
             <>
-              
               <h4>Services</h4>
               <div className="serviceList">{displayServices}</div>
             </>

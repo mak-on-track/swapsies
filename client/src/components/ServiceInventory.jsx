@@ -2,13 +2,23 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class ServiceInventory extends Component {
-  state = {};
+  state = {
+    user: this.props.user,
+    loggedInUser: this.props.loggedInUser,
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.state.user !== prevProps.user) {
+      this.setState({ user: this.props.user });
+      this.setState({ loggedInUser: this.props.loggedInUser });
+    }
+  }
+
   render() {
-    const { itemsList, user } = this.props;
+    const itemsList = this.state.user.inventory;
 
     const filteredServices = itemsList.filter((service) => {
-      if (service.type === "Service" && user.inventory.includes(service._id))
-        return true;
+      if (service.type === "Service") return true;
     });
 
     const displayServices = filteredServices.map((service) => {
@@ -19,10 +29,21 @@ class ServiceInventory extends Component {
               <li>Name: {service.name}</li>
               <li>Description: {service.description}</li>
             </ul>
-            {/* <button>Edit</button> */}
-            <button id={service._id} onClick="function(this.id)">
-              Delete
-            </button>
+
+            {this.state.user._id === this.state.loggedInUser._id ? (
+              <>
+                {/* <button>Edit</button> */}
+                <button id={service._id} onClick="function(this.id)">
+                  Delete
+                </button>
+              </>
+            ) : (
+              <>
+                <button id={service._id} onClick="function(this.id)">
+                  Offer Swap
+                </button>
+              </>
+            )}
 
             <hr />
           </div>
@@ -30,15 +51,13 @@ class ServiceInventory extends Component {
       );
     });
 
-    console.log(displayServices);
-
     return (
       <div>
         <h4>Services Offered</h4>
         {displayServices.length < 1 ? (
           <Link to="/add">Add a Service</Link>
         ) : (
-           displayServices 
+          displayServices
         )}
       </div>
     );

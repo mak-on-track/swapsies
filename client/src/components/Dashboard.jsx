@@ -8,17 +8,34 @@ import ServiceInventory from "./ServiceInventory";
 class Dashboard extends Component {
   state = {
     user: this.props.user,
-    email: "",
+/*     email: "", 
     profileImg: "",
     bio: "",
-    location: "",
+    location: "", */ //Commented out probably not needed (all runs off user)
     editForm: false,
   };
 
+  componentDidMount() {
+
+    const userId = this.state.user._id;
+    return axios
+      .get(`/api/user/${userId}`)
+      .then((response) => {
+        this.setState({ user: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   render() {
+
+
+    
     const user = this.state.user;
-/*     console.log(this.props)
- */
+
+    console.log(this.state.user)
+
     const {
       username,
       profileImg,
@@ -29,7 +46,6 @@ class Dashboard extends Component {
       inventory,
       _id,
     } = user;
-
 
     return (
       <div>
@@ -48,20 +64,28 @@ class Dashboard extends Component {
                 alt="profileImg"
               />
             </li>
-            <li>Kiez: {location !== "Select Kiez" ? location : <Link to="/edit">Add a Kiez</Link>}</li>
-            <li>Bio: {bio ? bio : <Link to="/edit">Say a bit about yourself!</Link>}</li>
+            <li>
+              Kiez:{" "}
+              {location !== "Select Kiez" ? (
+                location
+              ) : (
+                <Link to="/edit">Add a Kiez</Link>
+              )}
+            </li>
+            <li>
+              Bio:{" "}
+              {bio ? bio : <Link to="/edit">Say a bit about yourself!</Link>}
+            </li>
             <Link to="/edit">Edit Profile</Link>
           </ul>
         </div>
         <div>
           <h3>WishList</h3>
-          <ul>
-           {/*  {wishList} */}
-          </ul>
+          <ul>{/*  {wishList} */}</ul>
           <h3>My Stuff</h3>
           <Link to="/add">Add</Link>
-          <ServiceInventory   itemsList={this.props.itemsList} user={this.props.user}/>
-          <ItemInventory itemsList={this.props.itemsList} user={this.props.user}/>
+          <ServiceInventory user={this.state.user} loggedInUser ={this.state.user} />
+          <ItemInventory user={this.state.user} loggedInUser ={this.state.user}/>
         </div>
       </div>
     );
