@@ -45,7 +45,7 @@ router.post("/", (req, res) => {
 //return all items
 router.get("/", (req, res) => {
   Item.find()
-    //populate("owner") //need this step because otherwise it will only return a list of ids
+    .populate("owner")
     .then((items) => {
       res.status(200).json(items);
     })
