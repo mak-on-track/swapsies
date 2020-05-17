@@ -7,24 +7,10 @@ class ItemSearch extends Component {
     search: "",
     category: "",
     type: "",
-    userList: [],
     availableCheck: true,
     reservedCheck: true,
     swappedCheck: true,
   };
-
-  componentDidMount() {
-    axios
-      .get("/api/user")
-      .then((response) => {
-        this.setState({
-          userList: response.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
 
   handleAvailableCheck = (event) => {
     this.setState({
@@ -63,6 +49,7 @@ class ItemSearch extends Component {
   };
 
   render() {
+
     const userId = this.props.user._id;
 
     const filteredItems = this.props.itemsList.filter((item) => {
@@ -111,11 +98,6 @@ class ItemSearch extends Component {
       return thing.type === "Service";
     });
 
-    const itemOwner = (postedBy) =>
-      this.state.userList.map((owner) => {
-        if (postedBy === owner._id) return owner.username;
-      });
-
     const displayThings = statusThings.map((thing) => {
       return (
         <div>
@@ -130,14 +112,15 @@ class ItemSearch extends Component {
             <li>
               <button type="button">Add to Favourites</button>
             </li>
-            {thing.owner === userId ? (
+            {thing.owner._id === userId ? (
               <li>Posted by You!</li>
             ) : (
               <li>
-                Posted by: {itemOwner(thing.owner)}{" "}
-                <Link to={`/user/${thing.owner}`}>Visit Page</Link>
+                Posted by:
+                <Link to={`/user/${thing.owner._id}`}>{thing.owner.username}</Link>
               </li>
             )}
+            <button type="button">Message User</button>
           </ul>
         </div>
       );
@@ -154,27 +137,23 @@ class ItemSearch extends Component {
             <li>
               <button type="button">Add to Favourites</button>
             </li>
-            {service.owner === userId ? (
+            {service.owner._id === userId ? (
               <li>Posted by You!</li>
             ) : (
               <li>
-                Posted by: {itemOwner(service.owner)}
-                <Link to={`/user/${service.owner}`}>Visit Page</Link>
+                Posted by: 
+                <Link to={`/user/${service.owner._id}`}>{service.owner.username}</Link>
               </li>
             )}
+            <button type="button">Message User</button>
           </ul>
         </div>
       );
     });
 
-    /* const filteredService = */
-    /* const itemService =  */
 
-    /*     const itemThing =
 
-    //Do overall filtered list, then filter logic and then two lists to display
-
-     */ return (
+     return (
       <div>
         <h2>What are you looking for?</h2>
         <select id="type" onChange={this.handleTypeSelect}>
@@ -251,7 +230,7 @@ class ItemSearch extends Component {
         <div>
           {this.state.type === "Service" && (
             <>
-              {" "}
+              
               <h4>Services</h4>
               <div className="serviceList">{displayServices}</div>
             </>
