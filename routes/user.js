@@ -41,8 +41,8 @@ router.put(
 
 //return a specific user
 router.get("/:id", (req, res) => {
-  console.log("this is the id", req.params.id);
   User.findById(req.params.id)
+    .populate("inventory")
     .then((user) => {
       if (!user) {
         res.status(404).json(user);
@@ -59,6 +59,7 @@ router.get("/:id", (req, res) => {
 //get all users
 router.get("/", (req, res) => {
   User.find()
+ // .populate("inventory") //brings in all items - needs to be refactored to include
   .then((items) => {
     res.status(200).json(items);
   })
