@@ -56,8 +56,8 @@ class OfferSwap extends Component {
           userReceive: "",
           message: "",
         });
-   /*      this.props.setUser(data.data); //check this is right
-        this.props.getData(); */
+        this.props.setUser(this.props.user); //check if data.data is right
+        //this.props.getData();
       })
       .then(() => {
         this.props.history.goBack();

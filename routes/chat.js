@@ -20,11 +20,14 @@ router.post("/", (req, res) => {
 //return specific chat
 router.get("/:id", (req, res) => {
   console.log("this is the id", req.params.id);
-  Chat.findById(req.params.id)
+
+  Chat.find( {userSend:req.params.id/* , $or: [{userReceive: req.params.id}] */})
+  
     .then((chat) => {
       if (!chat) {
         res.status(404).json(chat);
       } else {
+        console.log(`chat: ${chat}`)
         res.json(chat);
       }
     })

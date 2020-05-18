@@ -48,7 +48,7 @@ class Navbar extends Component {
             <div className={navbarClass} id="navMenu">
               <div className="navbar-start">
                 <a className="navbar-item" href="/dashboard">Dashboard</a>
-                <a className="navbar-item" href="/messages">Messages</a>
+                <a className="navbar-item" href={`/messages/${this.props.user._id}`}>Messages</a>
                 <a className="navbar-item" href="/add">Add Item</a>
                 <a className="navbar-item" href="/myfavs">Favourites</a>
 

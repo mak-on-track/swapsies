@@ -5,21 +5,28 @@ import axios from "axios";
 class Messages extends Component {
   state = {  }
 
-/*   componentDidMount() {
-    const userId = this.state.user._id;
+  componentDidMount() {
+    this.props.setUser(this.props.user);
+
+/*     const findChats = this.props.match.params.id;
+    console.log(findChats)
     return axios
-      .get(`/api/user/${userId}`)
+      .get(`/api/chat/${findChats}`)
       .then((response) => {
-        this.setState({ user: response.data });
+         console.log(`response data: ${response}`);
+
       })
       .catch((err) => {
         console.log(err);
-      });
-  } */
+      }); */
+  }
 
 
   
-  render() { 
+  render() {
+console.log(this.props)
+
+
     return ( <div>
       <h2>Sent Swap Offers</h2>
 

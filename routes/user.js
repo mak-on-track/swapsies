@@ -58,6 +58,7 @@ router.post("/upload", uploadCloud.single("imageUrl"), (req, res, next) => {
 router.get("/:id", (req, res) => {
   User.findById(req.params.id)
     .populate("inventory")
+    .populate("messages")
     .then((user) => {
       if (!user) {
         res.status(404).json(user);
@@ -73,7 +74,7 @@ router.get("/:id", (req, res) => {
 //get all users
 router.get("/", (req, res) => {
   User.find()
-    .populate("inventory") //brings in all items - needs to be refactored to include
+    .populate("inventory") 
     .then((items) => {
       res.status(200).json(items);
     })

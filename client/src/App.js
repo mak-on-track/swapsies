@@ -38,6 +38,24 @@ class App extends Component {
       });
   }
 
+
+  componentDidUpdate(prevProps) { //Added when posting a message to update user.
+/*     if (this.state.user !== prevProps.user) {
+      const userId = this.state.user._id;
+      console.log('userid', userId)
+      return axios
+        .get(`/api/user/${userId}`)
+        .then((response) => {
+          console.log('response', response)
+          this.setUser(response.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } */
+  }
+
+
   setUser = (user) => {
     console.log('updating')
     this.setState({
@@ -84,7 +102,7 @@ class App extends Component {
           <Route
             exact
             path="/messages/:id"
-            render={(props) => <Messages setUser={this.setUser} {...props} />}
+            render={(props) => <Messages setUser={this.setUser}  user={this.state.user}  {...props} />}
           />
           <Route
             exact
@@ -106,7 +124,7 @@ class App extends Component {
           <Route
             exact
             path="/swap/:item"
-            render={(props) => <OfferSwap user={this.state.user} {...props} />}
+            render={(props) => <OfferSwap user={this.state.user}  setUser={this.setUser} {...props} />}
           />
 
           <Route
