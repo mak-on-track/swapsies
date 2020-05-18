@@ -15,7 +15,7 @@ class Navbar extends Component {
   render() {
     if (this.props.user) {
       return (
-        <nav className="navbar" role="navigation" aria-label="main navigation">
+        <nav className="navbar is-transparent" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
             <a className="navbar-item" href="/">
               <img src="/icon_swap.png" alt="" height="28" />
