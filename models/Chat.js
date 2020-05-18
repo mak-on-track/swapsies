@@ -5,7 +5,7 @@ const ChatSchema = new Schema(
   {
     subject: String,
     userSend: { type: Schema.Types.ObjectId, ref: "User" },
-    UserReceive: { type: Schema.Types.ObjectId, ref: "User" },
+    userReceive: { type: Schema.Types.ObjectId, ref: "User" },
     item: { type: Schema.Types.ObjectId, ref: "Item" },
     messages: [
       {

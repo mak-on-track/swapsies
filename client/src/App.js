@@ -39,6 +39,7 @@ class App extends Component {
   }
 
   setUser = (user) => {
+    console.log('updating')
     this.setState({
       user: user,
     });
@@ -57,8 +58,8 @@ class App extends Component {
       });
   };
 
-
   render() {
+    
     return (
       <div className="App">
         <Navbar user={this.state.user} setUser={this.setUser} />
@@ -80,9 +81,9 @@ class App extends Component {
             path="/signup"
             render={(props) => <Signup setUser={this.setUser} {...props} />}
           />
-           <Route
+          <Route
             exact
-            path="/messages"
+            path="/messages/:id"
             render={(props) => <Messages setUser={this.setUser} {...props} />}
           />
           <Route
@@ -102,7 +103,7 @@ class App extends Component {
               />
             )}
           />
-            <Route
+          <Route
             exact
             path="/swap/:item"
             render={(props) => <OfferSwap user={this.state.user} {...props} />}
@@ -116,7 +117,7 @@ class App extends Component {
           <Route
             exact
             path="/user/:userId"
-            render={(props) => <OtherUser user={this.state.user} {...props} />}
+            render={(props) => <OtherUser user={this.state.user} setUser={this.setUser} {...props} />}
           />
           <Route
             exact
@@ -139,6 +140,7 @@ class App extends Component {
             path="/dashboard"
             render={(props) => (
               <Dashboard
+                setUser={this.setUser}
                 itemsList={this.state.allItems}
                 user={this.state.user}
               />

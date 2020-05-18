@@ -73,7 +73,7 @@ class AddItem extends Component {
         });
         this.props.setUser(data.data);
         console.log(data);
-        this.props.getData();
+        this.props.getData(); //might not be needed
       })
       .then(() => {
         this.props.history.push("/dashboard");

@@ -8,22 +8,16 @@ import "./style.css";
 
 class Dashboard extends Component {
   state = {
-    user: this.props.user,
-    // email: "",
-    // profileImgPath: "",
-    // bio: "",
-    // location: "", //Commented out probably not needed (all runs off user)
-    editForm: false,
+    /*     user: this.props.user,
+     */ editForm: false,
   };
 
   componentDidMount() {
-    console.log("dashmount");
-
-    const userId = this.state.user._id;
+    const userId = this.props.user._id;
     return axios
       .get(`/api/user/${userId}`)
       .then((response) => {
-        this.setState({ user: response.data });
+        this.props.setUser(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -31,12 +25,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const user = this.state.user;
-
-    console.log(this.state.user);
-
-    /*     console.log(this.props)
-     */
+    const user = this.props.user;
+    console.log("this is the dash", user);
     const {
       username,
       profileImgPath,
@@ -58,18 +48,18 @@ class Dashboard extends Component {
           <ul>
             <li>
               <div class="chip">
-                <img 
+                <img
                   src={
                     profileImgPath
                       ? profileImgPath
                       : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
-                    }
-                    alt="profileImg" 
-                    width="96"
-                    height="96"
+                  }
+                  alt="profileImg"
+                  width="96"
+                  height="96"
                 />
                 {username}
-              </div> 
+              </div>
             </li>
             <li>Email:{email ? email : <Link to="/edit"></Link>}</li>
             <li>
@@ -93,12 +83,12 @@ class Dashboard extends Component {
           <h3>My Stuff</h3>
           <Link to="/add">Add</Link>
           <ServiceInventory
-            user={this.state.user}
-            loggedInUser={this.state.user}
+            user={this.props.user}
+            loggedInUser={this.props.user}
           />
           <ItemInventory
-            user={this.state.user}
-            loggedInUser={this.state.user}
+            user={this.props.user}
+            loggedInUser={this.props.user}
           />
         </div>
       </div>

@@ -5,8 +5,7 @@ import ItemInventory from "./ItemInventory";
 
 class OtherUser extends Component {
   state = {
-    loggedInUser: this.props.user,
-    otherUser: this.props.user,  //silly fix otherwise componentDidMount never runs causing nested components to fail
+    otherUser: this.props.user, //silly fix otherwise componentDidMount never runs causing nested components to fail
   };
 
   componentDidMount() {
@@ -14,25 +13,28 @@ class OtherUser extends Component {
     return axios
       .get(`/api/user/${findUser}`)
       .then((response) => {
-       // console.log(`response data: ${response.data}`);
-        
-      this.setState({ otherUser: response.data });
+        // console.log(`response data: ${response.data}`);
 
+        this.setState({ otherUser: response.data });
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-
-  
-
   render() {
     return (
       <div>
-{/*       Need logic here that if empty/undefined do not show
- */}        <ItemInventory user={this.state.otherUser} loggedInUser={this.state.loggedInUser}/>
-        <ServiceInventory user={this.state.otherUser} loggedInUser={this.state.loggedInUser}/>
+        {/*       Need logic here that if empty/undefined do not show
+         */}{" "}
+        <ItemInventory
+          user={this.state.otherUser}
+          loggedInUser={this.props.user}
+        />
+        <ServiceInventory
+          user={this.state.otherUser}
+          loggedInUser={this.props.user}
+        />
       </div>
     );
   }

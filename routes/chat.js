@@ -4,10 +4,10 @@ const Chat = require("../models/Chat");
 const Item = require("../models/Item");
 
 router.post("/", (req, res) => {
-  const subject = req.body.subject;
+  const {userSend, userReceive, item, messages} = req.body;
 
   Chat.create({
-    subject,
+    userSend, userReceive, item, messages
   })
     .then((chat) => {
       res.status(201).json(chat); //http status code 'created'
