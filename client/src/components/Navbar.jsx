@@ -13,6 +13,7 @@ const handleLogout = props => {
 
 class Navbar extends Component {
   render() {
+  //  console.log(this.props.user._id)
     if (this.props.user) {
       return (
         <nav className="navbar is-transparent" role="navigation" aria-label="main navigation">

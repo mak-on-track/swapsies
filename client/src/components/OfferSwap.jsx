@@ -7,6 +7,7 @@ class OfferSwap extends Component {
     item: "",
     userSend: "",
     userReceive: "",
+    message: "",
     time: new Date(),
   };
 
@@ -22,20 +23,63 @@ class OfferSwap extends Component {
       });
   }
 
-  // Function to post message
+  handleChange = (event) => {
+   // console.log(this.props.user._id)
+
+    const { name, value } = event.target;
+
+    this.setState({
+      message: value,
+    });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state.message); //message
+    console.log(this.props.user._id) //sending user ID
+    console.log(this.state.item._id) //itemID
+    console.log(this.state.item.owner._id) //owner Id
+    console.log(this.state.time) //time
+
+
+    return axios
+      .post("/api/chat", {
+        userSend: this.props.user._id,
+        userReceive: this.state.item.owner._id,
+        item: this.state.item._id,
+        messages: [{msg: this.state.message}]
+      })
+      .then((data) => {
+        this.setState({
+          item: "",
+          userSend: "",
+          userReceive: "",
+          message: "",
+        });
+   /*      this.props.setUser(data.data); //check this is right
+        this.props.getData(); */
+      })
+      .then(() => {
+        this.props.history.goBack();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
 
   render() {
-    // console.log(this.props.user)
     const {
       name,
       category,
       location,
-      status, wishList,
+      status,
       owner,
       description /* IMAGE */,
     } = this.state.item;
 
-    console.log(owner);
     return (
       <>
         <h2>Offer a Swap</h2>
@@ -47,17 +91,17 @@ class OfferSwap extends Component {
           </li>
           <li>Description: {description}</li>
           <li>Location: {location}</li>
-          <li>Wishlist: {wishList}</li>
           <li>Status: {status}</li>
           <li>Can also put user's image here</li>
-         
-  {/*         <li>
+
+          {/*         <li>
             Posted by: <Link to={`/user/${owner._id}`}>Something</Link>
           </li> */}
         </ul>
-        <form>
-        <textarea>Offer Swap</textarea>
-        <button>Send</button>
+        <form onSubmit={this.handleSubmit}>
+        <label htmlFor="offerSwap">Description</label>
+          <textarea id="offerSwap"  onChange={this.handleChange} value={this.state.message}>Offer Swap</textarea>
+          <button>Send</button>
         </form>
       </>
     );

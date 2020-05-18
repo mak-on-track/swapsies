@@ -64,7 +64,7 @@ router.get("/:id", (req, res) => {
 //get all users
 router.get("/", (req, res) => {
   User.find()
-    // .populate("inventory") //brings in all items - needs to be refactored to include
+    .populate("inventory") //brings in all items - needs to be refactored to include
     .then((items) => {
       res.status(200).json(items);
     })

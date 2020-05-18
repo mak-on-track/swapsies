@@ -2,20 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class ItemInventory extends Component {
-  state = {
-    user: this.props.user,
-    loggedInUser: this.props.loggedInUser,
-  };
-
-  componentDidUpdate(prevProps) {
-    if (this.state.user !== prevProps.user) {
-      this.setState({ user: this.props.user });
-      this.setState({ loggedInUser: this.props.loggedInUser });
-    }
-  }
-
   render() {
-    const itemsList = this.state.user.inventory;
+    console.log(this.props);
+    const itemsList = this.props.user.inventory;
 
     const filteredThings = itemsList.filter((thing) => {
       if (thing.type === "Thing") return true;
@@ -33,7 +22,7 @@ class ItemInventory extends Component {
               <li>Category: {thing.category}</li>
               <li>Description: {thing.description}</li>
 
-              {this.state.user._id === this.state.loggedInUser._id ? (
+              {this.props.user._id === this.props.loggedInUser._id ? (
                 <>
                   <label>Status: </label>
                   <select
@@ -55,17 +44,10 @@ class ItemInventory extends Component {
                 <>
                   <li>Status: {thing.status}</li>
                   <Link to={`/swap/${thing._id}`}>
-                  <button id={thing._id}>
-                    Offer Swap
-                  </button>
+                    <button id={thing._id}>Offer Swap</button>
                   </Link>
                 </>
-
-              
               )}
-
-
-
             </ul>
             <hr />
           </div>

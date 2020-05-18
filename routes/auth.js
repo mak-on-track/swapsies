@@ -57,6 +57,7 @@ authRoutes.post("/login", (req, res) => {
     req.login(user, (err) => {
       if (err) {
         return res
+
           .status(500)
           .json({ message: "Error while attempting to login" });
       }
@@ -66,7 +67,6 @@ authRoutes.post("/login", (req, res) => {
 });
 
 authRoutes.delete("/logout", (req, res) => {
-  
   req.logout();
   res.json({ message: "Successful logout" });
 });

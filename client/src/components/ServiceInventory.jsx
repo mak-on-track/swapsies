@@ -2,20 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class ServiceInventory extends Component {
-  state = {
-    user: this.props.user,
-    loggedInUser: this.props.loggedInUser,
-  };
-
-  componentDidUpdate(prevProps) {
-    if (this.state.user !== prevProps.user) {
-      this.setState({ user: this.props.user });
-      this.setState({ loggedInUser: this.props.loggedInUser });
-    }
-  }
-
   render() {
-    const itemsList = this.state.user.inventory;
+    const itemsList = this.props.user.inventory;
 
     const filteredServices = itemsList.filter((service) => {
       if (service.type === "Service") return true;
@@ -30,7 +18,7 @@ class ServiceInventory extends Component {
               <li>Description: {service.description}</li>
             </ul>
 
-            {this.state.user._id === this.state.loggedInUser._id ? (
+            {this.props.user._id === this.props.loggedInUser._id ? (
               <>
                 {/* <button>Edit</button> */}
                 <button id={service._id} onClick="function(this.id)">
