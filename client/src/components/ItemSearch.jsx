@@ -128,11 +128,13 @@ class ItemSearch extends Component {
     });
 
     const displayServices = filteredServices.map((service) => {
+      console.log(service);
       return (
         <div>
           <hr />
           <ul>
             <li>Name: {service.name}</li>
+            <li>Kiez: {service.owner.location}</li>
             <li>Description: {service.description}</li>
             <li>Favourites: {service.favourites}</li>
             <li>

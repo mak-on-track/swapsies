@@ -16,6 +16,7 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
+    console.log('dashmount')
 
     const userId = this.state.user._id;
     return axios
