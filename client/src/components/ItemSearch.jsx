@@ -99,6 +99,8 @@ class ItemSearch extends Component {
         return item;
     });
 
+    
+
     const filteredThings = filteredItems.filter((thing) => {
       if (this.state.category === "") return thing.type === "Thing";
       return thing.type === "Thing" && thing.category === this.state.category;
