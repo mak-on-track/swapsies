@@ -85,6 +85,10 @@ class ItemSearch extends Component {
         this.state.location,
         "state loctn"
       );
+
+      if (item.location !== this.state.location && this.state.location !== "")
+        return false;
+
       if (item.name.toLowerCase().includes(this.state.search.toLowerCase()))
         return item;
       if (item.category.toLowerCase().includes(this.state.search.toLowerCase()))
@@ -92,7 +96,7 @@ class ItemSearch extends Component {
       if (
         item.description.toLowerCase().includes(this.state.search.toLowerCase())
       )
-        if (item.location === this.state.location) return item; // i don't get why this isn't filtering
+        return item;
     });
 
     const filteredThings = filteredItems.filter((thing) => {
@@ -189,7 +193,7 @@ class ItemSearch extends Component {
       );
     });
 
-     return (
+    return (
       <div className="main">
         <h2>What are you looking for?</h2>
         <select id="type" onChange={this.handleTypeSelect}>
