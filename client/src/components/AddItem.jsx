@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./style.css"
 
 class AddItem extends Component {
   state = {
@@ -61,104 +62,106 @@ class AddItem extends Component {
   render() {
     const { name, description, /* CLOUDINARY */ type } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div class="field">
-          <label class="label">Add new item</label>
-        </div>
-
-        {/* Dropdown for selecting thing or service */}
-        <div class="field">
-          <label class="label">Is this a service or thing?</label>
-          <div class="control">
-            <div class="select">
-              <select 
-                id="type" 
-                name="type" 
-                onChange={this.handleChange}
-              >
-                <option value="">Select</option>
-                <option value="Thing">Thing</option>
-                <option value="Service">Service</option>
-              </select>
-            </div>
+      <div className="main">
+        <form onSubmit={this.handleSubmit}>
+          <div class="field">
+            <label class="label">Add new item</label>
           </div>
-        </div>
 
-        {/* Only displays when selected type is "thing" */}
-        {type !== "Service" && (
-          <>
-            {/* Dropdown for selecting category */}
-            <div class="field">
-              <label class="label">Category</label>
-              <div class="control">
+          {/* Dropdown for selecting thing or service */}
+          <div class="field">
+            <label class="label">Is this a service or thing?</label>
+            <div class="control">
               <div class="select">
-                <select
-                  id="category"
-                  name="category"
+                <select 
+                  id="type" 
+                  name="type" 
                   onChange={this.handleChange}
                 >
-                    <option value="">Select</option>
-                    <option value="Furniture">Furniture</option>
-                    <option value="Plants">Plants</option>
-                  </select>
+                  <option value="">Select</option>
+                  <option value="Thing">Thing</option>
+                  <option value="Service">Service</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          {/* Only displays when selected type is "thing" */}
+          {type !== "Service" && (
+            <>
+              {/* Dropdown for selecting category */}
+              <div class="field">
+                <label class="label">Category</label>
+                <div class="control">
+                <div class="select">
+                  <select
+                    id="category"
+                    name="category"
+                    onChange={this.handleChange}
+                  >
+                      <option value="">Select</option>
+                      <option value="Furniture">Furniture</option>
+                      <option value="Plants">Plants</option>
+                    </select>
+                  </div>
                 </div>
               </div>
+            </>
+          )}
+
+          {/* Name of item */}
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input 
+                class="input" 
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+                id="name"
+                placeholder="Name of item"
+              />
             </div>
-          </>
-        )}
-
-        {/* Name of item */}
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control">
-            <input 
-              class="input" 
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              id="name"
-              placeholder="Name of item"
-            />
           </div>
-        </div>
 
-        {/* Description of item */}
-        <div class="field">
-          <label class="label">Description</label>
-          <div class="control">
-            <input 
-              class="input" 
-              type="text"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-              id="description"
-              placeholder="Add a description"
-            />
+          {/* Description of item */}
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <input 
+                class="input" 
+                type="text"
+                name="description"
+                value={this.state.description}
+                onChange={this.handleChange}
+                id="description"
+                placeholder="Add a description"
+              />
+            </div>
           </div>
-        </div>
 
-        {/* Check for whether type is thing to have functionality of adding image */}
-        {type !== "Service" && (
-          <>
-            <div class="field">
-              <label class="label">Add image</label>
-              <div class="control">
-                <input
-                  type="file" 
-                  name="itemImg"
-                />
+          {/* Check for whether type is thing to have functionality of adding image */}
+          {type !== "Service" && (
+            <>
+              <div class="field">
+                <label class="label">Add image</label>
+                <div class="control">
+                  <input
+                    type="file" 
+                    name="itemImg"
+                  />
+                </div>
               </div>
-            </div>
-          </>
-        )}
+            </>
+          )}
 
-        {/* Submit button */}
-        <div class="control">
-          <button type="submit" value="add" class="button is-link is-light">Add</button>
-        </div>
-      </form>
+          {/* Submit button */}
+          <div class="control">
+            <button type="submit" value="add" class="button is-link is-light">Add</button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

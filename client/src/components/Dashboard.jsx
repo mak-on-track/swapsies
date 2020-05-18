@@ -4,6 +4,8 @@ import EditProfile from "./EditProfile";
 import axios from "axios";
 import ItemInventory from "./ItemInventory";
 import ServiceInventory from "./ServiceInventory";
+import "./style.css"
+
 
 class Dashboard extends Component {
   state = {
@@ -49,7 +51,7 @@ class Dashboard extends Component {
     } = user;
 
     return (
-      <div>
+      <div className="main">
         <hr />
         <div>
           <h3>Welcome {username}</h3>

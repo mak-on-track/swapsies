@@ -99,7 +99,7 @@ class ItemSearch extends Component {
 
     const displayThings = statusThings.map((thing) => {
       return (
-        <div>
+        <div className="main">
           <hr />
           <ul>
             <li>Photo (need to start cloudinary)</li>
@@ -130,7 +130,7 @@ class ItemSearch extends Component {
     const displayServices = filteredServices.map((service) => {
       console.log(service);
       return (
-        <div>
+        <div className="main">
           <hr />
           <ul>
             <li>Name: {service.name}</li>
@@ -156,8 +156,8 @@ class ItemSearch extends Component {
       );
     });
 
-    return (
-      <div>
+     return (
+      <div className="main">
         <h2>What are you looking for?</h2>
         <select id="type" onChange={this.handleTypeSelect}>
           <option value="">Select Thing or Service</option>

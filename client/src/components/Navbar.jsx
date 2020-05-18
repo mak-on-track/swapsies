@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { logout } from './services/AuthService';
-import './Navbar.css'
+import './style.css'
 import "bulma/css/bulma.css"
 
 const handleLogout = props => {

@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import "./style.css"
 
 class FindUser extends Component {
   state = {};
   render() {
-    return <div>Find a User </div>;
+    return (
+      <div className="main">
+        Find a User
+      </div>
+    );
   }
 }
 
