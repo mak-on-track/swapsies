@@ -33,6 +33,7 @@ class Navbar extends Component {
               
               <div className="navbar-item">Welcome, {this.props.user.username}</div>
               <a className="navbar-item" href="/dashboard">Dashboard</a>
+              <a className="navbar-item" href="/messages">Messages</a>
               <a className="navbar-item" href="/add">Add Item</a>
               <a className="navbar-item" href="/myfavs">Favourites</a>
 

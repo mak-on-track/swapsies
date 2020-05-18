@@ -54,11 +54,18 @@ class ItemInventory extends Component {
               ) : (
                 <>
                   <li>Status: {thing.status}</li>
-                  <button id={thing._id} onClick="function(this.id)">
+                  <Link to={`/swap/${thing._id}`}>
+                  <button id={thing._id}>
                     Offer Swap
                   </button>
+                  </Link>
                 </>
+
+              
               )}
+
+
+
             </ul>
             <hr />
           </div>

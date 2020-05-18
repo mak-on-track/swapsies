@@ -64,6 +64,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   console.log("this is the id", req.params.id);
   Item.findById(req.params.id)
+    .populate("owner")
     .then((item) => {
       if (!item) {
         res.status(404).json(item);
