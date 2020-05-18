@@ -39,10 +39,7 @@ class EditProfile extends Component {
   handleImageChange = (event) => {
     console.log("this is the event.target.files[0]", event.target.files[0]);
     this.setState({
-      selectedImage:
-        event.target.files[0] ||
-        this.props.profileImgPath ||
-        "../../public/icon_swap.png",
+      selectedImage: event.target.files[0],
       loaded: 0,
       profileImgPath:
         event.target.files[0] ||
@@ -57,12 +54,19 @@ class EditProfile extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    const uploadData = new FormData(document.querySelector("form"));
-    console.log(this.state.selectedImage, "this state selected image");
-    uploadData.append("file", this.state.selectedImage); //i.e. event.target.files[0] -  needed for cloudinary
+    const uploadData = new FormData();
     console.log(
       this.state.selectedImage,
-      "this state selected image after upload"
+      "this state selected image before upload append"
+    );
+    uploadData.append(
+      "imageUrl",
+      this.state.selectedImage,
+      this.state.selectedImage.name
+    ); //i.e. event.target.files[0] -  needed for cloudinary
+    console.log(
+      this.state.selectedImage,
+      "this state selected image after upload append"
     );
     // console.log(uploadData, "uploadData variable"); not possible to console.log formData in this way see FormData docs
     const user = {
@@ -75,16 +79,17 @@ class EditProfile extends Component {
       selectedImage: uploadData, //this.state.selectedImage,
     };
     axios
-      .put(`/api/user/${user.id}`, {
+      // .put(`/api/user/${user.id}`, {
+      .put("https://api.cloudinary.com/v1_1/dsxr5ymph", {
         username: user.username,
         email: user.email,
         bio: user.bio,
         location: user.location,
-        profileImgPath: user.selectedImage, //uploadData,
-        selectedImage: user.selectedImage,
+        //profileImgPath: user.selectedImage, //uploadData,
+        selectedImage: uploadData,
       })
       .then((res) => {
-        //console.log(res);
+        console.log(res);
         const userData = res.data;
         this.props.setUser(userData); //setUser method to change user in app.js
       })

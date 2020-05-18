@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Item = require("../models/Item");
 const User = require("../models/User"); //needed for .populate("owner")
+const uploadCloud = require("../configs/cloudinary");
+const multer = require("multer");
 
 //add item
 router.post("/", (req, res) => {
@@ -27,6 +29,8 @@ router.post("/", (req, res) => {
     owner,
     favourites,
     status,
+    //  itemImgName,
+    // itemImgPath,
   })
     .then((item) => {
       console.log(`adding item to user: ${item}`);
@@ -73,8 +77,10 @@ router.get("/:id", (req, res) => {
 });
 
 //edit a specific item
-router.put("/:id", (req, res) => {
+router.put("/:id", uploadCloud.single("itemImageUrl"), (req, res) => {
   const { name, description } = req.body;
+  // const itemImgPath = req.file.url;
+  // const itemImgName = req.file.originalname;
   console.log(req.body, "this is the req.body");
   console.log(req.params.id, "this is the id");
   Item.findByIdAndUpdate(

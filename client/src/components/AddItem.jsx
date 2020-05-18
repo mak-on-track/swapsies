@@ -4,7 +4,7 @@ import axios from "axios";
 class AddItem extends Component {
   state = {
     name: "",
-    itemImg: "", //could put a "insert image" thing here as a default
+    //itemImgPath: "", //could put a "insert image" thing here as a default
     type: "",
     category: "",
     description: "",
@@ -60,12 +60,13 @@ class AddItem extends Component {
         type,
         category,
         /* IMAGE */
+        //itemImgPath: "",
       })
       .then((data) => {
         this.setState({
           name: "",
           description: "",
-          itemImg: "",
+          //itemImgPath: "",
           type: "",
           category: "",
           location: this.props.user.location,
@@ -88,6 +89,7 @@ class AddItem extends Component {
       description,
       location,
       locationOptions,
+      //itemImgPath,
       /* CLOUDINARY */ type,
     } = this.state;
     return (
@@ -185,7 +187,7 @@ class AddItem extends Component {
                 <input
                   type="file"
                   name="itemImageUrl"
-                  value={itemImagePath}
+                  //value={itemImgPath}
                   onChange={this.handleImageChange}
                 />
               </div>
