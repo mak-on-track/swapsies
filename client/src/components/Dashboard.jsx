@@ -53,18 +53,23 @@ class Dashboard extends Component {
       <div className="main">
         <hr />
         <div>
-          <h3>Welcome {username}</h3>
+          <h3>Welcome</h3>
 
           <ul>
             <li>
-              <img
-                src={
-                  profileImgPath
-                    ? profileImgPath
-                    : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
-                }
-                alt="profileImg"
-              />
+              <div class="chip">
+                <img 
+                  src={
+                    profileImgPath
+                      ? profileImgPath
+                      : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
+                    }
+                    alt="profileImg" 
+                    width="96"
+                    height="96"
+                />
+                {username}
+              </div> 
             </li>
             <li>Email:{email ? email : <Link to="/edit"></Link>}</li>
             <li>

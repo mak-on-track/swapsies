@@ -15,14 +15,10 @@
   --fourth-color: #f8f3eb;
 } */
 
-:root {
+/* :root {
   --primary-color: #10375c;
   --secondary-color: #844685;
   --third-color: #f3c623;
   --fourth-color: #faf4ff;
-}
+} */
 
-* {
-  background-color: var(--fourth-color);
-  color: var(--secondary-color);
-}
