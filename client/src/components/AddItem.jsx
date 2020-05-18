@@ -11,6 +11,7 @@ class AddItem extends Component {
     location: this.props.user.location,
     locationOptions: [
       "Select Kiez",
+      "All",
       "Charlottenburg",
       "Friedrichshain",
       "Kreuzberg",

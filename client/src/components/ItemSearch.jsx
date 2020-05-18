@@ -13,6 +13,7 @@ class ItemSearch extends Component {
     location: "Select Kiez",
     locationOptions: [
       "Select Kiez",
+      "All",
       "Charlottenburg",
       "Friedrichshain",
       "Kreuzberg",
@@ -71,7 +72,6 @@ class ItemSearch extends Component {
   };
 
   render() {
-
     const userId = this.props.user._id;
     // console.log(this.props.user, "props user");
     // console.log(this.state.location, "statae location");
@@ -80,14 +80,18 @@ class ItemSearch extends Component {
     const locationOptions = this.state.locationOptions;
 
     const filteredItems = this.props.itemsList.filter((item) => {
-/*       console.log(
+      /*       console.log(
         item.location,
         "item location",
         this.state.location,
         "state loctn"
       ); */
 
-      if (item.location !== this.state.location && this.state.location !== "Select Kiez")
+      if (
+        item.location !== this.state.location &&
+        this.state.location !== "Select Kiez" &&
+        this.state.location !== "All"
+      )
         return false;
 
       if (item.name.toLowerCase().includes(this.state.search.toLowerCase()))
@@ -99,8 +103,6 @@ class ItemSearch extends Component {
       )
         return item;
     });
-
-    
 
     const filteredThings = filteredItems.filter((thing) => {
       if (this.state.category === "") return thing.type === "Thing";
@@ -168,13 +170,13 @@ class ItemSearch extends Component {
     });
 
     const displayServices = filteredServices.map((service) => {
-/*       console.log(service); */
+      /*       console.log(service); */
       return (
         <div className="main">
           <hr />
           <ul>
             <li>Name: {service.name}</li>
-            <li>Kiez: {service.owner.location}</li>
+            <li>Location: {service.location}</li>
             <li>Description: {service.description}</li>
             <li>Favourites: {service.favourites}</li>
             <li>
