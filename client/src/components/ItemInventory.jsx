@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 class ItemInventory extends Component {
   render() {
-    console.log(this.props);
     const itemsList = this.props.user.inventory;
 
     const filteredThings = itemsList.filter((thing) => {

@@ -23,7 +23,6 @@ class OtherUser extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         {/*       Need logic here that if empty/undefined do not show
