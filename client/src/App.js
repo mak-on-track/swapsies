@@ -15,6 +15,8 @@ import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
 import axios from "axios";
 import OtherUser from "./components/OtherUser";
+import Messages from "./components/Messages";
+import OfferSwap from "./components/OfferSwap";
 //const uploadCloud = require("../config/cloudinary.js");
 
 class App extends Component {
@@ -55,6 +57,7 @@ class App extends Component {
       });
   };
 
+
   render() {
     return (
       <div className="App">
@@ -77,6 +80,11 @@ class App extends Component {
             path="/signup"
             render={(props) => <Signup setUser={this.setUser} {...props} />}
           />
+           <Route
+            exact
+            path="/messages"
+            render={(props) => <Messages setUser={this.setUser} {...props} />}
+          />
           <Route
             exact
             path="/login"
@@ -94,6 +102,12 @@ class App extends Component {
               />
             )}
           />
+            <Route
+            exact
+            path="/swap/:item"
+            render={(props) => <OfferSwap user={this.state.user} {...props} />}
+          />
+
           <Route
             exact
             path="/finduser"

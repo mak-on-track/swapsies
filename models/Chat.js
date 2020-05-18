@@ -4,12 +4,11 @@ const { Schema, model } = mongoose;
 const ChatSchema = new Schema(
   {
     subject: String,
-    participant1: { type: Schema.Types.ObjectId, ref: "User" },
-    participant2: { type: Schema.Types.ObjectId, ref: "User" },
+    userSend: { type: Schema.Types.ObjectId, ref: "User" },
+    UserReceive: { type: Schema.Types.ObjectId, ref: "User" },
+    item: { type: Schema.Types.ObjectId, ref: "Item" },
     messages: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "User",
         msg: String,
         time: { type: Date, default: Date.now },
       },
