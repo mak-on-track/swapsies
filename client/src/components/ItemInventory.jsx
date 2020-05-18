@@ -15,7 +15,6 @@ class ItemInventory extends Component {
   }
 
   render() {
-  
     const itemsList = this.state.user.inventory;
 
     const filteredThings = itemsList.filter((thing) => {

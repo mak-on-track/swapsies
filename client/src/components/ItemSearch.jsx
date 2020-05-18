@@ -10,6 +10,20 @@ class ItemSearch extends Component {
     availableCheck: true,
     reservedCheck: true,
     swappedCheck: true,
+    location: "",
+    locationOptions: [
+      "Select Kiez",
+      "Charlottenburg",
+      "Friedrichshain",
+      "Kreuzberg",
+      "Mitte",
+      "Moabit",
+      "Neukölln",
+      "Schöneberg",
+      "Wedding",
+      "Wilmersdorf",
+      "Janz weit draußen",
+    ],
   };
 
   handleAvailableCheck = (event) => {
@@ -34,6 +48,7 @@ class ItemSearch extends Component {
     this.setState({
       search: event.target.value,
     });
+    console.log(event.target.value);
   };
 
   handleTypeSelect = (event) => {
@@ -48,10 +63,32 @@ class ItemSearch extends Component {
     });
   };
 
+  handleKiezSelect = (event) => {
+    console.log("target value", event.target.value);
+    this.setState({
+      location: event.target.value,
+    });
+  };
+
   render() {
     const userId = this.props.user._id;
+    // console.log(this.props.user, "props user");
+    // console.log(this.state.location, "statae location");
+    // console.log(this.state.locationOptions, "location optn");
+    const location = this.state.location;
+    const locationOptions = this.state.locationOptions;
 
     const filteredItems = this.props.itemsList.filter((item) => {
+      console.log(
+        item.location,
+        "item location",
+        this.state.location,
+        "state loctn"
+      );
+
+      if (item.location !== this.state.location && this.state.location !== "")
+        return false;
+
       if (item.name.toLowerCase().includes(this.state.search.toLowerCase()))
         return item;
       if (item.category.toLowerCase().includes(this.state.search.toLowerCase()))
@@ -89,7 +126,6 @@ class ItemSearch extends Component {
       if (isAvailable(thing)) return true;
       if (isReserved(thing)) return true;
       if (isSwapped(thing)) return true;
-
       return false;
     });
 
@@ -108,6 +144,7 @@ class ItemSearch extends Component {
             <li>Description: {thing.description}</li>
             <li>Status: {thing.status}</li>
             <li>Favourites: {thing.favourites}</li>
+            <li>Location: {thing.location}</li>
             <li>
               <button type="button">Add to Favourites</button>
             </li>
@@ -156,7 +193,7 @@ class ItemSearch extends Component {
       );
     });
 
-     return (
+    return (
       <div className="main">
         <h2>What are you looking for?</h2>
         <select id="type" onChange={this.handleTypeSelect}>
@@ -188,6 +225,25 @@ class ItemSearch extends Component {
                 onChange={this.handleSearchChange}
               />
             </form>
+          </>
+        )}
+
+        {this.state.type !== "" && (
+          <>
+            <label>Location:</label>
+            <select
+              name="location"
+              value={location}
+              onChange={this.handleKiezSelect}
+            >
+              {locationOptions.map((option) => {
+                return (
+                  <option value={option} key={option}>
+                    {option}
+                  </option>
+                );
+              })}
+            </select>
           </>
         )}
 

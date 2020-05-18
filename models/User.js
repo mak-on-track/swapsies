@@ -6,13 +6,15 @@ const userSchema = new Schema(
     username: String,
     password: String,
     email: String,
-    profileImg: String,
+    profileImgName: String,
+    profileImgPath: String,
     bio: String,
     wishList: [String],
-    location: {
-      type: String,
-      enum: ["Prenzlauer Berg", "Mitte", "Kreuzberg"],
-    },
+    location: String,
+    // location: {
+    //   type: String,
+    //   enum: ["Prenzlauer Berg", "Mitte", "Kreuzberg"],
+    // },
     inventory: [
       {
         type: Schema.Types.ObjectId,

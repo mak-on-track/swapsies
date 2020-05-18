@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const Item = require("../models/Item");
 const User = require("../models/User"); //needed for .populate("owner")
+const uploadCloud = require("../configs/cloudinary");
+const multer = require("multer");
 
 //add item
 router.post("/", (req, res) => {
@@ -10,6 +12,7 @@ router.post("/", (req, res) => {
     description,
     type,
     category,
+    location,
     owner,
     favourites,
     status,
@@ -20,22 +23,25 @@ router.post("/", (req, res) => {
   Item.create({
     name,
     description,
+    location,
     type,
     category,
     owner,
     favourites,
     status,
+    //  itemImgName,
+    // itemImgPath,
   })
     .then((item) => {
       console.log(`adding item to user: ${item}`);
       User.findByIdAndUpdate(
-         item.owner ,
+        item.owner,
         { $push: { inventory: item } },
         { new: true }
-      ) .then((user) => {
-        console.log(user)
-          res.status(201).json(user);
-        });
+      ).then((user) => {
+        console.log(user);
+        res.status(201).json(user);
+      });
     })
     .catch((err) => {
       res.json(err);
@@ -71,8 +77,10 @@ router.get("/:id", (req, res) => {
 });
 
 //edit a specific item
-router.put("/:id", (req, res) => {
+router.put("/:id", uploadCloud.single("itemImageUrl"), (req, res) => {
   const { name, description } = req.body;
+  // const itemImgPath = req.file.url;
+  // const itemImgName = req.file.originalname;
   console.log(req.body, "this is the req.body");
   console.log(req.params.id, "this is the id");
   Item.findByIdAndUpdate(

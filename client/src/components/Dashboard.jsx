@@ -4,21 +4,20 @@ import EditProfile from "./EditProfile";
 import axios from "axios";
 import ItemInventory from "./ItemInventory";
 import ServiceInventory from "./ServiceInventory";
-import "./style.css"
-
+import "./style.css";
 
 class Dashboard extends Component {
   state = {
     user: this.props.user,
-/*     email: "", 
-    profileImg: "",
-    bio: "",
-    location: "", */ //Commented out probably not needed (all runs off user)
+    // email: "",
+    // profileImgPath: "",
+    // bio: "",
+    // location: "", //Commented out probably not needed (all runs off user)
     editForm: false,
   };
 
   componentDidMount() {
-    console.log('dashmount')
+    console.log("dashmount");
 
     const userId = this.state.user._id;
     return axios
@@ -32,18 +31,18 @@ class Dashboard extends Component {
   }
 
   render() {
-
-
-    
     const user = this.state.user;
 
-    console.log(this.state.user)
+    console.log(this.state.user);
 
+    /*     console.log(this.props)
+     */
     const {
       username,
-      profileImg,
+      profileImgPath,
       location,
       bio,
+      email,
       wishlist,
       messages,
       inventory,
@@ -60,13 +59,14 @@ class Dashboard extends Component {
             <li>
               <img
                 src={
-                  profileImg
-                    ? profileImg
+                  profileImgPath
+                    ? profileImgPath
                     : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
                 }
                 alt="profileImg"
               />
             </li>
+            <li>Email:{email ? email : <Link to="/edit"></Link>}</li>
             <li>
               Kiez:{" "}
               {location !== "Select Kiez" ? (
@@ -87,8 +87,14 @@ class Dashboard extends Component {
           <ul>{/*  {wishList} */}</ul>
           <h3>My Stuff</h3>
           <Link to="/add">Add</Link>
-          <ServiceInventory user={this.state.user} loggedInUser ={this.state.user} />
-          <ItemInventory user={this.state.user} loggedInUser ={this.state.user}/>
+          <ServiceInventory
+            user={this.state.user}
+            loggedInUser={this.state.user}
+          />
+          <ItemInventory
+            user={this.state.user}
+            loggedInUser={this.state.user}
+          />
         </div>
       </div>
     );

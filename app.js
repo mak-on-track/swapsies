@@ -4,12 +4,14 @@ require("./configs/passport");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const express = require("express");
+const router = express.Router();
 const favicon = require("serve-favicon");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const passport = require("passport");
 const path = require("path");
 const session = require("express-session");
+const uploadCloud = require("./configs/cloudinary");
 
 const app_name = require("./package.json").name;
 const authRoutes = require("./routes/auth");
@@ -30,6 +32,8 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to mongo", err);
   });
+
+mongoose.set("useFindAndModify", false); //j get rid of depracation warning for findByIdAndUpdate
 
 app.use(
   session({
