@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./style.css"
 
 class EditProfile extends Component {
   state = {
@@ -72,7 +73,7 @@ class EditProfile extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="main">
         <h2>Edit your profile:</h2>
         <form onSubmit={this.handleSubmit}>
           <label>Username:</label>

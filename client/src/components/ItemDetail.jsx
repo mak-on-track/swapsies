@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import "./style.css"
 
 class ItemDetail extends Component {
   state = {  }
   render() { 
-    return ( <div>
-      Item Detail
-    </div> );
+    return ( 
+      <div className="main">
+        Item Detail
+      </div>
+    );
   }
 }
  

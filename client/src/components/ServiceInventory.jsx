@@ -23,7 +23,7 @@ class ServiceInventory extends Component {
 
     const displayServices = filteredServices.map((service) => {
       return (
-        <>
+        <div className="main">
           <div key={service._id}>
             <ul>
               <li>Name: {service.name}</li>
@@ -47,12 +47,12 @@ class ServiceInventory extends Component {
 
             <hr />
           </div>
-        </>
+        </div>
       );
     });
 
     return (
-      <div>
+      <div className="main">
         <h4>Services Offered</h4>
         {displayServices.length < 1 ? (
           <Link to="/add">Add a Service</Link>

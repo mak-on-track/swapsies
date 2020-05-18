@@ -25,7 +25,7 @@ class ItemInventory extends Component {
     const displayThings = filteredThings.map((thing) => {
       return (
         <>
-          <div key={thing._id}>
+          <div className="main" key={thing._id}>
             <ul>
               <li>Name: {thing.name}</li>
               <li>
