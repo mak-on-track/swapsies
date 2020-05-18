@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./style.css";
-//const uploadCloud = require("../config/cloudinary.js");
 
 class EditProfile extends Component {
   state = {
     username: this.props.user.username,
-    profileImgPath: this.props.user.profileImgPath,
+    profileImgPath: this.props.user.profileImgPath || "",
     selectedImage: null,
     bio: this.props.user.bio,
     email: this.props.user.email,
@@ -24,12 +23,12 @@ class EditProfile extends Component {
       "Wilmersdorf",
       "Janz weit draußen",
     ],
+    addWish: "",
+    wishList: this.props.user.wishList || [],
   };
 
   handleChange = (event) => {
-    //console.log("this is the event", event.target);
     const { name, value } = event.target;
-
     this.setState({
       [name]: value,
       profileImgPath: this.state.profileImgPath,
@@ -40,16 +39,19 @@ class EditProfile extends Component {
     console.log("this is the event.target.files[0]", event.target.files[0]);
     this.setState({
       selectedImage: event.target.files[0],
-      loaded: 0,
-      profileImgPath:
-        event.target.files[0] ||
-        this.props.profileImgPath ||
-        "../../public/icon_swap.png",
     });
     console.log(
-      this.state.selectedImage,
-      "this state selected image before upload"
+      "this.state.selectedImage before upload: ",
+      this.state.selectedImage
     );
+  };
+
+  handleWishlistChange = (event) => {
+    const wish = this.state.addWish;
+
+    this.setState({
+      wishList: [...this.state.wishList, wish],
+    });
   };
 
   handleSubmit = (event) => {
@@ -59,16 +61,18 @@ class EditProfile extends Component {
       this.state.selectedImage,
       "this state selected image before upload append"
     );
-    uploadData.append(
-      "imageUrl",
-      this.state.selectedImage,
-      this.state.selectedImage.name
-    ); //i.e. event.target.files[0] -  needed for cloudinary
-    console.log(
-      this.state.selectedImage,
-      "this state selected image after upload append"
-    );
-    // console.log(uploadData, "uploadData variable"); not possible to console.log formData in this way see FormData docs
+    uploadData.append("imageUrl", this.state.selectedImage); //i.e. event.target.files[0] -  needed for cloudinary
+    // console.log(
+    //   this.state.selectedImage,
+    //   "this state selected image after upload append"
+    // );
+    // // // console.log(uploadData, "uploadData variable"); not possible to console.log formData in this way see FormData docs
+    // const config = {
+    //   headers: {
+    //     "content-type": "multipart/form-data",
+    //   },
+    // };
+
     const user = {
       username: this.state.username,
       email: this.state.email,
@@ -77,41 +81,68 @@ class EditProfile extends Component {
       profileImgPath: uploadData,
       id: this.props.user._id,
       selectedImage: uploadData, //this.state.selectedImage,
+      wishList: this.state.wishList,
     };
-    axios
-      // .put(`/api/user/${user.id}`, {
-      .put("https://api.cloudinary.com/v1_1/dsxr5ymph", {
-        username: user.username,
-        email: user.email,
-        bio: user.bio,
-        location: user.location,
-        //profileImgPath: user.selectedImage, //uploadData,
-        selectedImage: uploadData,
-      })
-      .then((res) => {
-        console.log(res);
-        const userData = res.data;
-        this.props.setUser(userData); //setUser method to change user in app.js
-      })
-      .then(() => {
-        this.props.history.push("/dashboard");
-      })
-      .catch((err) => {
-        console.log("Error updating user info", err);
-      });
+    axios.post(`/api/user/upload`, uploadData).then((res) => {
+      axios
+        .put(`/api/user/${user.id}`, {
+          username: user.username,
+          email: user.email,
+          bio: user.bio,
+          location: user.location,
+          profileImgPath: res,
+          //  selectedImage: uploadData,
+          wishList: user.wishList,
+        })
+        .then((res) => {
+          console.log(res);
+          const userData = res.data;
+          this.props.setUser(userData); //setUser method to change user in app.js
+        })
+        .then(() => {
+          this.props.history.push("/dashboard");
+        })
+        .catch((err) => {
+          console.log("Error updating user info", err);
+        });
+    });
+
+    // axios
+    //   .put(`/api/user/${user.id}`, {
+    //     username: user.username,
+    //     email: user.email,
+    //     bio: user.bio,
+    //     location: user.location,
+    //     // profileImgPath: uploadData,
+    //     //  selectedImage: uploadData,
+    //     wishList: user.wishList,
+    //   })
+    //   .then((res) => {
+    //     console.log(res);
+    //     const userData = res.data;
+    //     this.props.setUser(userData); //setUser method to change user in app.js
+    //   })
+    //   .then(() => {
+    //     this.props.history.push("/dashboard");
+    //   })
+    //   .catch((err) => {
+    //     console.log("Error updating user info", err);
+    //   });
   };
 
   render() {
     // console.log("this is the props", this.props);
     // console.log("this is the user", this.state);
+
     const {
       username,
       email,
-      profileImgPath,
+      //profileImgPath,
       bio,
-      wishlist,
+      wishList,
       location,
       locationOptions,
+      addWish,
     } = this.state;
 
     return (
@@ -159,9 +190,32 @@ class EditProfile extends Component {
             type="file"
             name="imageUrl"
             //value={profileImgPath}
-            placeholder="Upload a profile picture"
             onChange={this.handleImageChange}
           />
+          <h3>Wish list</h3>
+          <ul>
+            <li>
+              {" "}
+              {wishList.length === 0 ? (
+                <p>There are no items or services in your wish list</p>
+              ) : (
+                wishList.map((wish) => {
+                  return <p key={wish}>{wish}</p>;
+                })
+              )}
+            </li>
+          </ul>
+
+          <input
+            type="text"
+            name="addWish"
+            value={addWish}
+            onChange={this.handleChange}
+          />
+
+          <button type="button" onClick={this.handleWishlistChange}>
+            Add item to wish list
+          </button>
           <button type="submit">Update profile</button>
         </form>
       </div>

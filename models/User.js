@@ -9,12 +9,8 @@ const userSchema = new Schema(
     profileImgName: String,
     profileImgPath: String,
     bio: String,
-    wishList: [String],
+    wishList: [],
     location: String,
-    // location: {
-    //   type: String,
-    //   enum: ["Prenzlauer Berg", "Mitte", "Kreuzberg"],
-    // },
     inventory: [
       {
         type: Schema.Types.ObjectId,

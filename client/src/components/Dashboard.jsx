@@ -33,7 +33,7 @@ class Dashboard extends Component {
       location,
       bio,
       email,
-      wishlist,
+      wishList,
       messages,
       inventory,
       _id,
@@ -72,14 +72,27 @@ class Dashboard extends Component {
             </li>
             <li>
               Bio:{" "}
-              {bio ? bio : <Link to="/edit">Say a bit about yourself!</Link>}
+              {bio ? bio : <Link to="/edit">Add some info to your bio</Link>}
             </li>
-            <Link to="/edit">Edit Profile</Link>
+            {/* <Link to="/edit">Edit Profile</Link> */}
+            <li>
+              <h3>WishList:</h3>
+              <ul>
+                {wishList ? (
+                  wishList.map((wish) => {
+                    return <li key={wish}>{wish}</li>;
+                  })
+                ) : (
+                  <div>
+                    <p>There is nothing in your wish list</p>
+                  </div>
+                )}
+              </ul>
+            </li>
           </ul>
+          <Link to="/edit">Edit Profile</Link>
         </div>
         <div>
-          <h3>WishList</h3>
-          <ul>{/*  {wishList} */}</ul>
           <h3>My Stuff</h3>
           <Link to="/add">Add</Link>
           <ServiceInventory

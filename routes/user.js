@@ -18,32 +18,41 @@ const multer = require("multer");
 // });
 
 //edit user profile
-router.put(
-  "/:id",
-  uploadCloud.single("imageUrl"),
-  //need to add cloudinary middleware here
-  //uploadCloud.single(“imageUrl”),
-  (req, res) => {
-    const id = req.params.id;
-    // const profileImgPath = req.file.url;
-    // const profileImgName = req.file.originalname;
-    const { username, bio, location, email, wishList } = req.body;
-    console.log(req.body, "this is the req.body");
-    console.log(req.params.id, "this is the id");
-    console.log("this is the req.file,", req.file);
-    User.findByIdAndUpdate(
-      id,
-      { username, bio, location, wishList, email },
-      { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
-    )
-      .then((user) => {
-        res.status(200).json(user);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
+router.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const { username, bio, location, email, wishList } = req.body;
+  //console.log(req.body, "this is the req.body");
+  //console.log(req.params.id, "this is the id");
+  // console.log("this is the req.file,", req.file);
+  // console.log("this is the profileimg", req.body.profileImgPath);
+  User.findByIdAndUpdate(
+    id,
+    {
+      username,
+      bio,
+      location,
+      wishList,
+      email,
+      // profileImgName,
+      profileImgPath: req.body.profileImgPath.data.secure_url,
+    },
+    { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
+  )
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
+router.post("/upload", uploadCloud.single("imageUrl"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
   }
-);
+  res.json({ secure_url: req.file.secure_url });
+});
 
 //return a specific user
 router.get("/:id", (req, res) => {
