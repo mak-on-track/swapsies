@@ -55,8 +55,6 @@ class Dashboard extends Component {
                       : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
                   }
                   alt="profileImg"
-                  alt="profileImg"
-                  alt="profileImg"
                   width="96"
                   height="96"
                 />
