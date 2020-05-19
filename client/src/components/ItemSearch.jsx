@@ -163,7 +163,7 @@ class ItemSearch extends Component {
           </div>
           <footer className="card-footer">
             <a href="#" class="card-footer-item">Add to Favourites</a>
-            <a href="#" class="card-footer-item">Message User</a>
+            <a href={`/swap/${thing._id}`} class="card-footer-item">Offer Swap</a>
           </footer>
         </div>
       );
@@ -205,7 +205,7 @@ class ItemSearch extends Component {
           </div>
           <footer class="card-footer">
             <a href="#" class="card-footer-item">Add to Favourites</a>
-            <a href="#" class="card-footer-item">Message User</a>
+            <a href={`/swap/${service._id}`} class="card-footer-item">Offer Swap</a>
           </footer>
         </div>
       );
