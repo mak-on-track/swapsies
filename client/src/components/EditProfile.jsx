@@ -54,81 +54,51 @@ class EditProfile extends Component {
     });
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    const uploadData = new FormData();
-    console.log(
-      this.state.selectedImage,
-      "this state selected image before upload append"
-    );
-    uploadData.append("imageUrl", this.state.selectedImage); //i.e. event.target.files[0] -  needed for cloudinary
-    // console.log(
-    //   this.state.selectedImage,
-    //   "this state selected image after upload append"
-    // );
-    // // // console.log(uploadData, "uploadData variable"); not possible to console.log formData in this way see FormData docs
-    // const config = {
-    //   headers: {
-    //     "content-type": "multipart/form-data",
-    //   },
-    // };
+    let image;
+    if (this.state.selectedImage) {
+      const uploadData = new FormData();
+      console.log(
+        this.state.selectedImage,
+        "this state selected image before upload append"
+      );
+      uploadData.append("imageUrl", this.state.selectedImage);
+      const uploadedImage = await axios.post(`/api/user/upload`, uploadData);
+      image = uploadedImage.data.secure_url;
+    } else {
+      image = this.props.user.profileImgPath;
+    }
 
     const user = {
       username: this.state.username,
       email: this.state.email,
       bio: this.state.bio,
       location: this.state.location,
-      profileImgPath: uploadData,
       id: this.props.user._id,
-      selectedImage: uploadData, //this.state.selectedImage,
       wishList: this.state.wishList,
     };
-    axios.post(`/api/user/upload`, uploadData).then((res) => {
-      console.log('posted')
-      axios
-        .put(`/api/user/${user.id}`, {
-          username: user.username,
-          email: user.email,
-          bio: user.bio,
-          location: user.location,
-          profileImgPath: res,
-          //  selectedImage: uploadData,
-          wishList: user.wishList,
-        })
-        .then((res) => {
-          console.log(res);
-          const userData = res.data;
-          this.props.setUser(userData); //setUser method to change user in app.js
-        })
-        .then(() => {
-          this.props.history.push("/dashboard");
-        })
-        .catch((err) => {
-          console.log("Error updating user info", err);
-        });
-    });
 
-    // axios
-    //   .put(`/api/user/${user.id}`, {
-    //     username: user.username,
-    //     email: user.email,
-    //     bio: user.bio,
-    //     location: user.location,
-    //     // profileImgPath: uploadData,
-    //     //  selectedImage: uploadData,
-    //     wishList: user.wishList,
-    //   })
-    //   .then((res) => {
-    //     console.log(res);
-    //     const userData = res.data;
-    //     this.props.setUser(userData); //setUser method to change user in app.js
-    //   })
-    //   .then(() => {
-    //     this.props.history.push("/dashboard");
-    //   })
-    //   .catch((err) => {
-    //     console.log("Error updating user info", err);
-    //   });
+    axios
+      .put(`/api/user/${user.id}`, {
+        username: user.username,
+        email: user.email,
+        bio: user.bio,
+        location: user.location,
+        profileImgPath: image,
+        wishList: user.wishList,
+      })
+      .then((res) => {
+        console.log(res);
+        const userData = res.data;
+        this.props.setUser(userData); //setUser method to change user in app.js
+      })
+      .then(() => {
+        this.props.history.push("/dashboard");
+      })
+      .catch((err) => {
+        console.log("Error updating user info", err);
+      });
   };
 
   render() {
@@ -190,7 +160,6 @@ class EditProfile extends Component {
           <input
             type="file"
             name="imageUrl"
-            //value={profileImgPath}
             onChange={this.handleImageChange}
           />
           <h3>Wish list</h3>

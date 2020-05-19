@@ -64,11 +64,12 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   console.log("this is the id", req.params.id);
   Item.findById(req.params.id)
-    .populate("owner")
+    //.populate("owner")
     .then((item) => {
       if (!item) {
         res.status(404).json(item);
       } else {
+        console.log(item);
         res.json(item);
       }
     })
@@ -102,11 +103,16 @@ router.delete("/:id", (req, res) => {
   const id = req.params.id;
   Item.findByIdAndDelete(id)
     .then((item) => {
-      return User.findByIdAndUpdate(item.owner, { $pull: { user: id } }).then(
-        () => {
-          res.status(200).json({ message: "ok" });
-        }
-      );
+      console.log(item);
+      return User.findByIdAndUpdate(
+        item.owner,
+        {
+          $pull: { inventory: id },
+        },
+        { new: true }
+      ).then((user) => {
+        res.status(200).json(user);
+      });
     })
     .catch((err) => {
       res.json(err);
