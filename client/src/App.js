@@ -59,10 +59,7 @@ class App extends Component {
       });
   };
 
-  otherUser = () => {
 
-
-  }
 
   render() {
     return (
@@ -147,7 +144,6 @@ class App extends Component {
             render={(props) => (
               <OtherUser
                 user={this.state.user}
-                otherUser={this.otherUser}
                 setUser={this.setUser}
                 {...props}
               />

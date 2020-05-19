@@ -19,7 +19,9 @@ class ItemInventory extends Component {
   render() {
     // console.log(this.props.user.inventory[0]._id);
     
-    console.log(this.props)
+   
+
+
     const itemsList = this.props.user.inventory;
 
     const filteredThings = itemsList.filter((thing) => {
@@ -81,14 +83,18 @@ class ItemInventory extends Component {
 
     /*   const thingsList = allItems.map(thing => thing) */
 
+
+    console.log('logged in user', this.props.loggedInUser._id)
+    console.log('user', this.props.user._id)
+
     return (
       <div>
-        <h4>List of Things</h4>
-        {displayThings.length < 1 ? (
+       
+        {displayThings.length < 1 ? this.props.loggedInUser._id === this.props.user._id ? (
           <Link to="/add">Add an Item</Link>
-        ) : (
-          displayThings
-        )}
+        ) : '' : (<> <h4>List of Things</h4>
+          {displayThings}
+       </> )}
       </div>
     );
   }
