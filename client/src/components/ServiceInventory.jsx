@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 class ServiceInventory extends Component {
   render() {
+
+    //console.log(this.props)
     const itemsList = this.props.user.inventory;
 
     const filteredServices = itemsList.filter((service) => {
@@ -40,6 +42,7 @@ class ServiceInventory extends Component {
     });
 
     return (
+   
       <div className="main">
         <h4>Services Offered</h4>
         {displayServices.length < 1 ? (

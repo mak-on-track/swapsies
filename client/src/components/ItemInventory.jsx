@@ -18,6 +18,8 @@ class ItemInventory extends Component {
 
   render() {
     // console.log(this.props.user.inventory[0]._id);
+    
+    console.log(this.props)
     const itemsList = this.props.user.inventory;
 
     const filteredThings = itemsList.filter((thing) => {
@@ -38,7 +40,8 @@ class ItemInventory extends Component {
 
               {this.props.user._id === this.props.loggedInUser._id ? (
                 <>
-                  <label>Status: </label>
+                <li>Status: {thing.status}</li>
+                {/*   <label>Status: </label>
                   <select
                     name="status"
                     value={thing.status}
@@ -47,7 +50,7 @@ class ItemInventory extends Component {
                     <option value="Available">Available</option>
                     <option value="Reserved">Reserved</option>
                     <option value="Swapped">Swapped</option>
-                  </select>
+                  </select> */}
                   <br />
                   <Link to={`/items/${thing._id}`}>
                     <button>Edit</button>
