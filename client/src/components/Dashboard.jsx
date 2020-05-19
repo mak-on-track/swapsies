@@ -63,7 +63,7 @@ class Dashboard extends Component {
             </li>
             <li>Email:{email ? email : <Link to="/edit"></Link>}</li>
             <li>
-              Kiez:{" "}
+              Kiez:
               {location !== "Select Kiez" ? (
                 location
               ) : (

@@ -8,7 +8,7 @@ class OfferSwap extends Component {
     userSend: "",
     userReceive: "",
     message: "",
-    time: new Date(),
+ /*    time: new Date(), */
   };
 
   componentDidMount() {
@@ -24,8 +24,6 @@ class OfferSwap extends Component {
   }
 
   handleChange = (event) => {
-   // console.log(this.props.user._id)
-
     const { name, value } = event.target;
 
     this.setState({
@@ -39,7 +37,6 @@ class OfferSwap extends Component {
     console.log(this.props.user._id) //sending user ID
     console.log(this.state.item._id) //itemID
     console.log(this.state.item.owner._id) //owner Id
-    console.log(this.state.time) //time
 
 
     return axios
@@ -47,7 +44,7 @@ class OfferSwap extends Component {
         userSend: this.props.user._id,
         userReceive: this.state.item.owner._id,
         item: this.state.item._id,
-        messages: [{msg: this.state.message}]
+        messages: [{sentByOwner: false, msg: this.state.message}]
       })
       .then((data) => {
         this.setState({
@@ -56,8 +53,8 @@ class OfferSwap extends Component {
           userReceive: "",
           message: "",
         });
-   /*      this.props.setUser(data.data); //check this is right
-        this.props.getData(); */
+        this.props.setUser(this.props.user); //check if data.data is right
+        //this.props.getData();
       })
       .then(() => {
         this.props.history.goBack();
