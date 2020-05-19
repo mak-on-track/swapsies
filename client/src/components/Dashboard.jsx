@@ -61,19 +61,19 @@ class Dashboard extends Component {
                 {username}
               </div>
             </li>
-            <li>Email:{email ? email : <Link to="/edit"></Link>}</li>
+            <li>{email ? <p>Email: {email}</p> : <p></p>}</li>
             <li>
-              Kiez:
+              {" "}
               {location !== "Select Kiez" ? (
-                location
+                <p>
+                  Kiez:
+                  {location}
+                </p>
               ) : (
-                <Link to="/edit">Add a Kiez</Link>
+                <p></p>
               )}
             </li>
-            <li>
-              Bio:{" "}
-              {bio ? bio : <Link to="/edit">Add some info to your bio</Link>}
-            </li>
+            <li>{bio ? <p>Bio: {bio}</p> : <p></p>}</li>
             {/* <Link to="/edit">Edit Profile</Link> */}
             <li>
               <h3>WishList:</h3>
