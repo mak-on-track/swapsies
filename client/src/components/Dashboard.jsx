@@ -47,7 +47,7 @@ class Dashboard extends Component {
 
           <ul>
             <li>
-              <div class="chip">
+               <div className="chip">
                 <img
                   src={
                     profileImgPath
