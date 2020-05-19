@@ -5,12 +5,12 @@ class Home extends Component {
   state = {  }
   render() { 
     return (
-      <div class="home">
+      <div className="home">
 
-      <div class="hero-image">
+      <div className="hero-image">
       </div>
-      <div class="hero-text">
-        <h1 style={{"font-size":"50px"}}>
+      <div className="hero-text">
+        <h1 style={{"fontSize":"50px"}}>
           Swapsies
         </h1>
         <h3>

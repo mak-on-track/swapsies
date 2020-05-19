@@ -43,9 +43,9 @@ class Login extends Component {
       <form onSubmit={this.handleSubmit}>
         <div className="field input-form">
           <h1>Login</h1>
-          <div class="field">
+           <div className="field">
             <label class="label">Username</label>
-            <div class="control">
+             <div className="control">
               <input 
                 class="input" 
                 type="text"
@@ -58,9 +58,9 @@ class Login extends Component {
             </div>
           </div>
 
-          <div class="field">
+           <div className="field">
             <label class="label">Password</label>
-            <div class="control">
+             <div className="control">
               <input 
                 class="input"
                 type="password"
@@ -77,11 +77,11 @@ class Login extends Component {
               <p>{this.state.message}</p>
             )}
           </div>
-          <div class="field is-grouped">
-            <div class="control">
+           <div className="field is-grouped">
+             <div className="control">
               <button type="submit" value="Login" class="button is-link is-light">Login</button>
             </div>
-            <div class="control">
+             <div className="control">
               <button class="button is-link is-light">Cancel</button>
             </div>
           </div>
