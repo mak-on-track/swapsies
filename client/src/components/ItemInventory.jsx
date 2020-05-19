@@ -3,8 +3,18 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 class ItemInventory extends Component {
+  state = {
+    delete: false,
+  };
+
   deleteItem = (event) => {
     //console.log("event target value", event.target.value);
+    console.log("event target value", event.target.value);
+
+    this.setState({
+      delete: true,
+    });
+
     axios
       .delete(`/api/items/${event.target.value}`)
       .then((res) => {
@@ -18,8 +28,6 @@ class ItemInventory extends Component {
 
   render() {
     // console.log(this.props.user.inventory[0]._id);
-    
-   
 
     const itemsList = this.props.user.inventory;
 
@@ -41,8 +49,8 @@ class ItemInventory extends Component {
 
               {this.props.user._id === this.props.loggedInUser._id ? (
                 <>
-                <li>Status: {thing.status}</li>
-                {/*   <label>Status: </label>
+                  <li>Status: {thing.status}</li>
+                  {/*   <label>Status: </label>
                   <select
                     name="status"
                     value={thing.status}
@@ -82,18 +90,24 @@ class ItemInventory extends Component {
 
     /*   const thingsList = allItems.map(thing => thing) */
 
-
-   /*  console.log('logged in user', this.props.loggedInUser._id)
+    /*  console.log('logged in user', this.props.loggedInUser._id)
     console.log('user', this.props.user._id) */
 
     return (
       <div>
-       
-        {displayThings.length < 1 ? this.props.loggedInUser._id === this.props.user._id ? (
-          <Link to="/add">Add an Item</Link>
-        ) : '' : (<> <h4>List of Things</h4>
-          {displayThings}
-       </> )}
+        {displayThings.length < 1 ? (
+          this.props.loggedInUser._id === this.props.user._id ? (
+            <Link to="/add">Add an Item</Link>
+          ) : (
+            ""
+          )
+        ) : (
+          <>
+            {" "}
+            <h4>List of Things</h4>
+            {displayThings}
+          </>
+        )}
       </div>
     );
   }

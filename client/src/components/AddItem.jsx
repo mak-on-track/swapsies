@@ -4,7 +4,8 @@ import axios from "axios";
 class AddItem extends Component {
   state = {
     name: "",
-    //itemImgPath: "", //could put a "insert image" thing here as a default
+    itemImgPath: "", //could put a "insert image" thing here as a default
+    selectedImage: null,
     type: "",
     category: "",
     description: "",
@@ -30,25 +31,42 @@ class AddItem extends Component {
 
     this.setState({
       [name]: value,
+      itemImgPath: this.state.itemImgPath,
     });
   };
 
-  handleImageChange = (event) => {};
+  handleImageChange = (event) => {
+    console.log("this is the event.target.files[0]", event.target.files[0]);
+    this.setState({
+      selectedImage: event.target.files[0],
+    });
+    console.log(
+      "this.state.selectedImage before upload: ",
+      this.state.selectedImage
+    );
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    let {
-      name,
-      category,
-      location,
-      description,
-      /* CLOUDINARY */ type,
-    } = this.state;
+    let image;
+    if (this.state.selectedImage) {
+      const uploadData = new FormData();
+      console.log(
+        this.state.selectedImage,
+        "this state selected image before upload append"
+      );
+      uploadData.append("itemImageUrl", this.state.selectedImage);
+      const uploadedImage = await axios.post(`/api/items/upload`, uploadData);
+      image = uploadedImage.data.secure_url;
+    } else {
+      image = this.state.itemImgPath;
+    }
+
+    let { name, category, location, description, type } = this.state;
 
     if (type === "Service") {
       category = "None";
     }
-    /* if(type === "Service") {IMAGE IS NULL} */
 
     return axios
       .post("/api/items", {
@@ -60,31 +78,81 @@ class AddItem extends Component {
         location,
         type,
         category,
-        /* IMAGE */
-        //itemImgPath: "",
+        itemImgPath: image,
       })
-      .then((data) => {
+      .then((res) => {
+        console.log(res);
+        const userData = res.data;
+        this.props.setUser(userData);
+
         this.setState({
           name: "",
           description: "",
-          //itemImgPath: "",
+          itemImgPath: "",
           type: "",
           category: "",
           location: this.props.user.location,
         });
-        this.props.setUser(data.data);
-        console.log(data);
-        this.props.getData(); //might not be needed
       })
       .then(() => {
         this.props.history.push("/dashboard");
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error adding item", err);
       });
   };
 
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   let {
+  //     name,
+  //     category,
+  //     location,
+  //     description,
+  //     /* CLOUDINARY */ type,
+  //   } = this.state;
+
+  //   if (type === "Service") {
+  //     category = "None";
+  //   }
+  //   /* if(type === "Service") {IMAGE IS NULL} */
+
+  //   return axios
+  //     .post("/api/items", {
+  //       owner: this.props.user._id,
+  //       favourites: 0,
+  //       status: "Available",
+  //       name,
+  //       description,
+  //       location,
+  //       type,
+  //       category,
+  //       /* IMAGE */
+  //       //itemImgPath: "",
+  //     })
+  //     .then((data) => {
+  //       this.setState({
+  //         name: "",
+  //         description: "",
+  //         //itemImgPath: "",
+  //         type: "",
+  //         category: "",
+  //         location: this.props.user.location,
+  //       });
+  //       this.props.setUser(data.data);
+  //       console.log(data);
+  //       this.props.getData(); //might not be needed
+  //     })
+  //     .then(() => {
+  //       this.props.history.push("/dashboard");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
   render() {
+    console.log(this.props);
     const {
       name,
       description,
@@ -188,7 +256,6 @@ class AddItem extends Component {
                 <input
                   type="file"
                   name="itemImageUrl"
-                  //value={itemImgPath}
                   onChange={this.handleImageChange}
                 />
               </div>

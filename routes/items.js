@@ -6,7 +6,17 @@ const uploadCloud = require("../configs/cloudinary");
 const multer = require("multer");
 
 //add item
+router.post("/upload", uploadCloud.single("itemImageUrl"), (req, res, next) => {
+  if (!req.file) {
+    next(new Error("No file uploaded!"));
+    return;
+  }
+  res.json({ secure_url: req.file.secure_url });
+});
+
 router.post("/", (req, res) => {
+  console.log("req body", req.body);
+  console.log("req file", req.file);
   const {
     name,
     description,
@@ -16,9 +26,8 @@ router.post("/", (req, res) => {
     owner,
     favourites,
     status,
+    itemImgPath,
   } = req.body;
-
-  //Can add required logic here
 
   Item.create({
     name,
@@ -29,8 +38,7 @@ router.post("/", (req, res) => {
     owner,
     favourites,
     status,
-    //  itemImgName,
-    // itemImgPath,
+    itemImgPath,
   })
     .then((item) => {
       console.log(`adding item to user: ${item}`);
