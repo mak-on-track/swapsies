@@ -21,7 +21,9 @@ class ServiceInventory extends Component {
 
               {this.props.user._id === this.props.loggedInUser._id ? (
                 <>
-                  {/* <button>Edit</button> */}
+                <Link to={`/items/${service._id}`}>
+                    <button>Edit</button>
+                  </Link>
                   <button id={service._id} onClick="function(this.id)">
                     Delete
                   </button>

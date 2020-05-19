@@ -128,7 +128,7 @@ class App extends Component {
             render={(props) => (
               <ItemDetail
                 user={this.state.user}
-                //item={this.state.item}
+                setUser={this.setUser}
                 {...props}
               />
             )}

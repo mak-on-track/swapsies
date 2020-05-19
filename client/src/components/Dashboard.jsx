@@ -25,8 +25,9 @@ class Dashboard extends Component {
   }
 
   render() {
+   // console.log(this.props)
     const user = this.props.user;
-    console.log("this is the dash", user);
+   // console.log("this is the dash", user);
     const {
       username,
       profileImgPath,
@@ -104,6 +105,7 @@ class Dashboard extends Component {
             setUser={this.props.setUser}
             user={this.props.user}
             loggedInUser={this.props.user}
+            history={this.props.history}
           />
         </div>
       </div>
