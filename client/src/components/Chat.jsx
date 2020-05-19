@@ -35,11 +35,14 @@ class Chat extends Component {
         id: this.props.chat._id,
         messages: [{sentByOwner: fromOwner, msg: this.state.message}]
       })
-      .then((data) => {
+      .then(() => {
+        
         this.setState({
           message: "",
         });
-        this.props.setUser(this.props.user); //NOT PASSING THROUGH AS PROPS
+        this.props.setChat();
+        this.props.setUser(this.props.user); 
+        
      })
       .catch((err) => {
         console.log(err);
@@ -47,8 +50,8 @@ class Chat extends Component {
   };
 
   render() {
-    const { item, messages, userSend, userReceive, _id } = this.props.chat;
 
+    const { item, messages, userSend, userReceive, _id } = this.props.chat;
     const chatLog = messages.map((ele) => {
       return (
         <div>

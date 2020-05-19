@@ -53,7 +53,7 @@ class OfferSwap extends Component {
           userReceive: "",
           message: "",
         });
-        this.props.setUser(this.props.user); //check if data.data is right
+        this.props.setUser(this.props.user); 
         //this.props.getData();
       })
       .then(() => {
@@ -68,6 +68,7 @@ class OfferSwap extends Component {
 
 
   render() {
+    
     const {
       name,
       category,
@@ -76,6 +77,7 @@ class OfferSwap extends Component {
       owner,
       description /* IMAGE */,
     } = this.state.item;
+
 
     return (
       <>
@@ -87,10 +89,10 @@ class OfferSwap extends Component {
             <img src="" alt="item image" />
           </li>
           <li>Description: {description}</li>
+          <li>User: <Link></Link></li>
           <li>Location: {location}</li>
           <li>Status: {status}</li>
           <li>Can also put user's image here</li>
-
           {/*         <li>
             Posted by: <Link to={`/user/${owner._id}`}>Something</Link>
           </li> */}

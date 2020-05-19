@@ -13,16 +13,28 @@ class Messages extends Component {
       .get(`/api/chat/${user}`)
       .then((response) => {
         this.setState({ chatList: response.data });
-        /* this.props.setUser(this.props.user); */
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  setChat = (data) => {
 
+    console.log('set chat running')
+    const user = this.props.match.params.id;
+    return axios
+      .get(`/api/chat/${user}`)
+      .then((response) => {
+        this.setState({ chatList: response.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
+   // console.log(this.props)
     const userId = this.props.user._id;
 /* console.log(this.state.chatList) */
     const incomingFilter = this.state.chatList.filter((msg) => {
@@ -34,7 +46,7 @@ class Messages extends Component {
    //   console.log(msg)
       return (
         <div> 
-        <Chat chat={msg} user={this.props.user}/>
+        <Chat setUser={this.props.setUser} setChat={this.setChat} chat={msg} user={this.props.user}/>
           </div>
       );
     });
@@ -48,7 +60,7 @@ class Messages extends Component {
       //   console.log(msg)
          return (
            <div> 
-           <Chat setUser="{msg}" chat={msg} user={this.props.user} />
+           <Chat setUser={this.props.setUser} chat={msg} setChat={this.setChat}  user={this.props.user} />
              </div>
          );
        });
