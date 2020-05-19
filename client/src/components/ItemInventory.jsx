@@ -1,11 +1,23 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class ItemInventory extends Component {
-
-  
+  deleteItem = (event) => {
+    console.log("event target value", event.target.value);
+    axios
+      .delete(`/api/items/${event.target.value}`)
+      .then((res) => {
+        console.log(res.data);
+        this.props.setUser(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   render() {
+    // console.log(this.props.user.inventory[0]._id);
     const itemsList = this.props.user.inventory;
 
     const filteredThings = itemsList.filter((thing) => {
@@ -37,8 +49,15 @@ class ItemInventory extends Component {
                     <option value="Swapped">Swapped</option>
                   </select>
                   <br />
-                  {/* <button>Edit</button> */}
-                  <button id={thing._id} onClick="function(this.id)">
+                  <Link to={`/items/${thing._id}`}>
+                    <button>Edit</button>
+                  </Link>
+                  <button
+                    id={thing._id}
+                    name={thing}
+                    value={thing._id}
+                    onClick={this.deleteItem}
+                  >
                     Delete
                   </button>
                 </>

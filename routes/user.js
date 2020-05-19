@@ -21,10 +21,6 @@ const multer = require("multer");
 router.put("/:id", (req, res) => {
   const id = req.params.id;
   const { username, bio, location, email, wishList } = req.body;
-  //console.log(req.body, "this is the req.body");
-  //console.log(req.params.id, "this is the id");
-  // console.log("this is the req.file,", req.file);
-  // console.log("this is the profileimg", req.body.profileImgPath);
   User.findByIdAndUpdate(
     id,
     {
@@ -33,8 +29,8 @@ router.put("/:id", (req, res) => {
       location,
       wishList,
       email,
-      // profileImgName,
-      profileImgPath: req.body.profileImgPath.data.secure_url,
+      //profileImgName,
+      profileImgPath: req.body.profileImgPath,
     },
     { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
   )

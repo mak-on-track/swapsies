@@ -47,7 +47,7 @@ class Dashboard extends Component {
 
           <ul>
             <li>
-               <div className="chip">
+              <div className="chip">
                 <img
                   src={
                     profileImgPath
@@ -96,10 +96,12 @@ class Dashboard extends Component {
           <h3>My Stuff</h3>
           <Link to="/add">Add</Link>
           <ServiceInventory
+            setUser={this.props.setUser}
             user={this.props.user}
             loggedInUser={this.props.user}
           />
           <ItemInventory
+            setUser={this.props.setUser}
             user={this.props.user}
             loggedInUser={this.props.user}
           />
