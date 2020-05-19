@@ -24,13 +24,13 @@ class Chat extends Component {
       fromOwner = true;
     }
 
-    console.log(this.props)
+ //   console.log(this.props)
  /*    console.log(fromOwner);
     console.log(this.props.chat._id);
     console.log(this.state.message) */
 
 
-/*        return axios
+       return axios
       .put("/api/chat", {
         id: this.props.chat._id,
         messages: [{sentByOwner: fromOwner, msg: this.state.message}]
@@ -39,11 +39,11 @@ class Chat extends Component {
         this.setState({
           message: "",
         });
-        this.props.setUser(this.props.user);
+        this.props.setUser(this.props.user); //NOT PASSING THROUGH AS PROPS
      })
       .catch((err) => {
         console.log(err);
-      }); */
+      });
   };
 
   render() {
