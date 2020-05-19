@@ -16,23 +16,23 @@ class ServiceInventory extends Component {
             <ul>
               <li>Name: {service.name}</li>
               <li>Description: {service.description}</li>
+
+              {this.props.user._id === this.props.loggedInUser._id ? (
+                <>
+                  {/* <button>Edit</button> */}
+                  <button id={service._id} onClick="function(this.id)">
+                    Delete
+                  </button>
+                </>
+              ) : (
+                <>
+                  <li>Status: {service.status}</li>
+                  <Link to={`/swap/${service._id}`}>
+                    <button id={service._id}>Offer Swap</button>
+                  </Link>
+                </>
+              )}
             </ul>
-
-            {this.props.user._id === this.props.loggedInUser._id ? (
-              <>
-                {/* <button>Edit</button> */}
-                <button id={service._id} onClick="function(this.id)">
-                  Delete
-                </button>
-              </>
-            ) : (
-              <>
-                <button id={service._id} onClick="function(this.id)">
-                  Offer Swap
-                </button>
-              </>
-            )}
-
             <hr />
           </div>
         </div>
