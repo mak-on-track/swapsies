@@ -39,25 +39,8 @@ class App extends Component {
       });
   }
 
-  componentDidUpdate(prevProps) {
-    //Added when posting a message to update user.
-    /*     if (this.state.user !== prevProps.user) {
-      const userId = this.state.user._id;
-      console.log('userid', userId)
-      return axios
-        .get(`/api/user/${userId}`)
-        .then((response) => {
-          console.log('response', response)
-          this.setUser(response.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    } */
-  }
 
   setUser = (user) => {
-    console.log("updating");
     this.setState({
       user: user,
     });

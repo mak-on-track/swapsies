@@ -21,7 +21,6 @@ class Messages extends Component {
 
   setChat = (data) => {
 
-    console.log('set chat running')
     const user = this.props.match.params.id;
     return axios
       .get(`/api/chat/${user}`)
