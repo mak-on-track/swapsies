@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class ItemInventory extends Component {
+
+  
+
   render() {
     const itemsList = this.props.user.inventory;
 
