@@ -18,6 +18,10 @@ class ItemInventory extends Component {
 
   render() {
     // console.log(this.props.user.inventory[0]._id);
+    
+   
+
+
     const itemsList = this.props.user.inventory;
 
     const filteredThings = itemsList.filter((thing) => {
@@ -38,7 +42,8 @@ class ItemInventory extends Component {
 
               {this.props.user._id === this.props.loggedInUser._id ? (
                 <>
-                  <label>Status: </label>
+                <li>Status: {thing.status}</li>
+                {/*   <label>Status: </label>
                   <select
                     name="status"
                     value={thing.status}
@@ -47,7 +52,7 @@ class ItemInventory extends Component {
                     <option value="Available">Available</option>
                     <option value="Reserved">Reserved</option>
                     <option value="Swapped">Swapped</option>
-                  </select>
+                  </select> */}
                   <br />
                   <Link to={`/items/${thing._id}`}>
                     <button>Edit</button>
@@ -78,14 +83,18 @@ class ItemInventory extends Component {
 
     /*   const thingsList = allItems.map(thing => thing) */
 
+
+    console.log('logged in user', this.props.loggedInUser._id)
+    console.log('user', this.props.user._id)
+
     return (
       <div>
-        <h4>List of Things</h4>
-        {displayThings.length < 1 ? (
+       
+        {displayThings.length < 1 ? this.props.loggedInUser._id === this.props.user._id ? (
           <Link to="/add">Add an Item</Link>
-        ) : (
-          displayThings
-        )}
+        ) : '' : (<> <h4>List of Things</h4>
+          {displayThings}
+       </> )}
       </div>
     );
   }
