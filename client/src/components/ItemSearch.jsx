@@ -154,7 +154,7 @@ class ItemSearch extends Component {
                 ) : (
                   <p>
                     Post by<> </>
-                    <a href="{`/user/${thing.owner._id}`}">
+                    <a href={`/user/${thing.owner._id}`}>
                       {thing.owner.username}
                     </a>
                   </p>
@@ -196,7 +196,7 @@ class ItemSearch extends Component {
                 ) : (
                   <p>
                     Post by<> </>
-                    <a href="{`/user/${service.owner._id}`}">
+                    <a href={`/user/${service.owner._id}`}>
                       {service.owner.username}
                     </a>
                   </p>
