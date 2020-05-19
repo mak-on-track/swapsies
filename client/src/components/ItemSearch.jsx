@@ -130,87 +130,83 @@ class ItemSearch extends Component {
 
     const displayThings = statusThings.map((thing) => {
       return (
-        <div className="main">
-          <div className="card">
-            <div className="card-content">
-              <div className="media" style={{"marginBottom":"0.7rem"}}>
-                <div className="media-left">
-                  <figure className="image is-48x48">
-                    <img src="https://images.unsplash.com/photo-1551298698-66b830a4f11c" alt="Red room"/>
-                  </figure>
-                </div>
-                <div className="media-content">
-                  <p className="title is-4">
-                    <a href="/">{thing.name}</a> 
-                  </p>
-                  <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>{thing.location}</p>
-                  <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>Favourites: {thing.favourites}</p>
-                </div>
+        <div className="card">
+          <div className="card-content">
+            <div className="media" style={{"marginBottom":"0.7rem"}}>
+              <div className="media-left">
+                <figure className="image is-48x48">
+                  <img src="https://images.unsplash.com/photo-1551298698-66b830a4f11c" alt="Red room"/>
+                </figure>
               </div>
-
-              <div className="content">
-                {thing.description}<br/>Status: {thing.status}
-                {thing.owner._id === userId ? (
-                    <p>My post</p>
-                  ) : (
-                    <p>
-                      Post by<> </>
-                      <a href="{`/user/${thing.owner._id}`}">
-                        {thing.owner.username}
-                      </a>
-                    </p>
-                )}
+              <div className="media-content">
+                <p className="title is-4">
+                  <a href="/">{thing.name}</a> 
+                </p>
+                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>{thing.location}</p>
+                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>Favourites: {thing.favourites}</p>
               </div>
             </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item">Add to Favourites</a>
-              <a href="#" class="card-footer-item">Message User</a>
-            </footer>
+
+            <div className="content">
+              {thing.description}<br/>Status: {thing.status}
+              {thing.owner._id === userId ? (
+                  <p>My post</p>
+                ) : (
+                  <p>
+                    Post by<> </>
+                    <a href="{`/user/${thing.owner._id}`}">
+                      {thing.owner.username}
+                    </a>
+                  </p>
+              )}
+            </div>
           </div>
-      </div>
+          <footer className="card-footer">
+            <a href="#" class="card-footer-item">Add to Favourites</a>
+            <a href="#" class="card-footer-item">Message User</a>
+          </footer>
+        </div>
       );
     });
 
     const displayServices = filteredServices.map((service) => {
       /*       console.log(service); */
       return (
-        <div className="main">
-          <div className="card">
-            <div className="card-content">
-              <div className="media" style={{"marginBottom":"0.7rem"}}>
-                <div className="media-left">
-                  <figure className="image is-48x48">
-                    <img src="https://images.unsplash.com/photo-1551298370-9d3d53740c72" alt="Yellow chair"/>
-                  </figure>
-                </div>
-                <div className="media-content">
-                  <p className="title is-4">
-                    <a href="/">{service.name}</a> 
-                  </p>
-                  <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>{service.location}</p>
-                  <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>Favourites: {service.favourites}</p>
-                </div>
+        <div className="card">
+          <div className="card-content">
+            <div className="media" style={{"marginBottom":"0.7rem"}}>
+              <div className="media-left">
+                <figure className="image is-48x48">
+                  <img src="https://images.unsplash.com/photo-1551298370-9d3d53740c72" alt="Yellow chair"/>
+                </figure>
               </div>
-
-              <div className="content">
-                {service.description}
-                {service.owner._id === userId ? (
-                    <p>My post</p>
-                  ) : (
-                    <p>
-                      Post by<> </>
-                      <a href="{`/user/${service.owner._id}`}">
-                        {service.owner.username}
-                      </a>
-                    </p>
-                )}
+              <div className="media-content">
+                <p className="title is-4">
+                  <a href="/">{service.name}</a> 
+                </p>
+                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>{service.location}</p>
+                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>Favourites: {service.favourites}</p>
               </div>
             </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item">Add to Favourites</a>
-              <a href="#" class="card-footer-item">Message User</a>
-            </footer>
+
+            <div className="content">
+              {service.description}
+              {service.owner._id === userId ? (
+                  <p>My post</p>
+                ) : (
+                  <p>
+                    Post by<> </>
+                    <a href="{`/user/${service.owner._id}`}">
+                      {service.owner.username}
+                    </a>
+                  </p>
+              )}
+            </div>
           </div>
+          <footer class="card-footer">
+            <a href="#" class="card-footer-item">Add to Favourites</a>
+            <a href="#" class="card-footer-item">Message User</a>
+          </footer>
         </div>
       );
     });
@@ -330,14 +326,14 @@ class ItemSearch extends Component {
 
         <div>
           {this.state.type === "Thing" && (
-            <div className="itemslist">{displayThings}</div>
+            <div className="flex-container">{displayThings}</div>
           )}
         </div>
         <div>
           {this.state.type === "Service" && (
             <>
               {/* <h4>Services</h4> */}
-              <div className="serviceList">{displayServices}</div>
+              <div className="flex-container">{displayServices}</div>
             </>
           )}
         </div>
