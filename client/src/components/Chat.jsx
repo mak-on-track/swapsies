@@ -53,18 +53,17 @@ class Chat extends Component {
       return (
         <div>
           <ul>
-            <li>
-              From{" "}
-              {ele.sentByOwner
+        
+            <li> {ele.sentByOwner
                 ? this.props.user._id === userReceive._id
                   ? "You"
                   : userReceive.username
                 : this.props.user._id === userSend._id
                 ? "You"
-                : userSend.username}
-              : Sent: {ele.time}
+                : userSend.username}: {" "} {ele.msg}</li>
+                <li>
+               Sent:{" "}{ele.time}
             </li>
-            <li>{ele.msg}</li>
           </ul>
         </div>
       );
@@ -74,10 +73,12 @@ class Chat extends Component {
       <>
         <h3>Item: {item.name}</h3>
         <ul>
+        {/*    <li>{this.props.user._id === userSent._id ? Sent to: : Sent by} <Link to={`/user/${userReceive._id}`>{userReceive.username}</Link>}</li> */}
+           <li>From: {this.props.user._id === userSend._id ? <Link to={`/user/${userReceive._id}`}>{userReceive.username}</Link>: <Link to={`/user/${userSend._id}`}>{userSend.username}</Link> }</li>
           <li>Type: {item.type}</li>
           <li>Description: {item.description}</li>
           <li>Status: {item.status}</li>
-          {/*    <li>{this.props.user._id === userSent._id ? Sent to: : Sent by} <Link to={`/user/${userReceive._id}`>{userReceive.username}</Link>}</li> */}
+          
         </ul>
         <h2>Messages:</h2>
         {chatLog}
