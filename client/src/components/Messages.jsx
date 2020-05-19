@@ -1,39 +1,74 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import axios from "axios";
-
+import Chat from "./Chat";
 
 class Messages extends Component {
-  state = {  }
+  state = {
+    chatList: [],
+  };
 
   componentDidMount() {
-    this.props.setUser(this.props.user);
-
-/*     const findChats = this.props.match.params.id;
-    console.log(findChats)
+    const user = this.props.match.params.id;
     return axios
-      .get(`/api/chat/${findChats}`)
+      .get(`/api/chat/${user}`)
       .then((response) => {
-         console.log(`response data: ${response}`);
-
+        this.setState({ chatList: response.data });
+        /* this.props.setUser(this.props.user); */
       })
       .catch((err) => {
         console.log(err);
-      }); */
+      });
   }
 
 
-  
+
   render() {
-console.log(this.props)
+    const userId = this.props.user._id;
+/* console.log(this.state.chatList) */
+    const incomingFilter = this.state.chatList.filter((msg) => {
+     //console.log(msg)
+      return msg.userReceive._id === userId;
+    });
+
+    const incomingMsg = incomingFilter.map((msg) => {
+   //   console.log(msg)
+      return (
+        <div> 
+        <Chat chat={msg} user={this.props.user}/>
+          </div>
+      );
+    });
+
+    const outgoingFilter = this.state.chatList.filter((msg) => {
+      //console.log(msg)
+       return msg.userSend._id === userId;
+     });
+
+     const outgoingMsg = outgoingFilter.map((msg) => {
+      //   console.log(msg)
+         return (
+           <div> 
+           <Chat setUser="{msg}" chat={msg} user={this.props.user} />
+             </div>
+         );
+       });
 
 
-    return ( <div>
-      <h2>Sent Swap Offers</h2>
 
-      <h2>Received Swap Offers</h2>
-
-    </div> );
+    return (
+      <div>
+        <h2>Incoming Offers</h2>
+        <hr/>
+        {incomingMsg}
+        <hr/>
+        <hr/>
+        <h2>Sent Offers</h2>
+        <hr/>
+        {outgoingMsg}
+      </div>
+    );
   }
 }
- 
+
 export default Messages;
+

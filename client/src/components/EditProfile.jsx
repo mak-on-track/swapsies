@@ -84,6 +84,7 @@ class EditProfile extends Component {
       wishList: this.state.wishList,
     };
     axios.post(`/api/user/upload`, uploadData).then((res) => {
+      console.log('posted')
       axios
         .put(`/api/user/${user.id}`, {
           username: user.username,
