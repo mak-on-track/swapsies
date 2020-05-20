@@ -254,15 +254,12 @@ class AddItem extends Component {
                   onChange={this.handleImageChange}
                 />
                 <span className="file-cta">
-                  <span className="file-icon">
-                    <i className="fas fa-upload"></i>
-                  </span>
                   <span className="file-label">
                     Choose a file
                   </span>
                 </span>
                 <span className="file-name">
-                  
+                  {this.state.selectedImage ? this.state.selectedImage.name : "filename"}
                 </span>
               </label>
             </div>

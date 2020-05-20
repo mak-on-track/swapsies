@@ -166,7 +166,7 @@ class EditProfile extends Component {
                   className="file-input" 
                   type="file" 
                   // id="file" 
-                  name="itemImageUrl" 
+                  name="imageUrl" 
                   onChange={this.handleImageChange}
                 />
                 
