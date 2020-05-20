@@ -89,7 +89,16 @@ router.get("/:id", (req, res) => {
 router.put("/", (req, res) => {
   console.log("got it", req.body);
 
-  const { id, name, category, location, description, type, status } = req.body;
+  const {
+    id,
+    name,
+    category,
+    location,
+    description,
+    type,
+    status,
+    itemImgPath,
+  } = req.body;
 
   Item.findByIdAndUpdate(
     id,
@@ -100,7 +109,7 @@ router.put("/", (req, res) => {
       location,
       type,
       category,
-      //profileImgName,
+      itemImgPath,
       //profileImgPath: req.body.profileImgPath,
     },
     { new: true } //to make sure we are getting  document AFTER updating it in the .then callback

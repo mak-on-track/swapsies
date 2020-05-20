@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AddItem from "./AddItem";
-import "./style.css"
+import "./style.css";
 
 class ItemInventory extends Component {
   // state = {
@@ -11,7 +11,7 @@ class ItemInventory extends Component {
 
   deleteItem = (event) => {
     //console.log("event target value", event.target.value);
-    console.log("event target value", event.target.value);
+    // console.log("event target value", event.target.value);
 
     // this.setState({
     //   delete: true,
@@ -20,7 +20,7 @@ class ItemInventory extends Component {
     axios
       .delete(`/api/items/${event.target.value}`)
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         this.props.setUser(res.data);
       })
       .catch((err) => {
@@ -34,19 +34,20 @@ class ItemInventory extends Component {
 
     const itemsList = this.props.user.inventory;
 
-   // console.log("itemslist", itemsList);
+    // console.log("itemslist", itemsList);
     const filteredThings = itemsList.filter((thing) => {
       if (thing.type === "Thing") return true;
     });
 
     const displayThings = filteredThings.map((thing) => {
+      console.log(thing.itemImgPath, "thing.itemimgpath");
       return (
         <>
           <div className="main" key={thing._id}>
             <ul>
               <li>Name: {thing.name}</li>
               <li>
-                <img src={thing.itemImgPath} alt="item image" />
+                <img src={thing.itemImgPath} alt="picture of thing" />
               </li>
               <li>Category: {thing.category}</li>
               <li>Description: {thing.description}</li>
@@ -94,8 +95,8 @@ class ItemInventory extends Component {
 
     /*   const thingsList = allItems.map(thing => thing) */
 
-   // console.log("logged in user", this.props.loggedInUser._id);
-   // console.log("user", this.props.user._id);
+    // console.log("logged in user", this.props.loggedInUser._id);
+    // console.log("user", this.props.user._id);
 
     return (
       <div>

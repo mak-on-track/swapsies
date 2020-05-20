@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./style.css"
+import "./style.css";
 
 class ServiceInventory extends Component {
   // state = {
@@ -26,7 +26,7 @@ class ServiceInventory extends Component {
   };
 
   render() {
-    //console.log(this.props)
+    console.log(this.props);
     const itemsList = this.props.user.inventory;
 
     const filteredServices = itemsList.filter((service) => {
@@ -40,8 +40,9 @@ class ServiceInventory extends Component {
             <ul>
               <li>Name: {service.name}</li>
               <li>
-                <img src={service.itemImgPath} alt="item image" />
+                <img src={service.itemImgPath} alt="picture of service" />
               </li>
+
               <li>Description: {service.description}</li>
               <li>Location(s): {service.location}</li>
 

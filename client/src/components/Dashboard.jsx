@@ -51,7 +51,7 @@ class Dashboard extends Component {
                 src={
                   profileImgPath
                     ? profileImgPath
-                    : "https://images.unsplash.com/photo-1515160813423-b851dc54a427"
+                    : "https://images.un.com/photo-1515160813423-b851dc54a427"
                 }
                 alt="profileImg"
               />
