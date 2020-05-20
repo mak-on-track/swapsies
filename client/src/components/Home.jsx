@@ -3,12 +3,12 @@ import "./style/Home.css"
 
 class Home extends Component {
   state = {  }
+
   render() { 
     return (
-      <div className="home">
-        <div className="hero-image"></div>
+      <div className="hero-image">
         <div className="hero-text">
-          <h1 style={{"fontSize":"50px"}}>
+          <h1 style={{"fontSize":"4.5rem"}}>
             Swapsies
           </h1>
           <h3>
