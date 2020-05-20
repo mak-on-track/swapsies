@@ -1,26 +1,13 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import AddItem from "./AddItem";
 import "./style.css";
 
 class ItemInventory extends Component {
-  // state = {
-  //   itemsList: false,
-  // };
-
   deleteItem = (event) => {
-    //console.log("event target value", event.target.value);
-    // console.log("event target value", event.target.value);
-
-    // this.setState({
-    //   delete: true,
-    // });
-
     axios
       .delete(`/api/items/${event.target.value}`)
       .then((res) => {
-        //console.log(res.data);
         this.props.setUser(res.data);
       })
       .catch((err) => {
@@ -29,12 +16,8 @@ class ItemInventory extends Component {
   };
 
   render() {
-    // console.log(this.props.user.inventory[0]._id);
-    // console.log(this.state.user)
-
     const itemsList = this.props.user.inventory;
 
-    // console.log("itemslist", itemsList);
     const filteredThings = itemsList.filter((thing) => {
       if (thing.type === "Thing") return true;
     });
@@ -55,16 +38,6 @@ class ItemInventory extends Component {
               {this.props.user._id === this.props.loggedInUser._id ? (
                 <>
                   <li>Status: {thing.status}</li>
-                  {/*   <label>Status: </label>
-                  <select
-                    name="status"
-                    value={thing.status}
-                    onChange={this.handleChange}
-                  >
-                    <option value="Available">Available</option>
-                    <option value="Reserved">Reserved</option>
-                    <option value="Swapped">Swapped</option>
-                  </select> */}
                   <br />
                   <Link to={`/items/${thing._id}`}>
                     <button>Edit</button>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import "./style.css"
+import "./style/OfferSwap.css"
 
 class OfferSwap extends Component {
   state = {
@@ -60,7 +60,7 @@ class OfferSwap extends Component {
   };
 
   render() {
-    console.log(this.state.userReceive, "...........lalal")
+    console.log(this.state)
     const {
       name,
       category,
@@ -74,13 +74,13 @@ class OfferSwap extends Component {
     return (
       <div className="main">
         <div className="field">
-          <label className="label">Offer a Swap</label>
+          <label className="label title is-3">Offer a Swap</label>
         </div>
         <div className="card">
 
-          <div className="card-image">
+          <div className="card-image item-image">
             <figure className="image">
-              <img src="https://images.unsplash.com/photo-1520591799316-6b30425429aa" alt="Item image"/>
+              <img src={itemImgPath} alt="Item image"/>
             </figure>
           </div>
 
@@ -89,7 +89,7 @@ class OfferSwap extends Component {
             <div className="media">
               <div className="media-left">
                 <figure className="image is-48x48">
-                  <img src="https://images.unsplash.com/photo-1508215302842-8a015a452a20" alt="User image"/>
+                  <img src={owner.profileImgPath} alt="User image"/>
                 </figure>
               </div>
               <div className="media-content">
@@ -97,7 +97,7 @@ class OfferSwap extends Component {
                   {name}
                 </p>
                 <p className="subtitle is-6">
-                  Posted by <a href={`/user/${owner._id}`}>{owner.username}</a>
+                  Posted by: <a href={`/user/${owner._id}`}>{owner.username}</a>
                   {owner.email ? " · " + owner.email : null }
                 </p>
               </div>
@@ -118,7 +118,7 @@ class OfferSwap extends Component {
                       id="offerSwap"
                       name="offerswap"
                       onChange={this.handleChange}
-                      placeholder="Hey, ..."
+                      placeholder="Hey! Care to swap?"
                       type="text"
                       value={this.state.message}
                     />
