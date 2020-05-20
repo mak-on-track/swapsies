@@ -149,7 +149,14 @@ class ItemSearch extends Component {
             <div className="media" style={{ marginBottom: "0.7rem" }}>
               <div className="media-left">
                 <figure className="image is-48x48">
-                  <img src={thing.itemImgPath} alt="item image" />
+                  {thing.itemImgPath !== "" ? (
+                    <img src={thing.itemImgPath} alt="picture of thing" />
+                  ) : (
+                    <img
+                      src="https://images.unsplash.com/photo-1551298370-9d3d53740c72"
+                      alt="default picture of thing"
+                    />
+                  )}
                 </figure>
               </div>
               <div className="media-content">
@@ -199,10 +206,14 @@ class ItemSearch extends Component {
             <div className="media" style={{ marginBottom: "0.7rem" }}>
               <div className="media-left">
                 <figure className="image is-48x48">
-                  <img
-                    src="https://images.unsplash.com/photo-1551298370-9d3d53740c72"
-                    alt="Yellow chair"
-                  />
+                  {service.itemImgPath !== "" ? (
+                    <img src={service.itemImgPath} alt="picture of service" />
+                  ) : (
+                    <img
+                      src="https://images.unsplash.com/photo-1534073828943-f801091bb18c"
+                      alt="default picture of service"
+                    />
+                  )}
                 </figure>
               </div>
               <div className="media-content">

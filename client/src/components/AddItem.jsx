@@ -5,7 +5,7 @@ import "./style.css";
 class AddItem extends Component {
   state = {
     name: "",
-    itemImgPath: "/icon_swap.png", //could put a "insert image" thing here as a default
+    itemImgPath: "https://images.unsplash.com/photo-1429087969512-1e85aab2683d", //could put a "insert image" thing here as a default
     selectedImage: null,
     type: "",
     category: "",
@@ -116,7 +116,6 @@ class AddItem extends Component {
       });
   };
 
-
   render() {
     console.log(this.props);
     const {
@@ -210,15 +209,14 @@ class AddItem extends Component {
               <div class="field">
                 <div class="control">
                   <textarea
-                    className="textarea" 
+                    className="textarea"
                     type="text"
                     name="description"
                     value={this.state.description}
                     onChange={this.handleChange}
                     id="description"
                     placeholder="Add a description"
-                  >
-                  </textarea>
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -226,20 +224,20 @@ class AddItem extends Component {
           <div className="field">
             <label className="label">Location:</label>
             <div className="control">
-            <div className="select">
-              <select
-                name="location"
-                value={location}
-                onChange={this.handleChange}
-              >
-                {locationOptions.map((option) => {
-                  return (
-                    <option value={option} key={option}>
-                      {option}
-                    </option>
-                  );
-                })}
-              </select>
+              <div className="select">
+                <select
+                  name="location"
+                  value={location}
+                  onChange={this.handleChange}
+                >
+                  {locationOptions.map((option) => {
+                    return (
+                      <option value={option} key={option}>
+                        {option}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
             </div>
           </div>

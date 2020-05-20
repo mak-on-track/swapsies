@@ -3,6 +3,8 @@ import "./style.css";
 import axios from "axios";
 
 class ItemDetail extends Component {
+  _isMounted = false;
+
   state = {
     item: null,
     type: "",
@@ -11,6 +13,8 @@ class ItemDetail extends Component {
     description: "",
     status: "",
     location: "",
+    itemImgPath: "",
+    selectedImage: null,
     error: null,
     locationOptions: [
       "Select Kiez",
@@ -42,22 +46,33 @@ class ItemDetail extends Component {
 
   getData = () => {
     const id = this.props.match.params.id;
-    const itemId = this.props.params;
     // console.log(id);
     axios
       .get(`/api/items/${id}`)
       .then((response) => {
         // console.log(response.data);
-        const { location, type, description, name, category, status } = response.data;
-        this.setState({
-          item: response.data,
+        const {
           location,
           type,
           description,
           name,
           category,
           status,
-        });
+          itemImgPath,
+        } = response.data;
+
+        if (this._isMounted) {
+          this.setState({
+            item: response.data,
+            location,
+            type,
+            description,
+            name,
+            category,
+            status,
+            itemImgPath,
+          });
+        }
       })
       .catch((err) => {
         if (err.response.status === 404) {
@@ -67,33 +82,59 @@ class ItemDetail extends Component {
   };
 
   componentDidMount = () => {
+    this._isMounted = true;
+
     this.getData();
   };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
 
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({
       [name]: value,
+      //   itemImgPath: this.state.itemImgPath,
     });
   };
 
-  handleSubmit = (event) => {
-    event.preventDefault();
+  handleImageChange = (event) => {
+    console.log("this is the event.target.files[0]", event.target.files[0]);
+    this.setState({
+      selectedImage: event.target.files[0],
+    });
+  };
 
+  handleSubmit = async (event) => {
     console.log("running");
+    console.log(this.state.selectedImage);
+    event.preventDefault();
+    let image;
+    if (this.state.selectedImage) {
+      const uploadData = new FormData();
+      // console.log(
+      //   this.state.selectedImage,
+      //   "this state selected image before upload append"
+      // );
+      uploadData.append("itemImageUrl", this.state.selectedImage);
+      const uploadedImage = await axios.post(`/api/items/upload`, uploadData);
+      image = uploadedImage.data.secure_url;
+    } else {
+      image = this.state.itemImgPath;
+    }
+
     let { name, category, location, description, type, status } = this.state;
 
-    console.log(name, category, location, description, type, status);
-
-
+    //    console.log(name, category, location, description, type, status);
+    console.log("this is the image", image);
     if (type === "Service") {
       category = "None";
       status = "Available";
     }
-    /* if(type === "Service") {IMAGE IS NULL} */
 
     return axios
-      .put("/api/items/", {
+      .put(`/api/items/`, {
         id: this.state.item._id,
         status,
         name,
@@ -101,20 +142,21 @@ class ItemDetail extends Component {
         location,
         type,
         category,
-        //itemImgPath: "",
+        itemImgPath: image,
       })
-      .then((data) => {
+      .then((res) => {
+        console.log(res);
+
         this.setState({
           name: "",
           description: "",
-          //itemImgPath: "",
+          // itemImgPath: this.state.itemImgPath,
+          selectedImage: null,
           type: "",
           category: "",
           status: "",
           location: "",
         });
-     //   this.props.setUser(data.data);
-
       })
       .then(() => {
         this.props.history.push("/dashboard");
@@ -157,6 +199,17 @@ class ItemDetail extends Component {
               </div>
             </div>
 
+            <div class="field">
+              <label class="label">Update photo</label>
+              <div class="control">
+                <input
+                  type="file"
+                  name="itemImageUrl"
+                  onChange={this.handleImageChange}
+                />
+              </div>
+            </div>
+
             {/* Only displays when selected type is "thing" */}
             {this.state.type !== "Service" && (
               <>
@@ -172,13 +225,16 @@ class ItemDetail extends Component {
                         value={this.state.category}
                         required
                       >
-                          {categoryOptions.map((selectedCategory) => {
-                      return (
-                        <option value={selectedCategory} key={selectedCategory}>
-                          {selectedCategory}
-                        </option>
-                      );
-                    })}
+                        {categoryOptions.map((selectedCategory) => {
+                          return (
+                            <option
+                              value={selectedCategory}
+                              key={selectedCategory}
+                            >
+                              {selectedCategory}
+                            </option>
+                          );
+                        })}
                       </select>
                     </div>
                   </div>
@@ -188,7 +244,9 @@ class ItemDetail extends Component {
 
             {/* Name of item */}
             <div class="field">
-              <label htmlFor="name" class="label">Name</label>
+              <label htmlFor="name" class="label">
+                Name
+              </label>
               <div class="control">
                 <input
                   class="input"
@@ -205,7 +263,9 @@ class ItemDetail extends Component {
 
             {/* Description of item */}
             <div class="field">
-              <label htmlFor="description" class="label">Description</label>
+              <label htmlFor="description" class="label">
+                Description
+              </label>
               <div class="control">
                 <input
                   class="input"
@@ -256,21 +316,23 @@ class ItemDetail extends Component {
 
             {item.type !== "Service" && (
               <>
-            <label htmlFor="status" class="label">Status</label>
-            <div class="select">
-              <select
-                id="status"
-                name="status"
-                onChange={this.handleChange}
-                value={this.state.status}
-                required
-              >
-                <option value="Available">Available</option>
-                <option value="Reserved">Reserved</option>
-                <option value="Swapped">Swapped</option>
-              </select>
-            </div>
-            </>
+                <label htmlFor="status" class="label">
+                  Status
+                </label>
+                <div class="select">
+                  <select
+                    id="status"
+                    name="status"
+                    onChange={this.handleChange}
+                    value={this.state.status}
+                    required
+                  >
+                    <option value="Available">Available</option>
+                    <option value="Reserved">Reserved</option>
+                    <option value="Swapped">Swapped</option>
+                  </select>
+                </div>
+              </>
             )}
             <div class="control">
               <button type="submit" value="add" class="button is-link is-light">
