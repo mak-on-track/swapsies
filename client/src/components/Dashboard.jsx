@@ -3,6 +3,7 @@ import axios from "axios";
 import ItemInventory from "./ItemInventory";
 import ServiceInventory from "./ServiceInventory";
 import "./style.css";
+import "./style/Dashboard.css";
 
 class Dashboard extends Component {
   state = {
@@ -38,29 +39,29 @@ class Dashboard extends Component {
     } = user;
 
     if (location === "Select Kiez") location = null;
-    if ((wishList = [])) wishList = null;
+    //if ((wishList = [])) wishList = null;
 
     return (
       <div className="main">
         <div className="card">
-          <div className="card-image" style={{ padding: "1.5rem" }}>
-            <figure className="image is-128x128">
-              <img
-                className="is-rounded"
-                src={
-                  profileImgPath
-                    ? profileImgPath
-                    : "https://images.unsplash.com/photo-1515160813423-b851dc54a427"
-                }
-                alt="profileImg"
-              />
-            </figure>
-          </div>
+          <div className="card-container">
+            <div className="card-image" style={{ padding: "1.5rem" }}>
+              <figure className="image is-128x128">
+                <img
+                  className="is-rounded"
+                  src={
+                    profileImgPath
+                      ? profileImgPath
+                      : "https://images.unsplash.com/photo-1515160813423-b851dc54a427"
+                  }
+                  alt="profileImg"
+                />
+              </figure>
+            </div>
 
-          <div className="card-content">
             <div className="media" style={{ marginBottom: "0.5rem" }}>
               <div className="media-content">
-                <p className="title is-4">{username}</p>
+                <p className="title is-2">{username}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {email ? email : null}
                   {email && location ? " · " : null}
@@ -71,19 +72,18 @@ class Dashboard extends Component {
                 </p>
               </div>
             </div>
-
-            <div className="content">
-              <b>Wishlist</b>
-              {wishList ? (
-                wishList.map((wish) => {
-                  return <li key={wish}>{wish}</li>;
-                })
-              ) : (
-                <p>No wish yet.</p>
-              )}
-            </div>
           </div>
-
+          <div className="content wishlist">
+            <b>Wishlist</b>
+            <ul>
+            {wishList.length > 0 ? (
+              wishList.map((wish) => {
+                return <li key={wish}>{wish}</li>;
+              })
+            ) : (
+              <li>Nothing yet.</li>
+            )}</ul>
+          </div>
           <footer className="card-footer" style={{ padding: "0.5rem" }}>
             <a href="/edit" className="card-footer-item">
               Edit Profile

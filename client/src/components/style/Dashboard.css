@@ -1,0 +1,36 @@
+.card-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 2rem 0rem;
+}
+
+
+
+.card {
+  width: 50rem;
+}
+
+.card-container img {
+  max-height: 100%;
+}
+
+.card-container > div {
+  margin-right: 3rem;
+}
+
+.wishlist ul {
+  columns: 3;
+  -webkit-columns: 3;
+  -moz-columns: 3;
+}
+
+.wishlist {
+  width: 25rem;
+  margin-left: 2rem;
+}
+
+.media-content {
+  margin-top: 2rem;
+}
