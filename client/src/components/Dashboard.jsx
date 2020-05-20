@@ -13,6 +13,7 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
+    console.log("mounting");
     const userId = this.props.user._id;
     return axios
       .get(`/api/user/${userId}`)
@@ -40,6 +41,8 @@ class Dashboard extends Component {
       _id,
     } = user;
 
+    console.log("wishlist", user.wishList);
+
     return (
       <div className="main">
         <hr />
@@ -55,7 +58,7 @@ class Dashboard extends Component {
                       ? profileImgPath
                       : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
                   }
-                  alt="profileImg"
+                  alt="profile picture"
                   width="96"
                   height="96"
                 />
@@ -64,29 +67,22 @@ class Dashboard extends Component {
             </li>
             <li>{email ? <p>Email: {email}</p> : <p></p>}</li>
             <li>
-              {" "}
-              {location !== "Select Kiez" ? (
-                <p>
-                  Kiez:
-                  {location}
-                </p>
+              {location !== "Select Kiez" || "" ? (
+                <p>Kiez: {location}</p>
               ) : (
                 <p></p>
               )}
             </li>
             <li>{bio ? <p>Bio: {bio}</p> : <p></p>}</li>
-            {/* <Link to="/edit">Edit Profile</Link> */}
             <li>
               <h3>WishList:</h3>
               <ul>
-                {wishList ? (
+                {wishList.length !== 0 ? (
                   wishList.map((wish) => {
                     return <li key={wish}>{wish}</li>;
                   })
                 ) : (
-                  <div>
-                    <p>There is nothing in your wish list</p>
-                  </div>
+                  <li>There is nothing in your wish list</li>
                 )}
               </ul>
             </li>

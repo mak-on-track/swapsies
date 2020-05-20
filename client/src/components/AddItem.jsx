@@ -4,7 +4,8 @@ import axios from "axios";
 class AddItem extends Component {
   state = {
     name: "",
-    //itemImgPath: "", //could put a "insert image" thing here as a default
+    itemImgPath: "", //could put a "insert image" thing here as a default
+    selectedImage: null,
     type: "",
     category: "",
     description: "",
@@ -23,6 +24,18 @@ class AddItem extends Component {
       "Wilmersdorf",
       "Janz weit draußen",
     ],
+    selectedCategory: "",
+    categoryOptions: [
+      "Plants",
+      "Furniture",
+      "Kitchen supplies",
+      "Electronics",
+      "Gardening tools",
+      "Collectables & Memorabilia",
+      "Bike stuff",
+      "Clothes",
+      "Other",
+    ],
   };
 
   handleChange = (event) => {
@@ -30,25 +43,42 @@ class AddItem extends Component {
 
     this.setState({
       [name]: value,
+      itemImgPath: this.state.itemImgPath,
     });
   };
 
-  handleImageChange = (event) => {};
+  handleImageChange = (event) => {
+    console.log("this is the event.target.files[0]", event.target.files[0]);
+    this.setState({
+      selectedImage: event.target.files[0],
+    });
+    console.log(
+      "this.state.selectedImage before upload: ",
+      this.state.selectedImage
+    );
+  };
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     event.preventDefault();
-    let {
-      name,
-      category,
-      location,
-      description,
-      /* CLOUDINARY */ type,
-    } = this.state;
+    let image;
+    if (this.state.selectedImage) {
+      const uploadData = new FormData();
+      console.log(
+        this.state.selectedImage,
+        "this state selected image before upload append"
+      );
+      uploadData.append("itemImageUrl", this.state.selectedImage);
+      const uploadedImage = await axios.post(`/api/items/upload`, uploadData);
+      image = uploadedImage.data.secure_url;
+    } else {
+      image = this.state.itemImgPath;
+    }
+
+    let { name, category, location, description, type } = this.state;
 
     if (type === "Service") {
       category = "None";
     }
-    /* if(type === "Service") {IMAGE IS NULL} */
 
     return axios
       .post("/api/items", {
@@ -60,37 +90,91 @@ class AddItem extends Component {
         location,
         type,
         category,
-        /* IMAGE */
-        //itemImgPath: "",
+        itemImgPath: image,
       })
-      .then((data) => {
+      .then((res) => {
+        console.log(res);
+        const userData = res.data;
+        this.props.setUser(userData);
+
         this.setState({
           name: "",
           description: "",
-          //itemImgPath: "",
+          itemImgPath: "",
           type: "",
           category: "",
+          selectedCategory: "",
           location: this.props.user.location,
         });
-        this.props.setUser(data.data);
-        console.log(data);
-        this.props.getData(); //might not be needed
       })
       .then(() => {
         this.props.history.push("/dashboard");
       })
       .catch((err) => {
-        console.log(err);
+        console.log("Error adding item", err);
       });
   };
 
+  // handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   let {
+  //     name,
+  //     category,
+  //     location,
+  //     description,
+  //     /* CLOUDINARY */ type,
+  //   } = this.state;
+
+  //   if (type === "Service") {
+  //     category = "None";
+  //   }
+  //   /* if(type === "Service") {IMAGE IS NULL} */
+
+  //   return axios
+  //     .post("/api/items", {
+  //       owner: this.props.user._id,
+  //       favourites: 0,
+  //       status: "Available",
+  //       name,
+  //       description,
+  //       location,
+  //       type,
+  //       category,
+  //       /* IMAGE */
+  //       //itemImgPath: "",
+  //     })
+  //     .then((data) => {
+  //       this.setState({
+  //         name: "",
+  //         description: "",
+  //         //itemImgPath: "",
+  //         type: "",
+  //         category: "",
+  //         location: this.props.user.location,
+  //       });
+  //       this.props.setUser(data.data);
+  //       console.log(data);
+  //       this.props.getData(); //might not be needed
+  //     })
+  //     .then(() => {
+  //       this.props.history.push("/dashboard");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
   render() {
+    console.log(this.props);
     const {
       name,
       description,
       location,
       locationOptions,
-      //itemImgPath,
+      itemImgPath,
+      category,
+      selectedCategory,
+      categoryOptions,
       /* CLOUDINARY */ type,
     } = this.state;
     return (
@@ -104,7 +188,12 @@ class AddItem extends Component {
           <label class="label">Is this a service or thing?</label>
           <div class="control">
             <div class="select">
-              <select id="type" name="type" onChange={this.handleChange}>
+              <select
+                id="type"
+                name="type"
+                onChange={this.handleChange}
+                required
+              >
                 <option value="">Select</option>
                 <option value="Thing">Thing</option>
                 <option value="Service">Service</option>
@@ -121,14 +210,29 @@ class AddItem extends Component {
               <label class="label">Category</label>
               <div class="control">
                 <div class="select">
-                  <select
+                  {/* <select
                     id="category"
                     name="category"
                     onChange={this.handleChange}
+                    required
                   >
                     <option value="">Select</option>
                     <option value="Furniture">Furniture</option>
                     <option value="Plants">Plants</option>
+                  </select> */}
+
+                  <select
+                    name="category"
+                    value={category}
+                    onChange={this.handleChange}
+                  >
+                    {categoryOptions.map((selectedCategory) => {
+                      return (
+                        <option value={selectedCategory} key={selectedCategory}>
+                          {selectedCategory}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
               </div>
@@ -148,6 +252,7 @@ class AddItem extends Component {
               onChange={this.handleChange}
               id="name"
               placeholder="Name of item"
+              required
             />
           </div>
         </div>
@@ -164,6 +269,7 @@ class AddItem extends Component {
               onChange={this.handleChange}
               id="description"
               placeholder="Add a description"
+              required
             />
           </div>
         </div>
@@ -180,21 +286,20 @@ class AddItem extends Component {
         </select>
 
         {/* Check for whether type is thing to have functionality of adding image */}
-        {type !== "Service" && (
-          <>
-            <div class="field">
-              <label class="label">Add photos</label>
-              <div class="control">
-                <input
-                  type="file"
-                  name="itemImageUrl"
-                  //value={itemImgPath}
-                  onChange={this.handleImageChange}
-                />
-              </div>
+        {/* {type !== "Service" && ( */}
+        <>
+          <div class="field">
+            <label class="label">Add photos</label>
+            <div class="control">
+              <input
+                type="file"
+                name="itemImageUrl"
+                onChange={this.handleImageChange}
+              />
             </div>
-          </>
-        )}
+          </div>
+        </>
+        {/* )} */}
 
         {/* Submit button */}
         <div class="control">

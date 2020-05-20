@@ -29,7 +29,6 @@ router.put("/:id", (req, res) => {
       location,
       wishList,
       email,
-      //profileImgName,
       profileImgPath: req.body.profileImgPath,
     },
     { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
@@ -70,7 +69,7 @@ router.get("/:id", (req, res) => {
 //get all users
 router.get("/", (req, res) => {
   User.find()
-    .populate("inventory") 
+    .populate("inventory")
     .then((items) => {
       res.status(200).json(items);
     })

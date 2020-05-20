@@ -20,7 +20,6 @@ class Messages extends Component {
   }
 
   setChat = (data) => {
-
     const user = this.props.match.params.id;
     return axios
       .get(`/api/chat/${user}`)
@@ -33,48 +32,56 @@ class Messages extends Component {
   };
 
   render() {
-   // console.log(this.props)
+    // console.log(this.props)
     const userId = this.props.user._id;
-/* console.log(this.state.chatList) */
+    /* console.log(this.state.chatList) */
     const incomingFilter = this.state.chatList.filter((msg) => {
-     //console.log(msg)
+      //console.log(msg)
       return msg.userReceive._id === userId;
     });
 
     const incomingMsg = incomingFilter.map((msg) => {
-   //   console.log(msg)
+      //   console.log(msg)
       return (
-        <div> 
-        <Chat setUser={this.props.setUser} setChat={this.setChat} chat={msg} user={this.props.user}/>
-          </div>
+        <div>
+          <Chat
+            setUser={this.props.setUser}
+            setChat={this.setChat}
+            chat={msg}
+            user={this.props.user}
+          />
+        </div>
       );
     });
 
     const outgoingFilter = this.state.chatList.filter((msg) => {
       //console.log(msg)
-       return msg.userSend._id === userId;
-     });
+      return msg.userSend._id === userId;
+    });
 
-     const outgoingMsg = outgoingFilter.map((msg) => {
+    const outgoingMsg = outgoingFilter.map((msg) => {
       //   console.log(msg)
-         return (
-           <div> 
-           <Chat setUser={this.props.setUser} chat={msg} setChat={this.setChat}  user={this.props.user} />
-             </div>
-         );
-       });
-
-
+      return (
+        <div>
+          <Chat
+            setUser={this.props.setUser}
+            chat={msg}
+            setChat={this.setChat}
+            user={this.props.user}
+          />
+        </div>
+      );
+    });
 
     return (
       <div>
         <h2>Incoming Offers</h2>
-        <hr/>
+        <hr />
         {incomingMsg}
-        <hr/>
-        <hr/>
+        <hr />
+        <hr />
         <h2>Sent Offers</h2>
-        <hr/>
+        <hr />
         {outgoingMsg}
       </div>
     );
@@ -82,4 +89,3 @@ class Messages extends Component {
 }
 
 export default Messages;
-

@@ -1,10 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import AddItem from "./AddItem";
 
 class ItemInventory extends Component {
+  // state = {
+  //   itemsList: false,
+  // };
+
   deleteItem = (event) => {
     //console.log("event target value", event.target.value);
+    console.log("event target value", event.target.value);
+
+    // this.setState({
+    //   delete: true,
+    // });
+
     axios
       .delete(`/api/items/${event.target.value}`)
       .then((res) => {
@@ -18,11 +29,11 @@ class ItemInventory extends Component {
 
   render() {
     // console.log(this.props.user.inventory[0]._id);
-    
-   
+    // console.log(this.state.user)
 
     const itemsList = this.props.user.inventory;
 
+    console.log("itemslist", itemsList);
     const filteredThings = itemsList.filter((thing) => {
       if (thing.type === "Thing") return true;
     });
@@ -34,15 +45,15 @@ class ItemInventory extends Component {
             <ul>
               <li>Name: {thing.name}</li>
               <li>
-                <img src="" alt="image here" />
+                <img src={thing.itemImgPath} alt="item image" />
               </li>
               <li>Category: {thing.category}</li>
               <li>Description: {thing.description}</li>
 
               {this.props.user._id === this.props.loggedInUser._id ? (
                 <>
-                <li>Status: {thing.status}</li>
-                {/*   <label>Status: </label>
+                  <li>Status: {thing.status}</li>
+                  {/*   <label>Status: </label>
                   <select
                     name="status"
                     value={thing.status}
@@ -82,18 +93,24 @@ class ItemInventory extends Component {
 
     /*   const thingsList = allItems.map(thing => thing) */
 
-
-   /*  console.log('logged in user', this.props.loggedInUser._id)
-    console.log('user', this.props.user._id) */
+    console.log("logged in user", this.props.loggedInUser._id);
+    console.log("user", this.props.user._id);
 
     return (
       <div>
-       
-        {displayThings.length < 1 ? this.props.loggedInUser._id === this.props.user._id ? (
-          <Link to="/add">Add an Item</Link>
-        ) : '' : (<> <h4>List of Things</h4>
-          {displayThings}
-       </> )}
+        {displayThings.length < 1 ? (
+          this.props.loggedInUser._id === this.props.user._id ? (
+            <Link to="/add">Add an Item</Link>
+          ) : (
+            ""
+          )
+        ) : (
+          <>
+            {" "}
+            <h4>List of Things</h4>
+            {displayThings}
+          </>
+        )}
       </div>
     );
   }
