@@ -26,6 +26,18 @@ class ItemDetail extends Component {
       "Wilmersdorf",
       "Janz weit draußen",
     ],
+    categoryOptions: [
+      "Select",
+      "Plants",
+      "Furniture",
+      "Kitchen supplies",
+      "Electronics",
+      "Gardening tools",
+      "Collectables & Memorabilia",
+      "Bike stuff",
+      "Clothes",
+      "Other",
+    ],
   };
 
   getData = () => {
@@ -81,7 +93,7 @@ class ItemDetail extends Component {
     /* if(type === "Service") {IMAGE IS NULL} */
 
     return axios
-      .put("/api/items/edit/", {
+      .put("/api/items/", {
         id: this.state.item._id,
         status,
         name,
@@ -113,7 +125,7 @@ class ItemDetail extends Component {
   };
 
   render() {
-    const { item, locationOptions } = this.state;
+    const { item, locationOptions, categoryOptions } = this.state;
 
     if (this.state.error) return <div>{this.state.error}</div>;
     if (!this.state.item) return <div></div>;
@@ -135,6 +147,7 @@ class ItemDetail extends Component {
                     value={this.state.type}
                     name="type"
                     onChange={this.handleChange}
+                    required
                   >
                     <option value="">Select</option>
                     <option value="Thing">Thing</option>
@@ -157,10 +170,15 @@ class ItemDetail extends Component {
                         name="category"
                         onChange={this.handleChange}
                         value={this.state.category}
+                        required
                       >
-                        <option value="">Select</option>
-                        <option value="Furniture">Furniture</option>
-                        <option value="Plants">Plants</option>
+                          {categoryOptions.map((selectedCategory) => {
+                      return (
+                        <option value={selectedCategory} key={selectedCategory}>
+                          {selectedCategory}
+                        </option>
+                      );
+                    })}
                       </select>
                     </div>
                   </div>
@@ -180,6 +198,7 @@ class ItemDetail extends Component {
                   onChange={this.handleChange}
                   id="name"
                   placeholder="Name of item"
+                  required
                 />
               </div>
             </div>
@@ -196,6 +215,7 @@ class ItemDetail extends Component {
                   onChange={this.handleChange}
                   id="description"
                   placeholder="Add a description"
+                  required
                 />
               </div>
             </div>
@@ -206,6 +226,7 @@ class ItemDetail extends Component {
                 name="location"
                 value={this.state.location}
                 onChange={this.handleChange}
+                required
               >
                 {locationOptions.map((option) => {
                   return (
@@ -242,6 +263,7 @@ class ItemDetail extends Component {
                 name="status"
                 onChange={this.handleChange}
                 value={this.state.status}
+                required
               >
                 <option value="Available">Available</option>
                 <option value="Reserved">Reserved</option>

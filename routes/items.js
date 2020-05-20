@@ -86,19 +86,22 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.put("edit/", (req, res) => {
-  console.log(req.body);
+router.put("/", (req, res) => {
+  console.log("got it", req.body);
 
-  /*  Item.findByIdAndUpdate(
+  const { id, name, category, location, description, type, status } = req.body;
+
+  Item.findByIdAndUpdate(
     id,
     {
-      username,
-      bio,
+      status,
+      name,
+      description,
       location,
-      wishList,
-      email,
+      type,
+      category,
       //profileImgName,
-      profileImgPath: req.body.profileImgPath,
+      //profileImgPath: req.body.profileImgPath,
     },
     { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
   )
@@ -107,7 +110,7 @@ router.put("edit/", (req, res) => {
     })
     .catch((err) => {
       res.json(err);
-    }); */
+    });
 });
 
 //delete specific item

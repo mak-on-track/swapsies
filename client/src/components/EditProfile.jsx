@@ -51,6 +51,7 @@ class EditProfile extends Component {
 
     this.setState({
       wishList: [...this.state.wishList, wish],
+      addWish: "",
     });
   };
 
@@ -126,6 +127,7 @@ class EditProfile extends Component {
             name="username"
             value={username}
             onChange={this.handleChange}
+            required
           />
 
           <label>Bio:</label>
@@ -135,6 +137,7 @@ class EditProfile extends Component {
             placeholder="Tell us about yourself"
             value={bio}
             onChange={this.handleChange}
+            required
           />
 
           <label>Email:</label>
@@ -144,6 +147,7 @@ class EditProfile extends Component {
             placeholder="Add email address"
             value={email}
             onChange={this.handleChange}
+            required
           />
 
           <label>Location:</label>
