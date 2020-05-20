@@ -70,16 +70,9 @@ class Navbar extends Component {
                 <a className="navbar-item" href="/myfavs">
                   Favourites
                 </a>
-
-                <div className="navbar-item has-dropdown is-hoverable">
-                  <a className="navbar-link" href="/search">
-                    Search
-                  </a>
-                  {/* <div className="navbar-dropdown">
-                    <a className="navbar-item" href="/search">Search an item</a>
-                    <a className="navbar-item" href="/finduser">Find a User</a>
-                  </div> */}
-                </div>
+                <a className="navbar-item" href="/search">
+                  Search
+                </a>
               </div>
 
               <div className="navbar-end">
