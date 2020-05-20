@@ -10,10 +10,11 @@ const ItemSchema = new Schema({
     enum: ["Service", "Thing"],
   },
 
-  category: {
-    type: String,
-    enum: ["None", "Furniture", "Plants", "Food"],
-  },
+  category: String,
+  // category: {
+  //   type: String,
+  //   enum: ["None", "Furniture", "Plants", "Food"],
+  // },
   description: String,
   status: {
     type: String,

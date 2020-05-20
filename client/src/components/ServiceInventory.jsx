@@ -74,22 +74,34 @@ class ServiceInventory extends Component {
     });
 
     return (
-      <div className="main">
-        {displayServices.length < 1 ? (
-          this.props.loggedInUser._id === this.props.user._id ? (
-            <p></p>
-          ) : (
-            /* <Link to="/add">Add an Item</Link> */
-            ""
-          )
+      <div>
+        {displayServices.length < 1 &&
+        this.props.loggedInUser._id === this.props.user._id ? (
+          <></>
         ) : (
-          <>
-            {" "}
+          <div>
             <h4>List of Services</h4>
-            {displayServices}
-          </>
+            <div> {displayServices}</div>
+          </div>
         )}
       </div>
+
+      // <div className="main">
+      //   {displayServices.length < 1 ? (
+      //     this.props.loggedInUser._id === this.props.user._id ? (
+      //       <p></p>
+      //     ) : (
+      //       /* <Link to="/add">Add an Item</Link> */
+      //       ""
+      //     )
+      //   ) : (
+      //     <>
+      //       {" "}
+      //       <h4>List of Services</h4>
+      //       {displayServices}
+      //     </>
+      //   )}
+      // </div>
     );
   }
 }

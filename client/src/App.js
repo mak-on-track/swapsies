@@ -10,7 +10,7 @@ import EditProfile from "./components/EditProfile";
 import Dashboard from "./components/Dashboard";
 import AddItem from "./components/AddItem";
 import ItemSearch from "./components/ItemSearch";
-import FindUser from "./components/FindUser";
+// import FindUser from "./components/FindUser";
 import Favourites from "./components/Favourites";
 import NotFound from "./components/NotFound";
 import axios from "axios";
@@ -130,11 +130,11 @@ class App extends Component {
               />
             )}
           />
-          <Route
+          {/* <Route
             exact
             path="/finduser"
             render={(props) => <FindUser {...props} />}
-          />
+          /> */}
           <Route
             exact
             path="/user/:userId"

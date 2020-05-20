@@ -98,20 +98,32 @@ class ItemInventory extends Component {
 
     return (
       <div>
-        {displayThings.length < 1 ? (
-          this.props.loggedInUser._id === this.props.user._id ? (
-            <Link to="/add">Add an Item</Link>
-          ) : (
-            ""
-          )
+        {displayThings.length < 1 &&
+        this.props.loggedInUser._id === this.props.user._id ? (
+          <></>
         ) : (
-          <>
-            {" "}
+          <div>
             <h4>List of Things</h4>
-            {displayThings}
-          </>
+            <div> {displayThings}</div>
+          </div>
         )}
       </div>
+
+      // <div>
+      //   {displayThings.length < 1 ? (
+      //     this.props.loggedInUser._id === this.props.user._id ? (
+      //       <p></p>
+      //     ) : (
+      //       ""
+      //     )
+      //   ) : (
+      //     <>
+      //       {" "}
+      //       <h4>List of Things</h4>
+      //       {displayThings}
+      //     </>
+      //   )}
+      // </div>
     );
   }
 }
