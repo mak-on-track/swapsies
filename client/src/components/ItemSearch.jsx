@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import "./ItemSearch.css";
+import "./style.css";
 
 class ItemSearch extends Component {
   state = {

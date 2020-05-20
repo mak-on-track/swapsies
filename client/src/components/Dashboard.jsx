@@ -5,6 +5,7 @@ import axios from "axios";
 import ItemInventory from "./ItemInventory";
 import ServiceInventory from "./ServiceInventory";
 import "./style.css";
+import "./Dashboard.css"
 
 class Dashboard extends Component {
   state = {
@@ -45,7 +46,6 @@ class Dashboard extends Component {
 
     return (
       <div className="main">
-        <hr />
         <div>
           <h3>Welcome</h3>
 

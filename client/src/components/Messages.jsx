@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Chat from "./Chat";
+import "./style.css"
 
 class Messages extends Component {
   state = {
@@ -43,7 +44,7 @@ class Messages extends Component {
     const incomingMsg = incomingFilter.map((msg) => {
       //   console.log(msg)
       return (
-        <div>
+        <div className="main">
           <Chat
             setUser={this.props.setUser}
             setChat={this.setChat}
@@ -62,7 +63,7 @@ class Messages extends Component {
     const outgoingMsg = outgoingFilter.map((msg) => {
       //   console.log(msg)
       return (
-        <div>
+        <div className="main">
           <Chat
             setUser={this.props.setUser}
             chat={msg}
@@ -74,7 +75,7 @@ class Messages extends Component {
     });
 
     return (
-      <div>
+      <div className="main">
         <h2>Incoming Offers</h2>
         <hr />
         {incomingMsg}

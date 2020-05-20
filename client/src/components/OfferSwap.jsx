@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./style.css"
 
 class OfferSwap extends Component {
   state = {
@@ -69,7 +70,7 @@ class OfferSwap extends Component {
     } = this.state.item;
 
     return (
-      <>
+      <div className="main">
         <h2>Offer a Swap</h2>
 
         <ul>
@@ -95,7 +96,7 @@ class OfferSwap extends Component {
           />
           <button>Submit</button>
         </form>
-      </>
+      </div>
     );
   }
 }
