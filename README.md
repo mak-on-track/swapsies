@@ -13,6 +13,14 @@ Create `.env` file in your root directory and add the following code to it:
 PORT=5555
 SESSION_SECRET=littledragon
 ```
+For handling image upload we are using Cloudinary. For it to work locally on your machine, you'd need to add the following to your `.env` file:
+
+```
+// .env
+CLOUDINARY_NAME=cardib
+CLOUDINARY_KEY=robyn
+CLOUDINARY_SECRET=solange
+```
 
 In `client/` create another `.env` file in and add the following code to it:
 
