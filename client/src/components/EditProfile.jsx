@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./style.css";
+import "./style/EditProfile.css";
 
 class EditProfile extends Component {
   state = {
@@ -49,20 +50,21 @@ class EditProfile extends Component {
 
   handleWishlistChange = (event) => {
     const wish = this.state.addWish;
+    console.log(wish);
     this.setState({
       wishList: [...this.state.wishList, wish],
       addWish: "",
     });
+    console.log("wishlist at end of add wish function", this.state.wishList);
   };
 
-  handleDeleteWish = async (event) => {
+  handleDeleteWish = (event) => {
     const wish = event.target.value;
-    const wishList = this.state.wishList;
+    const wishList = [...this.state.wishList];
     let index = wishList.indexOf(wish);
-    if (index > -1) {
-      wishList.splice(index, 1);
-    }
-
+    // console.log(wishList, wish, index);
+    wishList.splice(index, 1);
+    console.log(wishList);
     this.setState({
       wishList: wishList,
     });
@@ -227,7 +229,7 @@ class EditProfile extends Component {
           <div className="field">
             <label class="label">Wishlist</label>
             <div class="content">
-              <ul>
+              <ul class="edit-wishlist-container">
                 {wishList.length === 0 ? (
                   <p>There are no items or services in your wish list</p>
                 ) : (
@@ -236,6 +238,7 @@ class EditProfile extends Component {
                       <li key={wish}>
                         <div>{wish}</div>
                         <button
+                          className="button is-light"
                           type="button"
                           name="deleteWish"
                           value={wish}
