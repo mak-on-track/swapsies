@@ -11,6 +11,8 @@ class Dashboard extends Component {
   state = {
     /*     user: this.props.user,
      */ editForm: false,
+    // wishList: this.props.wishList,
+    // addWish: "",
   };
 
   componentDidMount() {
@@ -26,10 +28,35 @@ class Dashboard extends Component {
       });
   }
 
+  // handleWishlistChange = (event) => {
+  //   const wish = this.state.addWish;
+  //   console.log(
+  //     "wishlist before setstate in handlechange",
+  //     this.state.wishList
+  //   );
+  //   console.log(
+  //     "wishlist props after setstate in handlechange",
+  //     this.props.wishList
+  //   );
+
+  //   this.setState({
+  //     wishList: [...this.state.wishList, wish],
+  //   });
+
+  //   console.log(
+  //     "wishlist state after setstate in handlechange",
+  //     this.state.wishList
+  //   );
+  //   console.log(
+  //     "wishlist props after setstate in handlechange",
+  //     this.props.wishList
+  //   );
+  // };
+
   render() {
-   // console.log(this.props)
+    // console.log(this.props)
     const user = this.props.user;
-   // console.log("this is the dash", user);
+    console.log("this is the user from props", user);
     const {
       username,
       profileImgPath,
@@ -102,6 +129,7 @@ class Dashboard extends Component {
             user={this.props.user}
             loggedInUser={this.props.user}
             history={this.props.history}
+            // wishList={this.handleWishlistChange}
           />
         </div>
       </div>

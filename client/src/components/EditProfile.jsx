@@ -24,7 +24,7 @@ class EditProfile extends Component {
       "Janz weit draußen",
     ],
     addWish: "",
-    wishList: this.props.user.wishList || [],
+    wishList: this.props.user.wishList,
   };
 
   handleChange = (event) => {
@@ -105,7 +105,7 @@ class EditProfile extends Component {
   render() {
     // console.log("this is the props", this.props);
     // console.log("this is the user", this.state);
-
+    //console.log("this is the wishlist on editprofile line107", wishList);
     const {
       username,
       email,
@@ -116,6 +116,8 @@ class EditProfile extends Component {
       locationOptions,
       addWish,
     } = this.state;
+
+    //let wishList = this.props.user.wishList;
 
     return (
       <div className="main">

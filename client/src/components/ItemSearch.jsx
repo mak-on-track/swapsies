@@ -26,6 +26,18 @@ class ItemSearch extends Component {
       "Wilmersdorf",
       "Janz weit draußen",
     ],
+    selectedCategory: "",
+    categoryOptions: [
+      "Plants",
+      "Furniture",
+      "Kitchen supplies",
+      "Electronics",
+      "Gardening tools",
+      "Collectables & Memorabilia",
+      "Bike stuff",
+      "Clothes",
+      "Other",
+    ],
   };
 
   handleAvailableCheck = (event) => {
@@ -133,38 +145,51 @@ class ItemSearch extends Component {
       return (
         <div className="card">
           <div className="card-content">
-            <div className="media" style={{"marginBottom":"0.7rem"}}>
+            <div className="media" style={{ marginBottom: "0.7rem" }}>
               <div className="media-left">
                 <figure className="image is-48x48">
-                  <img src="https://images.unsplash.com/photo-1551298698-66b830a4f11c" alt="Red room"/>
+                  <img
+                    src="https://images.unsplash.com/photo-1551298698-66b830a4f11c"
+                    alt="Red room"
+                  />
                 </figure>
               </div>
               <div className="media-content">
                 <p className="title is-4">
-                  <a href="/">{thing.name}</a> 
+                  <a href="/">{thing.name}</a>
                 </p>
-                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>{thing.location}</p>
-                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>Favourites: {thing.favourites}</p>
+                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                  {thing.location}
+                </p>
+                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                  Favourites: {thing.favourites}
+                </p>
               </div>
             </div>
 
             <div className="content">
-              {thing.description}<br/>Status: {thing.status}
+              {thing.description}
+              <br />
+              Status: {thing.status}
               {thing.owner._id === userId ? (
-                  <p>My post</p>
-                ) : (
-                  <p>
-                    Post by<> </>
-                    <a href={`/user/${thing.owner._id}`}>
-                      {thing.owner.username}
-                    </a>
-                  </p>
+                <p>My post</p>
+              ) : (
+                <p>
+                  Post by<> </>
+                  <a href={`/user/${thing.owner._id}`}>
+                    {thing.owner.username}
+                  </a>
+                </p>
               )}
             </div>
           </div>
           <footer className="card-footer">
-            <a href="#" class="card-footer-item">Add to Favourites</a>
-            <a href={`/swap/${thing._id}`} class="card-footer-item">Offer Swap</a>
+            <a href="#" class="card-footer-item">
+              Add to Favourites
+            </a>
+            <a href={`/swap/${thing._id}`} class="card-footer-item">
+              Offer Swap
+            </a>
           </footer>
         </div>
       );
@@ -175,38 +200,49 @@ class ItemSearch extends Component {
       return (
         <div className="card">
           <div className="card-content">
-            <div className="media" style={{"marginBottom":"0.7rem"}}>
+            <div className="media" style={{ marginBottom: "0.7rem" }}>
               <div className="media-left">
                 <figure className="image is-48x48">
-                  <img src="https://images.unsplash.com/photo-1551298370-9d3d53740c72" alt="Yellow chair"/>
+                  <img
+                    src="https://images.unsplash.com/photo-1551298370-9d3d53740c72"
+                    alt="Yellow chair"
+                  />
                 </figure>
               </div>
               <div className="media-content">
                 <p className="title is-4">
-                  <a href="/">{service.name}</a> 
+                  <a href="/">{service.name}</a>
                 </p>
-                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>{service.location}</p>
-                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>Favourites: {service.favourites}</p>
+                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                  {service.location}
+                </p>
+                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                  Favourites: {service.favourites}
+                </p>
               </div>
             </div>
 
             <div className="content">
               {service.description}
               {service.owner._id === userId ? (
-                  <p>My post</p>
-                ) : (
-                  <p>
-                    Post by<> </>
-                    <a href={`/user/${service.owner._id}`}>
-                      {service.owner.username}
-                    </a>
-                  </p>
+                <p>My post</p>
+              ) : (
+                <p>
+                  Post by<> </>
+                  <a href={`/user/${service.owner._id}`}>
+                    {service.owner.username}
+                  </a>
+                </p>
               )}
             </div>
           </div>
           <footer class="card-footer">
-            <a href="#" class="card-footer-item">Add to Favourites</a>
-            <a href={`/swap/${service._id}`} class="card-footer-item">Offer Swap</a>
+            <a href="#" class="card-footer-item">
+              Add to Favourites
+            </a>
+            <a href={`/swap/${service._id}`} class="card-footer-item">
+              Offer Swap
+            </a>
           </footer>
         </div>
       );
@@ -217,8 +253,12 @@ class ItemSearch extends Component {
         <label className="label">What are you looking for?</label>
         <div className="field">
           <div className="control">
-            <div className="select"> 
-              <select id="itemtype" name="itemtype" onChange={this.handleTypeSelect}>
+            <div className="select">
+              <select
+                id="itemtype"
+                name="itemtype"
+                onChange={this.handleTypeSelect}
+              >
                 <option value="">Select</option>
                 <option value="Thing">Thing</option>
                 <option value="Service">Service</option>
@@ -232,7 +272,7 @@ class ItemSearch extends Component {
             <label className="label">Find by Category</label>
             <div className="field">
               <div className="control">
-                <div className="select"> 
+                <div className="select">
                   <select id="category" onChange={this.handleCategorySelect}>
                     <option value="">All</option>
                     <option value="Plants">Plants</option>
@@ -246,8 +286,8 @@ class ItemSearch extends Component {
 
         {this.state.type !== "" && (
           <>
-             <div className="field has-addons">
-               <div className="control">
+            <div className="field has-addons">
+              <div className="control">
                 <input
                   className="input"
                   name="search"
@@ -258,10 +298,8 @@ class ItemSearch extends Component {
                   onChange={this.handleSearchChange}
                 />
               </div>
-               <div className="control">
-                <a className="button">
-                  Search
-                </a>
+              <div className="control">
+                <a className="button">Search</a>
               </div>
             </div>
           </>
@@ -272,8 +310,13 @@ class ItemSearch extends Component {
             <label className="label">Location:</label>
             <div className="field">
               <div className="control">
-                <div className="select"> 
-                  <select id="location" name="location" value={location} onChange={this.handleKiezSelect}>
+                <div className="select">
+                  <select
+                    id="location"
+                    name="location"
+                    value={location}
+                    onChange={this.handleKiezSelect}
+                  >
                     {locationOptions.map((option) => {
                       return (
                         <option value={option} key={option}>
@@ -290,7 +333,7 @@ class ItemSearch extends Component {
 
         {this.state.type === "Thing" && (
           <>
-            <label className="checkbox" style={{"marginRight":"1rem"}}>
+            <label className="checkbox" style={{ marginRight: "1rem" }}>
               <input
                 type="checkbox"
                 name="Available"
@@ -300,8 +343,8 @@ class ItemSearch extends Component {
               />
               Available
             </label>
-          
-            <label className="checkbox" style={{"marginRight":"1rem"}}>
+
+            <label className="checkbox" style={{ marginRight: "1rem" }}>
               <input
                 type="checkbox"
                 name="Reserved"
@@ -312,7 +355,7 @@ class ItemSearch extends Component {
               Reserved
             </label>
 
-            <label className="checkbox" style={{"marginRight":"1rem"}}>
+            <label className="checkbox" style={{ marginRight: "1rem" }}>
               <input
                 type="checkbox"
                 name="Swapped"
