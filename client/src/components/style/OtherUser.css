@@ -1,0 +1,7 @@
+ .flex-profile {
+  display: flex;
+}
+
+.flex-profile img {
+  width: 30vw;
+}

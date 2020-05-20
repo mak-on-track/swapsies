@@ -10,7 +10,7 @@ class ItemSearch extends Component {
     type: "",
     availableCheck: true,
     reservedCheck: true,
-    swappedCheck: true,
+    swappedCheck: false,
     location: "Select Kiez",
     locationOptions: [
       "Select Kiez",
@@ -156,7 +156,7 @@ class ItemSearch extends Component {
               </div>
               <div className="media-content">
                 <p className="title is-4">
-                  <a href="/">{thing.name}</a>
+                  {thing.name}
                 </p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {thing.location}
@@ -211,7 +211,7 @@ class ItemSearch extends Component {
               </div>
               <div className="media-content">
                 <p className="title is-4">
-                  <a href="/">{service.name}</a>
+                  {service.name}
                 </p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {service.location}
