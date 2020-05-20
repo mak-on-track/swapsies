@@ -38,20 +38,19 @@ class Dashboard extends Component {
     } = user;
 
     if (location === "Select Kiez") location = null;
-    if (wishList = []) wishList = null; 
+    if ((wishList = [])) wishList = null;
 
     return (
       <div className="main">
-
         <div className="card">
-          <div className="card-image" style={{"padding": "1.5rem"}}>
+          <div className="card-image" style={{ padding: "1.5rem" }}>
             <figure className="image is-128x128">
               <img
                 className="is-rounded"
                 src={
                   profileImgPath
                     ? profileImgPath
-                    : "https://images.un.com/photo-1515160813423-b851dc54a427"
+                    : "https://images.unsplash.com/photo-1515160813423-b851dc54a427"
                 }
                 alt="profileImg"
               />
@@ -85,7 +84,7 @@ class Dashboard extends Component {
             </div>
           </div>
 
-          <footer className="card-footer" style={{"padding": "0.5rem"}}>
+          <footer className="card-footer" style={{ padding: "0.5rem" }}>
             <a href="/edit" className="card-footer-item">
               Edit Profile
             </a>
