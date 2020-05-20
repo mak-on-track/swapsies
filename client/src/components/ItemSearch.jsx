@@ -149,10 +149,7 @@ class ItemSearch extends Component {
             <div className="media" style={{ marginBottom: "0.7rem" }}>
               <div className="media-left">
                 <figure className="image is-48x48">
-                  <img
-                    src="https://images.unsplash.com/photo-1551298698-66b830a4f11c"
-                    alt="Red room"
-                  />
+                  <img src={thing.itemImgPath} alt="item image" />
                 </figure>
               </div>
               <div className="media-content">
