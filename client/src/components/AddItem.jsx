@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./style.css"
 
 class AddItem extends Component {
   state = {
@@ -178,136 +179,138 @@ class AddItem extends Component {
       /* CLOUDINARY */ type,
     } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div class="field">
-          <label class="label">Add new item</label>
-        </div>
-
-        {/* Dropdown for selecting thing or service */}
-        <div class="field">
-          <label class="label">Is this a service or thing?</label>
-          <div class="control">
-            <div class="select">
-              <select
-                id="type"
-                name="type"
-                onChange={this.handleChange}
-                required
-              >
-                <option value="">Select</option>
-                <option value="Thing">Thing</option>
-                <option value="Service">Service</option>
-              </select>
-            </div>
+      <div className="main">
+        <form onSubmit={this.handleSubmit}>
+          <div class="field">
+            <label class="label">Add new item</label>
           </div>
-        </div>
 
-        {/* Only displays when selected type is "thing" */}
-        {type !== "Service" && (
-          <>
-            {/* Dropdown for selecting category */}
-            <div class="field">
-              <label class="label">Category</label>
-              <div class="control">
-                <div class="select">
-                  {/* <select
-                    id="category"
-                    name="category"
-                    onChange={this.handleChange}
-                    required
-                  >
-                    <option value="">Select</option>
-                    <option value="Furniture">Furniture</option>
-                    <option value="Plants">Plants</option>
-                  </select> */}
-
-                  <select
-                    name="category"
-                    value={category}
-                    onChange={this.handleChange}
-                  >
-                    {categoryOptions.map((selectedCategory) => {
-                      return (
-                        <option value={selectedCategory} key={selectedCategory}>
-                          {selectedCategory}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
+          {/* Dropdown for selecting thing or service */}
+          <div class="field">
+            <label class="label">Is this a service or thing?</label>
+            <div class="control">
+              <div class="select">
+                <select
+                  id="type"
+                  name="type"
+                  onChange={this.handleChange}
+                  required
+                >
+                  <option value="">Select</option>
+                  <option value="Thing">Thing</option>
+                  <option value="Service">Service</option>
+                </select>
               </div>
             </div>
-          </>
-        )}
-
-        {/* Name of item */}
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control">
-            <input
-              class="input"
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              id="name"
-              placeholder="Name of item"
-              required
-            />
           </div>
-        </div>
 
-        {/* Description of item */}
-        <div class="field">
-          <label class="label">Description</label>
-          <div class="control">
-            <input
-              class="input"
-              type="text"
-              name="description"
-              value={this.state.description}
-              onChange={this.handleChange}
-              id="description"
-              placeholder="Add a description"
-              required
-            />
-          </div>
-        </div>
+          {/* Only displays when selected type is "thing" */}
+          {type !== "Service" && (
+            <>
+              {/* Dropdown for selecting category */}
+              <div class="field">
+                <label class="label">Category</label>
+                <div class="control">
+                  <div class="select">
+                    {/* <select
+                      id="category"
+                      name="category"
+                      onChange={this.handleChange}
+                      required
+                    >
+                      <option value="">Select</option>
+                      <option value="Furniture">Furniture</option>
+                      <option value="Plants">Plants</option>
+                    </select> */}
 
-        <label>Location:</label>
-        <select name="location" value={location} onChange={this.handleChange}>
-          {locationOptions.map((option) => {
-            return (
-              <option value={option} key={option}>
-                {option}
-              </option>
-            );
-          })}
-        </select>
+                    <select
+                      name="category"
+                      value={category}
+                      onChange={this.handleChange}
+                    >
+                      {categoryOptions.map((selectedCategory) => {
+                        return (
+                          <option value={selectedCategory} key={selectedCategory}>
+                            {selectedCategory}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
 
-        {/* Check for whether type is thing to have functionality of adding image */}
-        {/* {type !== "Service" && ( */}
-        <>
+          {/* Name of item */}
           <div class="field">
-            <label class="label">Add photos</label>
+            <label class="label">Name</label>
             <div class="control">
               <input
-                type="file"
-                name="itemImageUrl"
-                onChange={this.handleImageChange}
+                class="input"
+                type="text"
+                name="name"
+                value={this.state.name}
+                onChange={this.handleChange}
+                id="name"
+                placeholder="Name of item"
+                required
               />
             </div>
           </div>
-        </>
-        {/* )} */}
 
-        {/* Submit button */}
-        <div class="control">
-          <button type="submit" value="add" class="button is-link is-light">
-            Add
-          </button>
-        </div>
-      </form>
+          {/* Description of item */}
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <input
+                class="input"
+                type="text"
+                name="description"
+                value={this.state.description}
+                onChange={this.handleChange}
+                id="description"
+                placeholder="Add a description"
+                required
+              />
+            </div>
+          </div>
+
+          <label>Location:</label>
+          <select name="location" value={location} onChange={this.handleChange}>
+            {locationOptions.map((option) => {
+              return (
+                <option value={option} key={option}>
+                  {option}
+                </option>
+              );
+            })}
+          </select>
+
+          {/* Check for whether type is thing to have functionality of adding image */}
+          {/* {type !== "Service" && ( */}
+          <>
+            <div class="field">
+              <label class="label">Add photos</label>
+              <div class="control">
+                <input
+                  type="file"
+                  name="itemImageUrl"
+                  onChange={this.handleImageChange}
+                />
+              </div>
+            </div>
+          </>
+          {/* )} */}
+
+          {/* Submit button */}
+          <div class="control">
+            <button type="submit" value="add" class="button is-link is-light">
+              Add
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AddItem from "./AddItem";
+import "./style.css"
 
 class ItemInventory extends Component {
   // state = {

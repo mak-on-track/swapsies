@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./style.css"
 
 class Chat extends Component {
   state = {
@@ -54,7 +55,7 @@ class Chat extends Component {
     const { item, messages, userSend, userReceive, _id } = this.props.chat;
     const chatLog = messages.map((ele) => {
       return (
-        <div>
+        <div className="main">
           <ul>
         
             <li> {ele.sentByOwner
@@ -73,7 +74,7 @@ class Chat extends Component {
     });
 
     return (
-      <>
+      <div className="main">
         <h3>Item: {item.name}</h3>
         <ul>
         {/*    <li>{this.props.user._id === userSent._id ? Sent to: : Sent by} <Link to={`/user/${userReceive._id}`>{userReceive.username}</Link>}</li> */}
@@ -94,7 +95,7 @@ class Chat extends Component {
           />
           <button>Send</button>
         </form>
-      </>
+      </div>
     );
   }
 }

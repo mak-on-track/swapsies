@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import ServiceInventory from "./ServiceInventory";
 import ItemInventory from "./ItemInventory";
+import "./style.css"
 
 class OtherUser extends Component {
   state = {
@@ -29,12 +30,13 @@ class OtherUser extends Component {
   render() {
     console.log("props", this.props);
     console.log("this state other user", this.state.otherUser.inventory);
-    if (this.state.error) return <div>{this.state.error}</div>;
-    if (this.state.otherUser.inventory === 0)
-      return <div>This user currently has nothing to swap</div>;
+    if (this.state.error) return <div className="main">{this.state.error}</div>;
+    if (this.state.otherUser.inventory === 0) {
+      return <div className="main">This user currently has nothing to swap</div>;
+    }
     else
       return (
-        <div>
+        <div className="main">
           <ItemInventory
             user={this.state.otherUser}
             loggedInUser={this.props.user}
