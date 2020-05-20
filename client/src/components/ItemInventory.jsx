@@ -4,7 +4,7 @@ import axios from "axios";
 
 class ItemInventory extends Component {
   deleteItem = (event) => {
-    console.log("event target value", event.target.value);
+    //console.log("event target value", event.target.value);
     axios
       .delete(`/api/items/${event.target.value}`)
       .then((res) => {
@@ -20,7 +20,6 @@ class ItemInventory extends Component {
     // console.log(this.props.user.inventory[0]._id);
     
    
-
 
     const itemsList = this.props.user.inventory;
 
@@ -84,8 +83,8 @@ class ItemInventory extends Component {
     /*   const thingsList = allItems.map(thing => thing) */
 
 
-    console.log('logged in user', this.props.loggedInUser._id)
-    console.log('user', this.props.user._id)
+   /*  console.log('logged in user', this.props.loggedInUser._id)
+    console.log('user', this.props.user._id) */
 
     return (
       <div>

@@ -62,14 +62,14 @@ router.get("/", (req, res) => {
 
 //return specific item
 router.get("/:id", (req, res) => {
-  console.log("this is the id", req.params.id);
+ // console.log("this is the id", req.params.id);
   Item.findById(req.params.id)
     .populate("owner")
     .then((item) => {
       if (!item) {
         res.status(404).json(item);
       } else {
-        console.log(item);
+       // console.log(item);
         res.json(item);
       }
     })
@@ -78,7 +78,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//edit a specific item
+//edit a specific item with cloudinary
 router.put("/:id", uploadCloud.single("itemImageUrl"), (req, res) => {
   const { name, description } = req.body;
   // const itemImgPath = req.file.url;
@@ -98,6 +98,38 @@ router.put("/:id", uploadCloud.single("itemImageUrl"), (req, res) => {
     });
 });
 
+router.put("edit/", (req, res) => {
+
+  console.log(req.body)
+
+
+
+ /*  Item.findByIdAndUpdate(
+    id,
+    {
+      username,
+      bio,
+      location,
+      wishList,
+      email,
+      //profileImgName,
+      profileImgPath: req.body.profileImgPath,
+    },
+    { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
+  )
+    .then((user) => {
+      res.status(200).json(user);
+    })
+    .catch((err) => {
+      res.json(err);
+    }); */
+});
+
+
+
+
+
+
 //delete specific item
 router.delete("/:id", (req, res) => {
   const id = req.params.id;
@@ -110,7 +142,8 @@ router.delete("/:id", (req, res) => {
           $pull: { inventory: id },
         },
         { new: true }
-      ).then((user) => {
+      ).populate("inventory")
+      .then((user) => {
         res.status(200).json(user);
       });
     })

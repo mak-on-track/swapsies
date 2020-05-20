@@ -23,7 +23,9 @@ const MongoStore = require("connect-mongo")(session);
 const app = express();
 
 mongoose
-  .connect("mongodb://localhost/swapsies", { useNewUrlParser: true })
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/swapsies", {
+    useNewUrlParser: true,
+  })
   .then((x) => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
