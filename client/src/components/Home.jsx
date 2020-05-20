@@ -12,9 +12,9 @@ class Home extends Component {
             Swapsies
           </h1>
           <h3>
-            Have an item you don't want anymore?<br/>
-            You know how to cook, sing or maybe code and could give an intro over video chat?<br/>
-            On swapsies you'll find other people for swapping!
+            Have an item that might be better suited for someone else? <br/>
+            You know how to cook, sing, or maybe code?<br/>
+            Find your perfect swap on Swapsies!
           </h3>
           <div className="buttons" style={{"display": "block", "margin": "1rem"}}>
             <a className="button is-link is-light" href="/signup">Sign up</a>
