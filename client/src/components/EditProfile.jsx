@@ -160,15 +160,28 @@ class EditProfile extends Component {
 
           <div className="field">
             <label className="label">Profile picture</label>
-            <div className="control">
-              <input
-                type="file"
-                name="imageUrl"
-                onChange={this.handleImageChange}
-                className="button"
-              />
+            <div className="file has-name">
+              <label className="file-label">
+                <input 
+                  className="file-input" 
+                  type="file" 
+                  // id="file" 
+                  name="itemImageUrl" 
+                  onChange={this.handleImageChange}
+                />
+                
+                <span className="file-cta">
+                  <span className="file-label">
+                    Choose a file
+                  </span>
+                </span>
+                <span className="file-name">
+                  {this.state.selectedImage ? this.state.selectedImage.name : "filename"}
+                </span>
+              </label>
             </div>
           </div>
+
 
           <div className="field">
             <label className="label">Email</label>
@@ -177,7 +190,7 @@ class EditProfile extends Component {
                 className="input"
                 type="text"
                 name="email"
-                value={email}
+                value={email ? email : undefined}
                 id="email"
                 placeholder="Add email address"
                 onChange={this.handleChange}
@@ -208,15 +221,15 @@ class EditProfile extends Component {
           </div>
 
           <div className="field">
-            <label class="label">Bio</label>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
+            <label className="label">Bio</label>
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
                   <textarea
                     className="textarea"
                     type="text"
                     name="bio"
-                    value={bio}
+                    value={bio ? bio : undefined}
                     onChange={this.handleChange}
                     id="bio"
                     placeholder="Add your bio"
@@ -227,43 +240,45 @@ class EditProfile extends Component {
           </div>
 
           <div className="field">
-            <label class="label">Wishlist</label>
-            <div class="content">
-              <ul class="edit-wishlist-container">
+            <label className="label">Wishlist</label>
+            <div className="content">
+              <div className="edit-wishlist-container">
                 {wishList.length === 0 ? (
                   <p>There are no items or services in your wish list</p>
                 ) : (
                   wishList.map((wish) => {
                     return (
-                      <li key={wish}>
-                        <div>{wish}</div>
-                        <button
-                          className="button is-light"
-                          type="button"
-                          name="deleteWish"
-                          value={wish}
-                          onClick={this.handleDeleteWish}
-                        >
-                          Delete wish
-                        </button>
-                      </li>
+
+                        <li key={wish}>
+                          {wish}
+                          <button
+                            className="button is-light"
+                            type="button"
+                            name="deleteWish"
+                            value={wish}
+                            onClick={this.handleDeleteWish}
+                          >
+                            Delete wish
+                          </button>
+                        </li>
+
                     );
                   })
                 )}
-              </ul>
+              </div>
             </div>
-            <div class="field has-addons">
-              <div class="control">
+            <div className="field has-addons">
+              <div className="control">
                 <input
-                  class="input"
+                  className="input"
                   type="text"
-                  placeholder="Add item"
+                  placeholder="My wish"
                   name="addWish"
                   value={addWish}
                   onChange={this.handleChange}
                 />
               </div>
-              <div class="control">
+              <div className="control">
                 <button
                   type="button"
                   className="button is-light"
