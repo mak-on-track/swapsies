@@ -1,0 +1,13 @@
+.container .edit-wishlist-container {
+  margin-left: 0vh;
+}
+.edit-wishlist-container > ul {
+  margin-left: 0vh;
+}
+
+.edit-wishlist-container > li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-left: 0vh;
+}
