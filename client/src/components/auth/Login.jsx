@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { login } from "../services/AuthService";
-import "./style.css"
-
+import "./style.css";
+import Signup from "./Signup";
+import { Link } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -31,7 +32,6 @@ class Login extends Component {
           password: "",
         });
       } else {
-
         this.props.setUser(data);
         this.props.history.push("/dashboard");
       }
@@ -43,11 +43,11 @@ class Login extends Component {
       <form onSubmit={this.handleSubmit}>
         <div className="field input-form">
           <h1>Login</h1>
-           <div className="field">
+          <div className="field">
             <label class="label">Username</label>
-             <div className="control">
-              <input 
-                class="input" 
+            <div className="control">
+              <input
+                class="input"
                 type="text"
                 name="username"
                 value={this.state.username}
@@ -58,37 +58,43 @@ class Login extends Component {
             </div>
           </div>
 
-           <div className="field">
+          <div className="field">
             <label class="label">Password</label>
-             <div className="control">
-              <input 
+            <div className="control">
+              <input
                 class="input"
                 type="password"
                 name="password"
                 value={this.state.password}
                 onChange={this.handleChange}
                 id="password"
-                placeholder="My password" 
+                placeholder="My password"
               />
             </div>
           </div>
           <div className="notice">
-            {this.state.message && (
-              <p>{this.state.message}</p>
-            )}
+            {this.state.message && <p>{this.state.message}</p>}
           </div>
-           <div className="field is-grouped">
-             <div className="control">
-              <button type="submit" value="Login" class="button is-link is-light">Login</button>
+          <div className="field is-grouped">
+            <div className="control">
+              <button
+                type="submit"
+                value="Login"
+                class="button is-link is-light"
+              >
+                Login
+              </button>
             </div>
-             <div className="control">
-              <button class="button is-link is-light">Cancel</button>
+            <div className="control">
+              <p>Don't have an account yet?</p>
+              <Link to="/signup">
+                <button class="button is-link is-light">Signup</button>{" "}
+              </Link>
             </div>
           </div>
-          
         </div>
       </form>
-    )
+    );
   }
 }
 

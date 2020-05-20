@@ -24,6 +24,16 @@ class AddItem extends Component {
       "Wilmersdorf",
       "Janz weit draußen",
     ],
+    selectedCategory: "",
+    categoryOptions: [
+      "Plants",
+      "Furniture",
+      "Kitchen supplies",
+      "Electronics",
+      "Gardening tools",
+      "Collectables & Memorabilia",
+      "Bike stuff",
+    ],
   };
 
   handleChange = (event) => {
@@ -91,6 +101,7 @@ class AddItem extends Component {
           itemImgPath: "",
           type: "",
           category: "",
+          selectedCategory: "",
           location: this.props.user.location,
         });
       })
@@ -158,7 +169,10 @@ class AddItem extends Component {
       description,
       location,
       locationOptions,
-      //itemImgPath,
+      itemImgPath,
+      category,
+      selectedCategory,
+      categoryOptions,
       /* CLOUDINARY */ type,
     } = this.state;
     return (
@@ -172,7 +186,12 @@ class AddItem extends Component {
           <label class="label">Is this a service or thing?</label>
           <div class="control">
             <div class="select">
-              <select id="type" name="type" onChange={this.handleChange}>
+              <select
+                id="type"
+                name="type"
+                onChange={this.handleChange}
+                required
+              >
                 <option value="">Select</option>
                 <option value="Thing">Thing</option>
                 <option value="Service">Service</option>
@@ -189,14 +208,29 @@ class AddItem extends Component {
               <label class="label">Category</label>
               <div class="control">
                 <div class="select">
-                  <select
+                  {/* <select
                     id="category"
                     name="category"
                     onChange={this.handleChange}
+                    required
                   >
                     <option value="">Select</option>
                     <option value="Furniture">Furniture</option>
                     <option value="Plants">Plants</option>
+                  </select> */}
+
+                  <select
+                    name="category"
+                    value={category}
+                    onChange={this.handleChange}
+                  >
+                    {categoryOptions.map((selectedCategory) => {
+                      return (
+                        <option value={selectedCategory} key={selectedCategory}>
+                          {selectedCategory}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
               </div>
@@ -216,6 +250,7 @@ class AddItem extends Component {
               onChange={this.handleChange}
               id="name"
               placeholder="Name of item"
+              required
             />
           </div>
         </div>
@@ -232,6 +267,7 @@ class AddItem extends Component {
               onChange={this.handleChange}
               id="description"
               placeholder="Add a description"
+              required
             />
           </div>
         </div>
@@ -248,20 +284,20 @@ class AddItem extends Component {
         </select>
 
         {/* Check for whether type is thing to have functionality of adding image */}
-        {type !== "Service" && (
-          <>
-            <div class="field">
-              <label class="label">Add photos</label>
-              <div class="control">
-                <input
-                  type="file"
-                  name="itemImageUrl"
-                  onChange={this.handleImageChange}
-                />
-              </div>
+        {/* {type !== "Service" && ( */}
+        <>
+          <div class="field">
+            <label class="label">Add photos</label>
+            <div class="control">
+              <input
+                type="file"
+                name="itemImageUrl"
+                onChange={this.handleImageChange}
+              />
             </div>
-          </>
-        )}
+          </div>
+        </>
+        {/* )} */}
 
         {/* Submit button */}
         <div class="control">

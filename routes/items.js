@@ -70,14 +70,14 @@ router.get("/", (req, res) => {
 
 //return specific item
 router.get("/:id", (req, res) => {
- // console.log("this is the id", req.params.id);
+  // console.log("this is the id", req.params.id);
   Item.findById(req.params.id)
     .populate("owner")
     .then((item) => {
       if (!item) {
         res.status(404).json(item);
       } else {
-       // console.log(item);
+        // console.log(item);
         res.json(item);
       }
     })
@@ -107,12 +107,9 @@ router.put("/:id", uploadCloud.single("itemImageUrl"), (req, res) => {
 });
 
 router.put("edit/", (req, res) => {
+  console.log(req.body);
 
-  console.log(req.body)
-
-
-
- /*  Item.findByIdAndUpdate(
+  /*  Item.findByIdAndUpdate(
     id,
     {
       username,
@@ -133,11 +130,6 @@ router.put("edit/", (req, res) => {
     }); */
 });
 
-
-
-
-
-
 //delete specific item
 router.delete("/:id", (req, res) => {
   const id = req.params.id;
@@ -150,10 +142,11 @@ router.delete("/:id", (req, res) => {
           $pull: { inventory: id },
         },
         { new: true }
-      ).populate("inventory")
-      .then((user) => {
-        res.status(200).json(user);
-      });
+      )
+        .populate("inventory")
+        .then((user) => {
+          res.status(200).json(user);
+        });
     })
     .catch((err) => {
       res.json(err);

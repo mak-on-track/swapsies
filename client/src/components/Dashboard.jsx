@@ -41,6 +41,8 @@ class Dashboard extends Component {
       _id,
     } = user;
 
+    console.log("wishlist", user.wishList);
+
     return (
       <div className="main">
         <hr />
@@ -56,7 +58,7 @@ class Dashboard extends Component {
                       ? profileImgPath
                       : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
                   }
-                  alt="profileImg"
+                  alt="profile picture"
                   width="96"
                   height="96"
                 />

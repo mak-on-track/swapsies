@@ -39,7 +39,6 @@ class App extends Component {
       });
   }
 
-
   setUser = (user) => {
     this.setState({
       user: user,
@@ -58,8 +57,6 @@ class App extends Component {
         console.log(err);
       });
   };
-
-
 
   render() {
     return (
