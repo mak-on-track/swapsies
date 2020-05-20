@@ -6,7 +6,6 @@ import "./style.css";
 class ItemSearch extends Component {
   state = {
     search: "",
-    category: "",
     type: "",
     availableCheck: true,
     reservedCheck: true,
@@ -26,7 +25,7 @@ class ItemSearch extends Component {
       "Wilmersdorf",
       "Janz weit draußen",
     ],
-    selectedCategory: "",
+    category: "",
     categoryOptions: [
       "Plants",
       "Furniture",
@@ -88,6 +87,8 @@ class ItemSearch extends Component {
     const userId = this.props.user._id;
     const location = this.state.location;
     const locationOptions = this.state.locationOptions;
+    const category = this.state.category;
+    const categoryOptions = this.state.categoryOptions;
 
     const filteredItems = this.props.itemsList.filter((item) => {
       if (
@@ -269,11 +270,26 @@ class ItemSearch extends Component {
             <div className="field">
               <div className="control">
                 <div className="select">
-                  <select id="category" onChange={this.handleCategorySelect}>
+                  <select
+                    id="category"
+                    name="category"
+                    value={category}
+                    onChange={this.handleCategorySelect}
+                  >
+                    {categoryOptions.map((selectedCategory) => {
+                      return (
+                        <option value={selectedCategory} key={selectedCategory}>
+                          {selectedCategory}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  {/* <select id="category" onChange={this.handleCategorySelect}>
                     <option value="">All</option>
                     <option value="Plants">Plants</option>
                     <option value="Furniture">Furniture</option>
-                  </select>
+                  </select> */}
                 </div>
               </div>
             </div>
