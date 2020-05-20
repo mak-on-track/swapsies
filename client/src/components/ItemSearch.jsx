@@ -298,7 +298,7 @@ class ItemSearch extends Component {
 
         {this.state.type !== "" && (
           <>
-            <div className="field has-addons">
+            <div className="field">
               <div className="control">
                 <input
                   className="input"
@@ -309,9 +309,6 @@ class ItemSearch extends Component {
                   value={this.state.search}
                   onChange={this.handleSearchChange}
                 />
-              </div>
-              <div className="control">
-                <a className="button">Search</a>
               </div>
             </div>
           </>

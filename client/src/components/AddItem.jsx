@@ -204,19 +204,23 @@ class AddItem extends Component {
           </div>
 
           {/* Description of item */}
-          <div className="field">
-            <label className="label">Description</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="description"
-                value={this.state.description}
-                onChange={this.handleChange}
-                id="description"
-                placeholder="Add a description"
-                required
-              />
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <textarea
+                    className="textarea" 
+                    type="text"
+                    name="description"
+                    value={this.state.description}
+                    onChange={this.handleChange}
+                    id="description"
+                    placeholder="Add a description"
+                  >
+                  </textarea>
+                </div>
+              </div>
             </div>
           </div>
           <div className="field">
@@ -249,7 +253,7 @@ class AddItem extends Component {
                   type="file"
                   name="itemImageUrl"
                   onChange={this.handleImageChange}
-                  className="button"
+                  className="button is-light"
                 />
               </div>
             </div>
