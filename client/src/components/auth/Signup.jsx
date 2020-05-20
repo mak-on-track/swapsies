@@ -40,60 +40,75 @@ class Signup extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="field input-form">
-          <h1>Sign Up</h1>
-          <div class="field">
-            <label class="label">Username</label>
-            <div class="control">
-              <input
-                class="input"
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleChange}
-                id="username"
-                placeholder="My username"
-              />
-            </div>
-          </div>
+      <>
+        <div className="auth-container">
+          <form onSubmit={this.handleSubmit}>
+            <div className="field input-form">
+              <a href="/">
+                <img className="auth-logo" src="/icon_swap.png" alt="" />
+              </a>
+              <h1 className="title is-1">Sign Up</h1>
+              <div className="field">
+                <label className="label">Username</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleChange}
+                    id="username"
+                    placeholder="My username"
+                  />
+                </div>
+              </div>
 
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input
-                class="input"
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-                id="password"
-                placeholder="My password"
-              />
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control">
+                  <input
+                    className="input"
+                    type="password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                    id="password"
+                    placeholder="My password"
+                  />
+                </div>
+              </div>
+              <div className="notice">
+                {this.state.message && <p>{this.state.message}</p>}
+              </div>
+              <div className="field is-grouped">
+                <div className="control">
+                  <button
+                    type="submit"
+                    value="Signup"
+                    class="button is-link is-light"
+                  >
+                    Sign up
+                  </button>
+                </div>
+                <div className="alt-link">
+                  <Link to="/login">
+                    <p>Already have an account? Click here to login.</p>
+                  </Link>
+                </div>
+              </div>
+              <a href="/">
+                <figure className="image home-image">
+                  <img
+                    className="is-rounded"
+                    src="https://images.unsplash.com/photo-1579208575657-c595a05383b7"
+                    alt=""
+                  />
+                </figure>
+              </a>
             </div>
-          </div>
-          <div className="notice">
-            {this.state.message && <p>{this.state.message}</p>}
-          </div>
-          <div class="field is-grouped">
-            <div class="control">
-              <button
-                type="submit"
-                value="Signup"
-                class="button is-link is-light"
-              >
-                Sign up
-              </button>
-            </div>
-            <div class="control">
-              <p>Already have an account?</p>
-              <Link to="/login">
-                <button class="button is-link is-light">Login</button>{" "}
-              </Link>
-            </div>
-          </div>
+          </form>
         </div>
-      </form>
+      </>
     );
   }
 }
