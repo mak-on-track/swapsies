@@ -38,7 +38,6 @@ class OtherUser extends Component {
     } = this.state.otherUser;
 
     if (location === "Select Kiez") location = "No Location Selected";
-    if (wishList = []) wishList = null; 
 
     if (this.state.error) return <div className="main">{this.state.error}</div>;
 
@@ -81,24 +80,19 @@ class OtherUser extends Component {
                 </div>
               </div>
               
-              <div className="content">
+              <div className="content wishlist">
                 <b>Wishlist</b>
-                {wishList ? (
+                <ul>                {wishList.length > 0 ? (
                   wishList.map((wish) => {
                     return <li key={wish}>{wish}</li>;
                   })
                 ) : (
-                  <p>{username} has no wishes yet.</p>
-                )}
+                  <li>{username} has no wishes yet.</li>
+                )}</ul>
+
               </div>
             </div>
-            
-            <footer className="card-footer" style={{"padding": "0.5rem"}}>
-              <a href="/edit" className="card-footer-item">
-                Send {username} a message, or maybe not?
-              </a>
-            </footer>
-
+          
           </div>
           <hr />
 

@@ -9,7 +9,7 @@ class Chat extends Component {
   };
 
   handleChange = (event) => {
-    const { name, value } = event.target;
+    const { value } = event.target;
 
     this.setState({
       message: value,
@@ -46,7 +46,7 @@ class Chat extends Component {
 
   render() {
 
-    const { item, messages, userSend, userReceive, _id } = this.props.chat;
+    const { item, messages, userSend, userReceive } = this.props.chat;
     console.log(item.name)
     const chatLog = messages.map((ele) => {
       return (

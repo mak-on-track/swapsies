@@ -11,7 +11,6 @@ class Dashboard extends Component {
   };
 
   componentDidMount() {
-    console.log("mounting");
     const userId = this.props.user._id;
     return axios
       .get(`/api/user/${userId}`)
