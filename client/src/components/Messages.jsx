@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Chat from "./Chat";
-import "./style.css"
+import "./style.css";
+import "./style/Messages.css"
 
 class Messages extends Component {
   state = {
@@ -33,16 +34,12 @@ class Messages extends Component {
   };
 
   render() {
-    // console.log(this.props)
     const userId = this.props.user._id;
-    /* console.log(this.state.chatList) */
     const incomingFilter = this.state.chatList.filter((msg) => {
-      //console.log(msg)
-      return msg.userReceive._id === userId;
+      return msg.userReceive._id === userId && msg.item !== null;
     });
 
     const incomingMsg = incomingFilter.map((msg) => {
-      //   console.log(msg)
       return (
         <div className="main">
           <Chat
@@ -56,12 +53,10 @@ class Messages extends Component {
     });
 
     const outgoingFilter = this.state.chatList.filter((msg) => {
-      //console.log(msg)
-      return msg.userSend._id === userId;
+      return msg.userSend._id === userId && msg.item !== null;
     });
 
     const outgoingMsg = outgoingFilter.map((msg) => {
-      //   console.log(msg)
       return (
         <div className="main">
           <Chat
@@ -78,11 +73,13 @@ class Messages extends Component {
       <div className="main">
         <h2>Incoming Offers</h2>
         <hr />
+        {incomingMsg.length < 1 && <p>No Incoming Offers</p>}
         {incomingMsg}
         <hr />
         <hr />
         <h2>Sent Offers</h2>
         <hr />
+        {outgoingMsg.length < 1 && <p>No Outgoing Offers</p>}
         {outgoingMsg}
       </div>
     );

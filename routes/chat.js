@@ -31,7 +31,7 @@ router.get("/:id", (req, res) => {
       if (!chat) {
         res.status(404).json(chat);
       } else {
-       // console.log(chat)
+        console.log(chat)
         res.json(chat);
       }
     })
