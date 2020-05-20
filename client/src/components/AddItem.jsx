@@ -27,6 +27,7 @@ class AddItem extends Component {
     ],
     selectedCategory: "",
     categoryOptions: [
+      "Select",
       "Plants",
       "Furniture",
       "Kitchen supplies",

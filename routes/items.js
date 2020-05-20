@@ -86,39 +86,22 @@ router.get("/:id", (req, res) => {
     });
 });
 
-//edit a specific item with cloudinary
-router.put("/:id", uploadCloud.single("itemImageUrl"), (req, res) => {
-  const { name, description } = req.body;
-  // const itemImgPath = req.file.url;
-  // const itemImgName = req.file.originalname;
-  console.log(req.body, "this is the req.body");
-  console.log(req.params.id, "this is the id");
+router.put("/", (req, res) => {
+  console.log("got it", req.body);
+
+  const { id, name, category, location, description, type, status } = req.body;
+
   Item.findByIdAndUpdate(
-    req.params.id,
-    { name, description },
-    { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
-  )
-    .then((item) => {
-      res.status(200).json(item);
-    })
-    .catch((err) => {
-      res.json(err);
-    });
-});
-
-router.put("edit/", (req, res) => {
-  console.log(req.body);
-
-  /*  Item.findByIdAndUpdate(
     id,
     {
-      username,
-      bio,
+      status,
+      name,
+      description,
       location,
-      wishList,
-      email,
+      type,
+      category,
       //profileImgName,
-      profileImgPath: req.body.profileImgPath,
+      //profileImgPath: req.body.profileImgPath,
     },
     { new: true } //to make sure we are getting  document AFTER updating it in the .then callback
   )
@@ -127,7 +110,7 @@ router.put("edit/", (req, res) => {
     })
     .catch((err) => {
       res.json(err);
-    }); */
+    });
 });
 
 //delete specific item

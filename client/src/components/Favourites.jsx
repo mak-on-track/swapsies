@@ -7,7 +7,7 @@ class Favourites extends Component {
   render() { 
     return ( 
       <div className="main">
-        Favourites
+        Feature Coming Soon!
       </div>
     );
   }
