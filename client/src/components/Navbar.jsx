@@ -33,11 +33,11 @@ class Navbar extends Component {
             aria-label="main navigation"
           >
             <div className="navbar-brand">
-              <a className="navbar-item" href="/">
+              <a className="navbar-item" href="/dashboard">
                 <img src="/icon_swap.png" alt="" height="28" />
               </a>
               <div className="navbar-item">
-                Welcome, {this.props.user.username}
+                Welcome, {this.props.user.username} ❤️
               </div>
               <a
                 role="button"

@@ -3,6 +3,8 @@ import { signup } from "../services/AuthService";
 import "./style.css";
 import Login from "./Login";
 import { Link } from "react-router-dom";
+import "../style/Home.css"
+import "../style/Auth.css";
 
 class Signup extends Component {
   state = {
@@ -80,7 +82,7 @@ class Signup extends Component {
               <div className="notice">
                 {this.state.message && <p>{this.state.message}</p>}
               </div>
-              <div className="field is-grouped">
+              <div className="field button-group">
                 <div className="control">
                   <button
                     type="submit"
@@ -96,15 +98,6 @@ class Signup extends Component {
                   </Link>
                 </div>
               </div>
-              <a href="/">
-                <figure className="image home-image">
-                  <img
-                    className="is-rounded"
-                    src="https://images.unsplash.com/photo-1579208575657-c595a05383b7"
-                    alt=""
-                  />
-                </figure>
-              </a>
             </div>
           </form>
         </div>
