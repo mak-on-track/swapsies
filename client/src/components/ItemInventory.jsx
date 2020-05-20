@@ -34,7 +34,7 @@ class ItemInventory extends Component {
 
     const itemsList = this.props.user.inventory;
 
-    console.log("itemslist", itemsList);
+   // console.log("itemslist", itemsList);
     const filteredThings = itemsList.filter((thing) => {
       if (thing.type === "Thing") return true;
     });
@@ -94,8 +94,8 @@ class ItemInventory extends Component {
 
     /*   const thingsList = allItems.map(thing => thing) */
 
-    console.log("logged in user", this.props.loggedInUser._id);
-    console.log("user", this.props.user._id);
+   // console.log("logged in user", this.props.loggedInUser._id);
+   // console.log("user", this.props.user._id);
 
     return (
       <div>
