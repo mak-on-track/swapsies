@@ -25,12 +25,6 @@ class Chat extends Component {
       fromOwner = true;
     }
 
- //   console.log(this.props)
- /*    console.log(fromOwner);
-    console.log(this.props.chat._id);
-    console.log(this.state.message) */
-
-
        return axios
       .put("/api/chat", {
         id: this.props.chat._id,
@@ -78,7 +72,6 @@ class Chat extends Component {
       <div className="main">
         <h3>Item: {item.name}</h3>
         <ul>
-        {/*    <li>{this.props.user._id === userSent._id ? Sent to: : Sent by} <Link to={`/user/${userReceive._id}`>{userReceive.username}</Link>}</li> */}
            <li>From: {this.props.user._id === userSend._id ? <Link to={`/user/${userReceive._id}`}>{userReceive.username}</Link>: <Link to={`/user/${userSend._id}`}>{userSend.username}</Link> }</li>
           <li>Type: {item.type}</li>
           <li>Description: {item.description}</li>
@@ -102,18 +95,3 @@ class Chat extends Component {
 }
 
 export default Chat;
-
-/* render() {
-  const isLoggedIn = this.state.isLoggedIn;
-  return (
-    <div>
-      The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
-    </div>
-  );
-} */
-
-/*     {location !== "Select Kiez" ? (
-      location
-    ) : (
-      <Link to="/edit">Add a Kiez</Link>
-    )} */
