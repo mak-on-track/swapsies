@@ -30,7 +30,7 @@ class Dashboard extends Component {
     const user = this.props.user;
     console.log("this is the user from props", user);
 
-    const {
+    let {
       username,
       profileImgPath,
       location,
@@ -43,14 +43,15 @@ class Dashboard extends Component {
     } = user;
 
     if (location === "Select Kiez") location = null;
+    if (wishList = []) wishList = null;
 
     return (
       <div className="main">
         <div className="card">
-          <div class="card-image">
-            <figure class="image is-1by1">
+          <div className="card-image">
+            <figure className="image is-128x128">
               <img
-                class="is-rounded"
+                className="is-rounded"
                 src={
                   profileImgPath
                     ? profileImgPath
@@ -71,30 +72,30 @@ class Dashboard extends Component {
                   {location ? location : <a href="/edit">Add your Kiez</a>}
                 </p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
-                  {bio ? bio : <a href="/edit">Add some info to your bio</a>}
+                  {bio ? bio : <a href="/edit">Add your bio</a>}
                 </p>
               </div>
             </div>
 
             <div className="content">
-              <b>WishList:</b>
+              <b>Wishlist</b>
               {wishList ? (
                 wishList.map((wish) => {
                   return <li key={wish}>{wish}</li>;
                 })
               ) : (
-                <p>There is nothing in your wish list</p>
+                <p>No wish yet.</p>
               )}
             </div>
           </div>
 
-          <footer class="card-footer">
-            <a href="/edit" class="card-footer-item">
+          <footer className="card-footer">
+            <a href="/edit" className="card-footer-item">
               Edit Profile
             </a>
-            <div class="card-footer-item">
-              Do something, maybe add some stuff?
-            </div>
+            <a href="/add" className="card-footer-item">
+              Add an item
+            </a>
           </footer>
         </div>
 
