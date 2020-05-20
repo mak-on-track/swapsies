@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import axios from "axios";
 import ItemInventory from "./ItemInventory";
@@ -57,7 +56,8 @@ class Dashboard extends Component {
     // console.log(this.props)
     const user = this.props.user;
     console.log("this is the user from props", user);
-    const {
+
+    let {
       username,
       profileImgPath,
       location,
@@ -68,57 +68,62 @@ class Dashboard extends Component {
       inventory,
       _id,
     } = user;
-
-    console.log("wishlist", user.wishList);
+    
+    if (location === "Select Kiez") location = null;
 
     return (
       <div className="main">
-        <div>
-          <h3>Welcome</h3>
+        <div className="card">
 
-          <ul>
-            <li>
-              <div className="chip">
-                <img
-                  src={
-                    profileImgPath
-                      ? profileImgPath
-                      : "https://media.giphy.com/media/gZEBpuOkPuydi/giphy.gif"
-                  }
-                  alt="profile picture"
-                  width="96"
-                  height="96"
-                />
-                {username}
+          <div class="card-image">
+            <figure class="image is-1by1">
+              <img
+                class="is-rounded"
+                src={profileImgPath ? profileImgPath : "https://images.unsplash.com/photo-1515160813423-b851dc54a427"}
+                alt="profileImg"
+              />
+            </figure>
+          </div>
+
+          <div className="card-content">
+            <div className="media" style={{"marginBottom":"0.5rem"}}>
+              <div className="media-content">
+                <p className="title is-4">
+                  {username}
+                </p>
+                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>
+                  {email ? email : <a href="/edit">Add an email</a>}
+                  {" · "}
+                  { location ? location : <a href="/edit">Add your Kiez</a> }
+                </p>
+                <p className="subtitle is-6" style={{"marginBottom":"0.5rem"}}>
+                  {bio ? bio : <a href="/edit">Add some info to your bio</a>}
+                </p>
               </div>
-            </li>
-            <li>{email ? <p>Email: {email}</p> : <p></p>}</li>
-            <li>
-              {location !== "Select Kiez" || "" ? (
-                <p>Kiez: {location}</p>
-              ) : (
-                <p></p>
-              )}
-            </li>
-            <li>{bio ? <p>Bio: {bio}</p> : <p></p>}</li>
-            <li>
-              <h3>WishList:</h3>
-              <ul>
-                {wishList.length !== 0 ? (
-                  wishList.map((wish) => {
-                    return <li key={wish}>{wish}</li>;
-                  })
+            </div>
+
+            <div className="content">
+              <b>WishList:</b>
+              {wishList ? (
+                wishList.map((wish) => {
+                  return <li key={wish}>{wish}</li>;
+                })
                 ) : (
-                  <li>There is nothing in your wish list</li>
+                  <p>There is nothing in your wish list</p>
                 )}
-              </ul>
-            </li>
-          </ul>
-          <Link to="/edit">Edit Profile</Link>
+            </div>
+          </div>
+
+          <footer class="card-footer">
+            <a href="/edit" class="card-footer-item">Edit Profile</a>
+            <div class="card-footer-item">Do something, maybe add some stuff?</div>
+          </footer>
+
         </div>
+        
         <div>
           <h3>My Stuff</h3>
-          <Link to="/add">Add</Link>
+          <a href="/add">Add</a>
           <ServiceInventory
             setUser={this.props.setUser}
             user={this.props.user}
@@ -132,6 +137,7 @@ class Dashboard extends Component {
             // wishList={this.handleWishlistChange}
           />
         </div>
+      
       </div>
     );
   }
