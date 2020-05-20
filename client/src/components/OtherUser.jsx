@@ -3,7 +3,6 @@ import axios from "axios";
 import ServiceInventory from "./ServiceInventory";
 import ItemInventory from "./ItemInventory";
 import "./style.css";
-import "./style/OtherUser.css";
 
 class OtherUser extends Component {
   state = {
@@ -29,8 +28,6 @@ class OtherUser extends Component {
   }
 
   render() {
-    // console.log("props", this.props);
-
     let {
       bio,
       email,
@@ -41,17 +38,10 @@ class OtherUser extends Component {
     } = this.state.otherUser;
 
     if (location === "Select Kiez") location = "No Location Selected";
+    if (wishList = []) wishList = null; 
 
-    const displayWishList = wishList.map((wish) => {
-      return (
-        <>
-          <li>{wish}</li>
-        </>
-      );
-    });
-
-    console.log("this state other user", this.state.otherUser);
     if (this.state.error) return <div className="main">{this.state.error}</div>;
+
     if (this.state.otherUser.inventory === 0) {
       return (
         <div className="main">This user currently has nothing to swap</div>
@@ -59,18 +49,56 @@ class OtherUser extends Component {
     } else
       return (
         <div className="main">
-          <div className="flex-profile">
-            <figure>
-              <img className= "is-rounded" src={profileImgPath} alt="profile-imgage" />
-            </figure>
-            <div>
-              <h2 className="title">{username}</h2>
-              <p>Email: {email}</p>
-              <p>Bio: {bio}</p>
-              <p>Kiez: {location}</p>
-              <p>{username}'s Wishlist: </p>
-              <ul>{displayWishList}</ul>
+          
+          <div className="card">
+            
+            <div className="card-image" style={{"padding": "1.5rem"}}>
+              <figure className="image is-128x128">
+                <img
+                  className="is-rounded"
+                  src={
+                    profileImgPath
+                      ? profileImgPath
+                      : "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
+                  }
+                  alt="profileImg"
+                />
+              </figure>
             </div>
+
+            <div className="card-content">
+              <div className="media" style={{ marginBottom: "0.5rem" }}>
+                <div className="media-content">
+                  <p className="title is-4">{username}</p>
+                  <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                    {email ? email : null}
+                    {email && location ? " · " : null}
+                    {location ? location : null}
+                  </p>
+                  <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                    {bio ? bio : null}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="content">
+                <b>Wishlist</b>
+                {wishList ? (
+                  wishList.map((wish) => {
+                    return <li key={wish}>{wish}</li>;
+                  })
+                ) : (
+                  <p>{username} has no wishes yet.</p>
+                )}
+              </div>
+            </div>
+            
+            <footer className="card-footer" style={{"padding": "0.5rem"}}>
+              <a href="/edit" className="card-footer-item">
+                Send {username} a message, or maybe not?
+              </a>
+            </footer>
+
           </div>
           <hr />
 
