@@ -121,78 +121,138 @@ class EditProfile extends Component {
 
     return (
       <div className="main">
-        <h2>Edit your profile:</h2>
         <form onSubmit={this.handleSubmit}>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-            required
-          />
+          <div className="field">
+            <label className="label">Edit your profile</label>
+          </div>
+          
+          <div className="field">
+            <label className="label">Username</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="username"
+                value={username}
+                id="username"
+                placeholder={username}
+                onChange={this.handleChange}
+                required
+              />
+            </div>
+          </div>
+          
+          <div className="field">
+            <label className="label">Profile picture</label>
+            <div className="control">
+              <input
+                type="file"
+                name="imageUrl"
+                onChange={this.handleImageChange}
+                className="button"
+              />
+            </div>
+          </div>
+    
+          <div className="field">
+            <label className="label">Email</label>
+            <div className="control">
+              <input
+                className="input"
+                type="text"
+                name="email"
+                value={email}
+                id="email"
+                placeholder="Add email address"
+                onChange={this.handleChange}
+              />
+            </div>
+          </div>
 
-          <label>Bio:</label>
-          <input
-            type="text"
-            name="bio"
-            placeholder="Tell us about yourself"
-            value={bio}
-            onChange={this.handleChange}
-            required
-          />
+          <div className="field">
+            <label className="label">Location</label>
+            <div className="control">
+              <div className="select">
+                <select
+                  id="location"
+                  name="location" 
+                  value={location} 
+                  onChange={this.handleChange}
+                >
+                  {locationOptions.map((option) => {
+                    return (
+                      <option value={option} key={option}>
+                        {option}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div className="field">
+            <label class="label">Bio</label>
+            <div class="field-body">
+              <div class="field">
+                <div class="control">
+                  <textarea
+                    className="textarea" 
+                    type="text"
+                    name="bio"
+                    value={bio}
+                    onChange={this.handleChange}
+                    id="bio"
+                    placeholder="Add your bio"
+                  >
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          <label>Email:</label>
-          <input
-            type="text"
-            name="email"
-            placeholder="Add email address"
-            value={email}
-            onChange={this.handleChange}
-            required
-          />
+          <div className="field">
+            <label class="label">Wishlist</label>
+            <div class="content">
+              <ul>
+                {wishList.length === 0 ? (
+                  <p>There are no items or services in your wish list</p>
+                ) : (
+                  wishList.map((wish) => {
+                    return <li key={wish}>{wish}</li>;
+                  })
+                )}
+              </ul>
+            </div>
+            <div class="field has-addons">
+              <div class="control">
+                <input 
+                  class="input" 
+                  type="text" 
+                  placeholder="Add item"
+                  name="addWish"
+                  value={addWish}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div class="control">
+                <a className="button is-light" onClick={this.handleWishlistChange}>
+                  Add item to wish list
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="control">
+            <button 
+              type="submit"
+              value="submit"
+              className="button is-link is-light"
+            >
+              Update profile
+            </button>
+          </div>
 
-          <label>Location:</label>
-          <select name="location" value={location} onChange={this.handleChange}>
-            {locationOptions.map((option) => {
-              return (
-                <option value={option} key={option}>
-                  {option}
-                </option>
-              );
-            })}
-          </select>
-          <label>Profile pic:</label>
-          <input
-            type="file"
-            name="imageUrl"
-            onChange={this.handleImageChange}
-          />
-          <h3>Wish list</h3>
-          <ul>
-            <li>
-              {" "}
-              {wishList.length === 0 ? (
-                <p>There are no items or services in your wish list</p>
-              ) : (
-                wishList.map((wish) => {
-                  return <p key={wish}>{wish}</p>;
-                })
-              )}
-            </li>
-          </ul>
-
-          <input
-            type="text"
-            name="addWish"
-            value={addWish}
-            onChange={this.handleChange}
-          />
-
-          <button type="button" onClick={this.handleWishlistChange}>
-            Add item to wish list
-          </button>
-          <button type="submit">Update profile</button>
         </form>
       </div>
     );
