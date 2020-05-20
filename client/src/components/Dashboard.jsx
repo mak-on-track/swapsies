@@ -72,17 +72,29 @@ class Dashboard extends Component {
                 </p>
               </div>
             </div>
+
+            <div className="content">
+              <b>Wishlist</b>
+              {wishList ? (
+                wishList.map((wish) => {
+                  return <li key={wish}>{wish}</li>;
+                })
+              ) : (
+                <p>No wishes?</p>
+              )}
+            </div>
           </div>
           <div className="content wishlist">
             <b>Wishlist</b>
             <ul>
-            {wishList.length > 0 ? (
-              wishList.map((wish) => {
-                return <li key={wish}>{wish}</li>;
-              })
-            ) : (
-              <li>Nothing yet.</li>
-            )}</ul>
+              {wishList.length > 0 ? (
+                wishList.map((wish) => {
+                  return <li key={wish}>{wish}</li>;
+                })
+              ) : (
+                <li>Nothing yet.</li>
+              )}
+            </ul>
           </div>
           <footer className="card-footer" style={{ padding: "0.5rem" }}>
             <a href="/edit" className="card-footer-item">
