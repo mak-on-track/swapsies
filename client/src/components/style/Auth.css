@@ -1,0 +1,20 @@
+.auth-container {
+  width: 60%;
+}
+
+.auth-logo {
+height: 2.5rem;
+margin: 2rem 0px;
+}
+
+.alt-link {
+  display: flex;
+  align-items: center;
+  font-size: .8rem;
+}
+
+
+.home-image {
+  margin-top: 4rem;
+  width: 15rem;
+}
