@@ -33,6 +33,8 @@ class AddItem extends Component {
       "Gardening tools",
       "Collectables & Memorabilia",
       "Bike stuff",
+      "Clothes",
+      "Other",
     ],
   };
 
