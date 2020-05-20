@@ -46,6 +46,11 @@
   margin: 1rem 2rem;
 }
 
-.hero-text h3 {
+.hero-text h1 {
+  color: black/*  var(--primary-color) */;
+}
+
+.hero-text h3, b {
+  color: black/*  var(--primary-color) */;
   width: 90%;
 }

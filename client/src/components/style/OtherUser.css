@@ -1,7 +1,13 @@
- .flex-profile {
+.flex-profile {
   display: flex;
 }
 
 .flex-profile img {
   width: 30vw;
+}
+.wishlist ul {
+  columns: 3;
+  margin: 10px;
+  -webkit-columns: 3;
+  -moz-columns: 3;
 }

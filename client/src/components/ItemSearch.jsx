@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
-import "./ItemSearch.css";
 import "./style.css";
+import "./style/ItemSearch.css";
 
 class ItemSearch extends Component {
   state = {
@@ -10,9 +9,9 @@ class ItemSearch extends Component {
     availableCheck: true,
     reservedCheck: true,
     swappedCheck: false,
-    location: "Select Kiez",
+    location: "Filter by Kiez",
     locationOptions: [
-      "Select Kiez",
+      "Filter by Kiez",
       "All",
       "Charlottenburg",
       "Friedrichshain",
@@ -27,6 +26,7 @@ class ItemSearch extends Component {
     ],
     category: "",
     categoryOptions: [
+      "Select",
       "Plants",
       "Furniture",
       "Kitchen supplies",
@@ -93,7 +93,7 @@ class ItemSearch extends Component {
     const filteredItems = this.props.itemsList.filter((item) => {
       if (
         item.location !== this.state.location &&
-        this.state.location !== "Select Kiez" &&
+        this.state.location !== "Filter by Kiez" &&
         this.state.location !== "All"
       )
         return false;
