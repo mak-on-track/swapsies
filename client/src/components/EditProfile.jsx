@@ -24,6 +24,7 @@ class EditProfile extends Component {
       "Janz weit draußen",
     ],
     addWish: "",
+    deleteWish: "",
     wishList: this.props.user.wishList,
   };
 
@@ -48,10 +49,22 @@ class EditProfile extends Component {
 
   handleWishlistChange = (event) => {
     const wish = this.state.addWish;
-
     this.setState({
       wishList: [...this.state.wishList, wish],
       addWish: "",
+    });
+  };
+
+  handleDeleteWish = async (event) => {
+    const wish = event.target.value;
+    const wishList = this.state.wishList;
+    let index = wishList.indexOf(wish);
+    if (index > -1) {
+      wishList.splice(index, 1);
+    }
+
+    this.setState({
+      wishList: wishList,
     });
   };
 
@@ -60,10 +73,10 @@ class EditProfile extends Component {
     let image;
     if (this.state.selectedImage) {
       const uploadData = new FormData();
-      console.log(
-        this.state.selectedImage,
-        "this state selected image before upload append"
-      );
+      // console.log(
+      //   this.state.selectedImage,
+      //   "this state selected image before upload append"
+      // );
       uploadData.append("imageUrl", this.state.selectedImage);
       const uploadedImage = await axios.post(`/api/user/upload`, uploadData);
       image = uploadedImage.data.secure_url;
@@ -115,6 +128,7 @@ class EditProfile extends Component {
       location,
       locationOptions,
       addWish,
+      deleteWish,
     } = this.state;
 
     //let wishList = this.props.user.wishList;
@@ -125,7 +139,7 @@ class EditProfile extends Component {
           <div className="field">
             <label className="label">Edit your profile</label>
           </div>
-          
+
           <div className="field">
             <label className="label">Username</label>
             <div className="control">
@@ -141,7 +155,7 @@ class EditProfile extends Component {
               />
             </div>
           </div>
-          
+
           <div className="field">
             <label className="label">Profile picture</label>
             <div className="control">
@@ -153,7 +167,7 @@ class EditProfile extends Component {
               />
             </div>
           </div>
-    
+
           <div className="field">
             <label className="label">Email</label>
             <div className="control">
@@ -175,8 +189,8 @@ class EditProfile extends Component {
               <div className="select">
                 <select
                   id="location"
-                  name="location" 
-                  value={location} 
+                  name="location"
+                  value={location}
                   onChange={this.handleChange}
                 >
                   {locationOptions.map((option) => {
@@ -190,22 +204,21 @@ class EditProfile extends Component {
               </div>
             </div>
           </div>
-          
+
           <div className="field">
             <label class="label">Bio</label>
             <div class="field-body">
               <div class="field">
                 <div class="control">
                   <textarea
-                    className="textarea" 
+                    className="textarea"
                     type="text"
                     name="bio"
                     value={bio}
                     onChange={this.handleChange}
                     id="bio"
                     placeholder="Add your bio"
-                  >
-                  </textarea>
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -219,16 +232,28 @@ class EditProfile extends Component {
                   <p>There are no items or services in your wish list</p>
                 ) : (
                   wishList.map((wish) => {
-                    return <li key={wish}>{wish}</li>;
+                    return (
+                      <li key={wish}>
+                        <div>{wish}</div>
+                        <button
+                          type="button"
+                          name="deleteWish"
+                          value={wish}
+                          onClick={this.handleDeleteWish}
+                        >
+                          Delete wish
+                        </button>
+                      </li>
+                    );
                   })
                 )}
               </ul>
             </div>
             <div class="field has-addons">
               <div class="control">
-                <input 
-                  class="input" 
-                  type="text" 
+                <input
+                  class="input"
+                  type="text"
                   placeholder="Add item"
                   name="addWish"
                   value={addWish}
@@ -236,15 +261,19 @@ class EditProfile extends Component {
                 />
               </div>
               <div class="control">
-                <a className="button is-light" onClick={this.handleWishlistChange}>
+                <button
+                  type="button"
+                  className="button is-light"
+                  onClick={this.handleWishlistChange}
+                >
                   Add item to wish list
-                </a>
+                </button>
               </div>
             </div>
           </div>
-          
+
           <div className="control">
-            <button 
+            <button
               type="submit"
               value="submit"
               className="button is-link is-light"
@@ -252,7 +281,6 @@ class EditProfile extends Component {
               Update profile
             </button>
           </div>
-
         </form>
       </div>
     );
