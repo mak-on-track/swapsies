@@ -4,9 +4,9 @@
 
 .home-logo {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 6rem;
+  bottom: 0;
+  right: 0;
+  width: 4rem;
   margin: 2rem 4rem;
 }
 
@@ -31,7 +31,7 @@
   margin-top: 20rem;
   border-radius: 2rem;
   text-align: center;
-  color: var(--primary-color);
+  color: black/*  var(--primary-color) */;
   width: 30vw;
   min-width: 30rem;
   padding: 1rem 0px;

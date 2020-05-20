@@ -29,11 +29,11 @@
 
 
 .auth-container h1 {
-  color: var(--primary-color);
+  color: black/*  var(--primary-color) */;
 }
 
 .auth-container label {
-  color: var(--primary-color);
+  color: black/*  var(--primary-color) */;
 }
 .auth-container input{
   width: 25rem;
