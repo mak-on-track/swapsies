@@ -3,5 +3,9 @@
   --secondary-color: #844685;
   --third-color: #f3c623;
   --fourth-color: #faf4ff;
-  margin: 1rem; 
+  margin: 1rem;
+}
+
+* {
+  color: var(--primary-color)
 }

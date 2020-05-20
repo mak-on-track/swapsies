@@ -60,44 +60,88 @@ class OfferSwap extends Component {
   };
 
   render() {
+    console.log(this.state.userReceive, "...........lalal")
     const {
       name,
       category,
       location,
       status,
       owner,
-      description /* IMAGE */,
+      description,
+      itemImgPath,
     } = this.state.item;
 
     return (
       <div className="main">
-        <h2>Offer a Swap</h2>
+        <div className="field">
+          <label className="label">Offer a Swap</label>
+        </div>
+        <div className="card">
 
-        <ul>
-          <li>
-            Posted by: <Link to={`/user/${owner._id}`}>{owner.username}</Link>
-          </li>
-          <li>Status: {status}</li>
+          <div className="card-image">
+            <figure className="image">
+              <img src="https://images.unsplash.com/photo-1520591799316-6b30425429aa" alt="Item image"/>
+            </figure>
+          </div>
 
-          <li>Name: {name}</li>
-          <li>
-            <img src="" alt="item image" />
-          </li>
-          <li>Description: {description}</li>
+          <div className="card-content">
 
-          <li>Location: {location}</li>
-        </ul>
-        <form onSubmit={this.handleSubmit}>
-          <textarea
-            id="offerSwap"
-            onChange={this.handleChange}
-            value={this.state.message}
-            placeholder="Send a Message"
-          />
-          <button>Submit</button>
-        </form>
+            <div className="media">
+              <div className="media-left">
+                <figure className="image is-48x48">
+                  <img src="https://images.unsplash.com/photo-1508215302842-8a015a452a20" alt="User image"/>
+                </figure>
+              </div>
+              <div className="media-content">
+                <p className="title is-4">
+                  {name}
+                </p>
+                <p className="subtitle is-6">
+                  Posted by <a href={`/user/${owner._id}`}>{owner.username}</a>
+                  {owner.email ? " · " + owner.email : null }
+                </p>
+              </div>
+            </div>
+
+            <div className="content">
+              <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                {description}
+              </p>
+              <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                {status} 
+                { location ? " · " + location : null}
+              </p>
+       
+                  <form onSubmit={this.handleSubmit}>
+                    <textarea
+                      className="textarea" 
+                      id="offerSwap"
+                      name="offerswap"
+                      onChange={this.handleChange}
+                      placeholder="Hey, ..."
+                      type="text"
+                      value={this.state.message}
+                    />
+                    <div className="control" style={{"marginTop":"0.5rem"}}>
+                      <button 
+                        type="submit"
+                        value="submit"
+                        className="button is-link is-light"
+                      >
+                        Send message
+                      </button>
+                    </div>
+                  </form>
+      
+              
+            
+            </div>
+          
+          </div>
+        
+        </div>
       </div>
-    );
+    )
   }
 }
 

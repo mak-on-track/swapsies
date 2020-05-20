@@ -243,19 +243,30 @@ class AddItem extends Component {
           </div>
           {/* Check for whether type is thing to have functionality of adding image */}
           {/* {type !== "Service" && ( */}
-          <>
-            <div className="field">
-              <label className="label">Add photos</label>
-              <div className="control">
-                <input
-                  type="file"
+          <div className="field">
+            <label className="label">Add a photo</label>
+            <div className="file has-name">
+              <label className="file-label">
+                <input 
+                  className="file-input" 
+                  type="file" 
                   name="itemImageUrl"
                   onChange={this.handleImageChange}
-                  className="button is-light"
                 />
-              </div>
+                <span className="file-cta">
+                  <span className="file-icon">
+                    <i className="fas fa-upload"></i>
+                  </span>
+                  <span className="file-label">
+                    Choose a file
+                  </span>
+                </span>
+                <span className="file-name">
+                  
+                </span>
+              </label>
             </div>
-          </>
+          </div>
 
           {/* Submit button */}
           <div className="control">
