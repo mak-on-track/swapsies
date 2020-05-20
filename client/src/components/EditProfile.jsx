@@ -160,15 +160,28 @@ class EditProfile extends Component {
 
           <div className="field">
             <label className="label">Profile picture</label>
-            <div className="control">
-              <input
-                type="file"
-                name="imageUrl"
-                onChange={this.handleImageChange}
-                className="button"
-              />
+            <div className="file has-name">
+              <label className="file-label">
+                <input 
+                  className="file-input" 
+                  type="file" 
+                  // id="file" 
+                  name="imageUrl" 
+                  onChange={this.handleImageChange}
+                />
+                
+                <span className="file-cta">
+                  <span className="file-label">
+                    Choose a file
+                  </span>
+                </span>
+                <span className="file-name">
+                  {this.state.selectedImage ? this.state.selectedImage.name : "filename"}
+                </span>
+              </label>
             </div>
           </div>
+
 
           <div className="field">
             <label className="label">Email</label>
