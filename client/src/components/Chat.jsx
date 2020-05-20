@@ -53,6 +53,7 @@ class Chat extends Component {
   render() {
 
     const { item, messages, userSend, userReceive, _id } = this.props.chat;
+    console.log(item.name)
     const chatLog = messages.map((ele) => {
       return (
         <div className="main">

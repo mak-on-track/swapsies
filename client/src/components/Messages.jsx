@@ -42,7 +42,7 @@ class Messages extends Component {
     });
 
     const incomingMsg = incomingFilter.map((msg) => {
-      //   console.log(msg)
+      console.log("incoming msg", msg)
       return (
         <div className="main">
           <Chat
@@ -61,7 +61,7 @@ class Messages extends Component {
     });
 
     const outgoingMsg = outgoingFilter.map((msg) => {
-      //   console.log(msg)
+         console.log("outgoing msg", msg)
       return (
         <div className="main">
           <Chat
