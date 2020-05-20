@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./style.css"
+import "./style.css";
 
 class AddItem extends Component {
   state = {
     name: "",
-    itemImgPath: "", //could put a "insert image" thing here as a default
+    itemImgPath: "/icon_swap.png", //could put a "insert image" thing here as a default
     selectedImage: null,
     type: "",
     category: "",
@@ -13,7 +13,6 @@ class AddItem extends Component {
     location: this.props.user.location,
     locationOptions: [
       "Select Kiez",
-      "All",
       "Charlottenburg",
       "Friedrichshain",
       "Kreuzberg",
@@ -117,54 +116,6 @@ class AddItem extends Component {
       });
   };
 
-  // handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   let {
-  //     name,
-  //     category,
-  //     location,
-  //     description,
-  //     /* CLOUDINARY */ type,
-  //   } = this.state;
-
-  //   if (type === "Service") {
-  //     category = "None";
-  //   }
-  //   /* if(type === "Service") {IMAGE IS NULL} */
-
-  //   return axios
-  //     .post("/api/items", {
-  //       owner: this.props.user._id,
-  //       favourites: 0,
-  //       status: "Available",
-  //       name,
-  //       description,
-  //       location,
-  //       type,
-  //       category,
-  //       /* IMAGE */
-  //       //itemImgPath: "",
-  //     })
-  //     .then((data) => {
-  //       this.setState({
-  //         name: "",
-  //         description: "",
-  //         //itemImgPath: "",
-  //         type: "",
-  //         category: "",
-  //         location: this.props.user.location,
-  //       });
-  //       this.props.setUser(data.data);
-  //       console.log(data);
-  //       this.props.getData(); //might not be needed
-  //     })
-  //     .then(() => {
-  //       this.props.history.push("/dashboard");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
 
   render() {
     console.log(this.props);
@@ -177,20 +128,20 @@ class AddItem extends Component {
       category,
       selectedCategory,
       categoryOptions,
-      /* CLOUDINARY */ type,
+      type,
     } = this.state;
     return (
       <div className="main">
         <form onSubmit={this.handleSubmit}>
-          <div class="field">
-            <label class="label">Add new item</label>
+          <div className="field">
+            <label className="label">Add new item</label>
           </div>
 
           {/* Dropdown for selecting thing or service */}
-          <div class="field">
-            <label class="label">Is this a service or thing?</label>
-            <div class="control">
-              <div class="select">
+          <div className="field">
+            <label className="label">Is this a service or thing?</label>
+            <div className="control">
+              <div className="select">
                 <select
                   id="type"
                   name="type"
@@ -209,21 +160,10 @@ class AddItem extends Component {
           {type !== "Service" && (
             <>
               {/* Dropdown for selecting category */}
-              <div class="field">
-                <label class="label">Category</label>
-                <div class="control">
-                  <div class="select">
-                    {/* <select
-                      id="category"
-                      name="category"
-                      onChange={this.handleChange}
-                      required
-                    >
-                      <option value="">Select</option>
-                      <option value="Furniture">Furniture</option>
-                      <option value="Plants">Plants</option>
-                    </select> */}
-
+              <div className="field">
+                <label className="label">Category</label>
+                <div className="control">
+                  <div className="select">
                     <select
                       name="category"
                       value={category}
@@ -231,7 +171,10 @@ class AddItem extends Component {
                     >
                       {categoryOptions.map((selectedCategory) => {
                         return (
-                          <option value={selectedCategory} key={selectedCategory}>
+                          <option
+                            value={selectedCategory}
+                            key={selectedCategory}
+                          >
                             {selectedCategory}
                           </option>
                         );
@@ -244,11 +187,11 @@ class AddItem extends Component {
           )}
 
           {/* Name of item */}
-          <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
+          <div className="field">
+            <label className="label">Name</label>
+            <div className="control">
               <input
-                class="input"
+                className="input"
                 type="text"
                 name="name"
                 value={this.state.name}
@@ -261,11 +204,11 @@ class AddItem extends Component {
           </div>
 
           {/* Description of item */}
-          <div class="field">
-            <label class="label">Description</label>
-            <div class="control">
+          <div className="field">
+            <label className="label">Description</label>
+            <div className="control">
               <input
-                class="input"
+                className="input"
                 type="text"
                 name="description"
                 value={this.state.description}
@@ -276,36 +219,44 @@ class AddItem extends Component {
               />
             </div>
           </div>
-
-          <label>Location:</label>
-          <select name="location" value={location} onChange={this.handleChange}>
-            {locationOptions.map((option) => {
-              return (
-                <option value={option} key={option}>
-                  {option}
-                </option>
-              );
-            })}
-          </select>
-
+          <div className="field">
+            <label className="label">Location:</label>
+            <div className="control">
+            <div className="select">
+              <select
+                name="location"
+                value={location}
+                onChange={this.handleChange}
+              >
+                {locationOptions.map((option) => {
+                  return (
+                    <option value={option} key={option}>
+                      {option}
+                    </option>
+                  );
+                })}
+              </select>
+              </div>
+            </div>
+          </div>
           {/* Check for whether type is thing to have functionality of adding image */}
           {/* {type !== "Service" && ( */}
           <>
-            <div class="field">
-              <label class="label">Add photos</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Add photos</label>
+              <div className="control">
                 <input
                   type="file"
                   name="itemImageUrl"
                   onChange={this.handleImageChange}
+                  className="button"
                 />
               </div>
             </div>
           </>
-          {/* )} */}
 
           {/* Submit button */}
-          <div class="control">
+          <div className="control">
             <button type="submit" value="add" class="button is-link is-light">
               Add
             </button>
