@@ -52,7 +52,7 @@ class OfferSwap extends Component {
         this.props.setUser(this.props.user);
       })
       .then(() => {
-        this.props.history.goBack();
+        this.props.history.push("/dashboard");
       })
       .catch((err) => {
         console.log(err);

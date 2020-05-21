@@ -23,23 +23,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
- 
 }
 
 .hero-text {
-  background-color:rgba(220, 223, 227, 0.9);
-  margin-top: 20rem;
+  background-color: rgba(220, 223, 227, 0.9);
+
   border-radius: 2rem;
   text-align: center;
-  color: black/*  var(--primary-color) */;
-  width: 30vw;
-  min-width: 30rem;
+  color: black /*  var(--primary-color) */;
+  width: 30rem;
+  max-width: 85vw;
+  transform:translateY(10vh);
   padding: 1rem 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
 }
 
 .hero-text a {
@@ -47,10 +46,11 @@
 }
 
 .hero-text h1 {
-  color: black/*  var(--primary-color) */;
+  color: black /*  var(--primary-color) */;
 }
 
-.hero-text h3, b {
-  color: black/*  var(--primary-color) */;
+.hero-text h3,
+b {
+  color: black /*  var(--primary-color) */;
   width: 90%;
 }

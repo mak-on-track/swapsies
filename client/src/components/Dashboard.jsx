@@ -90,7 +90,7 @@ class Dashboard extends Component {
               Edit Profile
             </a>
             <a href="/add" className="card-footer-item">
-              Add an item
+              Add an Item
             </a>
           </footer>
         </div>

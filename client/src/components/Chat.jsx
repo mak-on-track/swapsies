@@ -67,7 +67,7 @@ class Chat extends Component {
       );
     });
     return (
-      <>
+      <div className="card message-box">
         {/* Summary of item for chat */}
         <div className="summary">
           <div className="media-left">
@@ -124,7 +124,7 @@ class Chat extends Component {
             </button>
           </div>
         </form>
-      </>
+      </div>
     );
   }
 }
