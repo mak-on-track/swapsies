@@ -1,9 +1,11 @@
 .in-out-msg {
   display: flex;
+  flex-wrap: wrap;
 } 
 
 .thread {
   width: 50%;
+  min-width: 40rem;
   padding-right: 2rem;
   padding-bottom: 1rem;
 }
