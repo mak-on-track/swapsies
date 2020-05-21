@@ -1,5 +1,5 @@
 .main {
-  margin: 1rem; 
+  margin: 1rem;
 }
 
 .card-itemsearch {
@@ -14,8 +14,29 @@
 .flex-container > div {
   margin-right: 10px;
   margin-top: 10px;
+  width: 100vh;
 }
 
 .media-content {
   margin-top: 0rem;
+}
+
+.item-image img {
+  display: block;
+  height: 50vh;
+  width: auto;
+}
+
+.item-image-thing img {
+  height: 50vh;
+  width: 50vh;
+  object-fit: contain;
+}
+
+.center-content {
+  margin-top: 2rem;
+}
+
+.custom-media-left {
+  border: solid yellow;
 }
