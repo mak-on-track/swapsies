@@ -182,7 +182,6 @@ class EditProfile extends Component {
             </div>
           </div>
 
-
           <div className="field">
             <label className="label">Email</label>
             <div className="control">

@@ -16,7 +16,7 @@ class Home extends Component {
             Have an item that might be better suited for someone else? <br />
             You know how to cook, sing, or maybe code?
             <br />
-            <b> Find the perfect swap on Swapsies!</b>
+            <strong> Find the perfect swap on Swapsies!</strong>
           </h3>
           <div className="buttons" style={{ display: "block", margin: "1rem" }}>
             <a className="button is-link is-light" href="/signup">

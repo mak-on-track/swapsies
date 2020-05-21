@@ -30,7 +30,7 @@ class ItemInventory extends Component {
           <div className="card inventory-card" key={thing._id}>
             <div className="card-content">
               <div className="media">
-                <div class="media-left">
+                <div className="media-left">
                   <figure class="image is-96x96">
                     <img src={thing.itemImgPath} alt="picture of thing" />
                   </figure>
