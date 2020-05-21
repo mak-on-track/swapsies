@@ -1,10 +1,10 @@
 .main {
-  margin: 1rem; 
+  margin: 1rem;
 }
 
-.card-itemsearch {
+/* .card-itemsearch {
   width: 30rem;
-}
+} */
 
 .flex-container {
   display: flex;
@@ -14,8 +14,31 @@
 .flex-container > div {
   margin-right: 10px;
   margin-top: 10px;
+  width: 100vh;
 }
 
 .media-content {
   margin-top: 0rem;
+}
+
+.item-image img {
+  display: block;
+  height: 50vh;
+  width: auto;
+  object-fit: contain;
+}
+
+.item-image-thing img {
+  display: block;
+  height: 50vh;
+  width: 50vh;
+  object-fit: contain;
+}
+
+.center-content {
+  margin-top: 2rem;
+}
+
+.custom {
+  object-fit: contain;
 }

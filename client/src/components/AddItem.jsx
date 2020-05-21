@@ -117,8 +117,43 @@ class AddItem extends Component {
       });
   };
 
+  // checkUploadResult = (resultEvent) => {
+  //   if (resultEvent.event === "success") {
+  //     console.log("owner id", this.props.user._id);
+  //     this.props.selectedImage({
+  //       owner_id: this.props.user._id,
+  //       caption: "",
+  //       url: resultEvent.info.secure_url,
+  //     });
+  //   }
+  // };
+
+  // showWidget = (widget) => {
+  //   ////widget.open(null, { files: this.state.selectedImage });
+  //   window.cloudinary.openUploadWidget(
+  //     {
+  //       cloudName: "dsxr5ymph",
+  //       uploadPreset: "swapsies",
+  //       sources: ["local", "url", "google_drive", "dropbox"],
+  //     },
+  //     { files: this.state.selectedImage },
+  //     (error, result) => {}
+  //   );
+  // };
+
   render() {
     console.log(this.props);
+
+    // let widget = window.cloudinary.createUploadWidget(
+    //   {
+    //     cloudName: "dsxr5ymph",
+    //     uploadPreset: "swapsies",
+    //   },
+    //   (error, result) => {
+    //     this.checkUploadResult(result);
+    //   }
+    // );
+
     const {
       name,
       description,
@@ -132,6 +167,8 @@ class AddItem extends Component {
     } = this.state;
     return (
       <div className="main">
+        {/* <button onClick={this.showWidget}>Upload multiple photos</button> */}
+
         <form onSubmit={this.handleSubmit}>
           <div className="field">
             <label className="label">Add new item</label>
@@ -248,20 +285,25 @@ class AddItem extends Component {
             <label className="label">Add a photo</label>
             <div className="file has-name">
               <label className="file-label">
-                <input 
-                  className="file-input" 
-                  type="file" 
+                <input
+                  className="file-input"
+                  type="file"
                   name="itemImageUrl"
                   onChange={this.handleImageChange}
                 />
                 <span className="file-cta">
-                  <span className="file-label">
-                    Choose a file
-                  </span>
+                  <span className="file-label">Choose a file</span>
                 </span>
                 <span className="file-name">
-                  {this.state.selectedImage ? this.state.selectedImage.name : "filename"}
+                  {this.state.selectedImage
+                    ? this.state.selectedImage.name
+                    : "filename"}
+                  <span className="file-icon">
+                    <i className="fas fa-upload"></i>
+                  </span>
+                  <span className="file-label">Choose a file</span>
                 </span>
+                {/* <span className="file-name"></span> */}
               </label>
             </div>
           </div>
