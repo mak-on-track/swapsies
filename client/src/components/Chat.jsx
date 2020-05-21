@@ -72,7 +72,7 @@ class Chat extends Component {
         <div className="summary">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={item.itemImgPath} alt="item image"/>
+              <img src={item.itemImgPath ? item.itemImgPath : "https://images.unsplash.com/photo-1587459803401-9d685b63b2cd"} alt="item image"/>
             </figure>
           </div>
           <div className="media-content">
@@ -114,7 +114,7 @@ class Chat extends Component {
               </div>
             </div>
           </div>
-          <div className="control">
+          <div className="control gimmespace">
             <button
               type="submit"
               value="submit"
