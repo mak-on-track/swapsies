@@ -9,7 +9,7 @@ You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
 
 
 >[Here you will find the deployed version of this project.](https://swapsies-berlin.herokuapp.com/)
-
+<br />
 
 ## About
 - <b>Full stack web application built using Express, Node.js, MongoDB, and React.js.</b>
@@ -18,10 +18,12 @@ You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
 - Search / browse for items or services available to swap.
 - Private message other users and arrange a swap.
 
-
+<br />
 
 ## Demo
 - Coming Soon
+
+<br />
 
 ## Team
 - [alkico](https://github.com/alkico)
