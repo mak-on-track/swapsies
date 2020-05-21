@@ -42,7 +42,7 @@ class Dashboard extends Component {
 
     return (
       <div className="main">
-        <div className="card">
+        <div className="card card-dashboard">
           <div className="card-container">
             <div className="card-image" style={{ padding: "1.5rem" }}>
               <figure className="image is-128x128">
