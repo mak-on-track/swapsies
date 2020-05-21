@@ -176,7 +176,7 @@ class EditProfile extends Component {
                   </span>
                 </span>
                 <span className="file-name">
-                  {this.state.selectedImage ? this.state.selectedImage.name : "filename"}
+                  {this.state.selectedImage ? this.state.selectedImage.name : "No file chosen"}
                 </span>
               </label>
             </div>

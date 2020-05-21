@@ -297,7 +297,7 @@ class AddItem extends Component {
                 <span className="file-name">
                   {this.state.selectedImage
                     ? this.state.selectedImage.name
-                    : "filename"}
+                    : "No file chosen"}
                   <span className="file-icon">
                     <i className="fas fa-upload"></i>
                   </span>
