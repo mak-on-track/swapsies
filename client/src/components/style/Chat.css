@@ -1,3 +1,8 @@
 .chat-message {
   margin-bottom: 0.5rem;
 }
+
+.summary {
+  display: flex;
+  margin-bottom: 1rem;
+}

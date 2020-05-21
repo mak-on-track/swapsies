@@ -51,8 +51,8 @@ class Chat extends Component {
     const { item, messages, userSend, userReceive } = this.props.chat;
     const chatLog = messages.map((ele) => {
       return (
+        // List of single messages
         <ul className="chat-message">
-          {/* List of single messages */}
           <li> {ele.sentByOwner
             ? this.props.user._id === userReceive._id
               ? "You"
@@ -60,21 +60,19 @@ class Chat extends Component {
             : this.props.user._id === userSend._id
             ? "You"
             : userSend.username}: {" "} {ele.msg}</li>
-          <li>
-            
+          <li>  
             Sent:{" "}{moment(ele.time).format("LLL")}
           </li>
         </ul>
       );
     });
-
     return (
       <>
         {/* Summary of item for chat */}
-        <div style={{"display": "flex"}}>
+        <div className="summary">
           <div className="media-left">
-            <figure class="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"/>
+            <figure className="image is-64x64">
+              <img src={item.itemImgPath} alt="item image"/>
             </figure>
           </div>
           <div className="media-content">
