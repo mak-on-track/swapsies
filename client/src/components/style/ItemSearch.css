@@ -2,9 +2,9 @@
   margin: 1rem;
 }
 
-.card-itemsearch {
+/* .card-itemsearch {
   width: 30rem;
-}
+} */
 
 .flex-container {
   display: flex;
@@ -25,9 +25,11 @@
   display: block;
   height: 50vh;
   width: auto;
+  object-fit: contain;
 }
 
 .item-image-thing img {
+  display: block;
   height: 50vh;
   width: 50vh;
   object-fit: contain;
@@ -37,6 +39,6 @@
   margin-top: 2rem;
 }
 
-.custom-media-left {
-  border: solid yellow;
+.custom {
+  object-fit: contain;
 }

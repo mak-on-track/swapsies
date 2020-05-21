@@ -148,41 +148,23 @@ class ItemSearch extends Component {
         <div className="card card-itemsearch">
           <div className="card-content">
             <div className="media" style={{ marginBottom: "0.7rem" }}>
-              <div className="media-left image box">
-                {/* <div className="media-left"> */}
-                {/* <figure className="image is-48x48"> */}
-                <figure className="item-image-thing">
-                  {/* {thing.itemImgPath !== "" ? ( */}
+              <div className="media-left">
+                <figure className="item-image">
                   <img src={thing.itemImgPath} alt="picture of thing" />
-                  {/* ) : (
-                    <img
-                      src="https://images.unsplash.com/photo-1551298370-9d3d53740c72"
-                      alt="default picture of thing"
-                    />
-                  )} */}
                 </figure>
               </div>
+            </div>
+
+            <div className="content">
               <div className="media-content">
                 <p className="title is-4">{thing.name}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {thing.location}
                 </p>
-                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                <p className="subtitle is-7" style={{ marginBottom: "0.5rem" }}>
                   Favourites: {thing.favourites}
                 </p>
               </div>
-            </div>
-
-            <div className="content">
-              {/* <div className="media-content">
-                <p className="title is-4">{thing.name}</p>
-                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
-                  {thing.location}
-                </p>
-                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
-                  Favourites: {thing.favourites}
-                </p>
-              </div> */}
               {thing.description}
               <br />
               Status: {thing.status}
@@ -220,32 +202,25 @@ class ItemSearch extends Component {
               className="flex-container-center-content"
               style={{ marginBottom: "0.7rem" }}
             >
-              <div className="media-left image box">
+              <div className="media-left">
+                {/* <div class="boxed-in"> */}
                 <figure className="item-image">
-                  {/* <figure className="image is-48x48"> */}
-                  {/* {service.itemImgPath !== "" ? ( */}
                   <img src={service.itemImgPath} alt="picture of service" />
-                  {/* ) : (
-                    <img
-                      src="https://images.unsplash.com/photo-1534073828943-f801091bb18c"
-                      alt="default picture of service"
-                    />
-                  )} */}
                 </figure>
+                {/* </div> */}
               </div>
               <div className="media-content">
                 <p className="title is-4">{service.name}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {service.location}
                 </p>
-                <p className="subtitle is-6">{service.description}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   Favourites: {service.favourites}
                 </p>
               </div>
             </div>
 
-            {/* <div className="content">
+            <div className="content">
               {service.description}
               {service.owner._id === userId ? (
                 <p>My post</p>
@@ -257,7 +232,7 @@ class ItemSearch extends Component {
                   </a>
                 </p>
               )}
-            </div> */}
+            </div>
           </div>
           <footer class="card-footer">
             <a href="#" class="card-footer-item">
