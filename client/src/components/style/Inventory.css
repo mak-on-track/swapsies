@@ -1,0 +1,22 @@
+.inventory-card {
+  width: 40rem;
+  margin-bottom: .5rem !important;
+
+}
+
+.has-margin-bottom-1 {
+  margin-bottom: .5rem !important;
+}
+
+
+.has-margin-top-1 {
+  margin-top: 2rem !important;
+}
+
+.inventory-button button{
+  margin-right: .5rem;
+}
+
+.inventory-card p {
+  font-size: .9rem;
+}

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
+import "./style/Inventory.css";
 
 class ItemInventory extends Component {
   deleteItem = (event) => {
@@ -26,54 +27,54 @@ class ItemInventory extends Component {
       console.log(thing.itemImgPath, "thing.itemimgpath");
       return (
         <>
-          <div className="card">
+          <div className="card inventory-card" key={thing._id}>
             <div className="card-content">
-              <div class="media">
-                <div className="card-image">
+              <div className="media">
+                <div class="media-left">
                   <figure class="image is-96x96">
                     <img src={thing.itemImgPath} alt="picture of thing" />
                   </figure>
                 </div>
 
-                <div className="card-content">
-                  <p>Name: {thing.name}</p>
+                <div className="content">
+                  <p className="title is-5 has-margin-bottom-1">{thing.name}</p>
 
-                  <p>Category: {thing.category}</p>
-                  <p>Description: {thing.description}</p>
+                  <p className="has-margin-bottom-1">
+                    Category: {thing.category}
+                  </p>
+                  <p className="has-margin-bottom-1">
+                    Description: {thing.description}
+                  </p>
+
+                  {this.props.user._id === this.props.loggedInUser._id ? (
+                    <>
+                      <p>Status: {thing.status}</p>
+                      <div className="buttons are-small inventory-button">
+                        <Link to={`/items/${thing._id}`}>
+                          <button className="button">Edit</button>
+                        </Link>
+                        <button
+                          id={thing._id}
+                          name={thing}
+                          value={thing._id}
+                          onClick={this.deleteItem}
+                          className="button"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <p>Status: {thing.status}</p>
+                      <Link to={`/swap/${thing._id}`}>
+                        <button id={thing._id}>Offer Swap</button>
+                      </Link>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
-            {this.props.user._id === this.props.loggedInUser._id ? (
-              <>
-                {/*    <p>Status: {thing.status}</p> */}
-
-                <footer class="card-footer">
-                  <br />
-                  <Link to={`/items/${thing._id}`}>
-                    <button>Edit</button>
-                  </Link>
-                  <button
-                    id={thing._id}
-                    name={thing}
-                    value={thing._id}
-                    onClick={this.deleteItem}
-                  >
-                    Delete
-                  </button>
-                </footer>
-              </>
-            ) : (
-              <>
-                {/*   <div>
-                  <p>Status: {thing.status}</p>
-                  </div> */}
-                <footer class="card-footer">
-                  <Link to={`/swap/${thing._id}`}>
-                    <button id={thing._id}>Offer Swap</button>
-                  </Link>
-                </footer>
-              </>
-            )}
           </div>
         </>
       );
@@ -91,7 +92,7 @@ class ItemInventory extends Component {
           <></>
         ) : (
           <div>
-            <h4>List of Things</h4>
+            <h4 className="title is-4 has-margin-top-1">List of Things</h4>
             <div> {displayThings}</div>
           </div>
         )}
