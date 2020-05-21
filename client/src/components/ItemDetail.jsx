@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import "./style/ItemDetail.css"
 import axios from "axios";
 
 class ItemDetail extends Component {
@@ -201,13 +202,24 @@ class ItemDetail extends Component {
             </div>
 
             <div className="field">
-              <label class="label">Update photo</label>
-              <div className="control">
-                <input
-                  type="file"
-                  name="itemImageUrl"
-                  onChange={this.handleImageChange}
-                />
+              <label className="label">Update photo</label>
+              <div className="file has-name">
+                <label className="file-label">
+                  <input 
+                    className="file-input" 
+                    type="file" 
+                    name="itemImageUrl" 
+                    onChange={this.handleImageChange}
+                  />
+                  <span className="file-cta">
+                    <span className="file-label">
+                      Choose a file
+                    </span>
+                  </span>
+                  <span className="file-name">
+                    {this.state.selectedImage ? this.state.selectedImage.name : "No file chosen"}
+                  </span>
+                </label>
               </div>
             </div>
 
@@ -281,7 +293,7 @@ class ItemDetail extends Component {
               </div>
             </div>
 
-            <label class="label">Location:</label>
+            <label class="label">Location</label>
             <div className="select">
               <select
                 name="location"
@@ -336,7 +348,11 @@ class ItemDetail extends Component {
               </>
             )}
             <div className="control">
-              <button type="submit" value="add" class="button is-link is-light">
+              <button 
+                type="submit"
+                value="add"
+                className="button is-link is-light gimmespace"
+              >
                 Edit
               </button>
             </div>
