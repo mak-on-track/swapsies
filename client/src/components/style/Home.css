@@ -33,6 +33,7 @@
   color: black /*  var(--primary-color) */;
   min-width: 40vw;
   max-width: 90vw;
+  transform:translateY(50px);
   padding: 1rem 0px;
   display: flex;
   flex-direction: column;
