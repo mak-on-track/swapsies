@@ -31,9 +31,9 @@
   border-radius: 2rem;
   text-align: center;
   color: black /*  var(--primary-color) */;
-  min-width: 40vw;
-  max-width: 90vw;
-  transform:translateY(50px);
+  width: 30rem;
+  max-width: 85vw;
+  transform:translateY(10vh);
   padding: 1rem 0px;
   display: flex;
   flex-direction: column;

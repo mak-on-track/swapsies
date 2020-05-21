@@ -26,6 +26,7 @@ class ItemDetail extends Component {
       "Moabit",
       "Neukölln",
       "Schöneberg",
+      "Prenzlauer Berg",
       "Wedding",
       "Wilmersdorf",
       "Janz weit draußen",

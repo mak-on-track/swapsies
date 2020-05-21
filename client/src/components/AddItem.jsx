@@ -19,6 +19,7 @@ class AddItem extends Component {
       "Mitte",
       "Moabit",
       "Neukölln",
+      "Prenzlauer Berg",
       "Schöneberg",
       "Wedding",
       "Wilmersdorf",
