@@ -50,8 +50,9 @@ class EditProfile extends Component {
   };
 
   handleWishlistChange = (event) => {
+    
     const wish = this.state.addWish;
-    console.log(wish);
+    if (wish === "") return
     this.setState({
       wishList: [...this.state.wishList, wish],
       addWish: "",
@@ -119,9 +120,7 @@ class EditProfile extends Component {
   };
 
   render() {
-    // console.log("this is the props", this.props);
-    // console.log("this is the user", this.state);
-    //console.log("this is the wishlist on editprofile line107", wishList);
+
     const {
       username,
       email,
@@ -248,20 +247,18 @@ class EditProfile extends Component {
                 ) : (
                   wishList.map((wish) => {
                     return (
-
-                        <li key={wish}>
-                          {wish}
-                          <button
-                            className="button is-light"
-                            type="button"
-                            name="deleteWish"
-                            value={wish}
-                            onClick={this.handleDeleteWish}
-                          >
-                            Delete wish
-                          </button>
-                        </li>
-
+                      <li key={wish}>
+                        {wish}
+                        <button
+                          className="button is-light"
+                          type="button"
+                          name="deleteWish"
+                          value={wish}
+                          onClick={this.handleDeleteWish}
+                        >
+                          Delete wish
+                        </button>
+                      </li>
                     );
                   })
                 )}
@@ -275,7 +272,7 @@ class EditProfile extends Component {
                   placeholder="My wish"
                   name="addWish"
                   value={addWish}
-                  onChange={this.handleChange}
+                  onChange={this.handleChange}              
                 />
               </div>
               <div className="control">

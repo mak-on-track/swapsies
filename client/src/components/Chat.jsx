@@ -109,6 +109,7 @@ class Chat extends Component {
                     onChange={this.handleChange}
                     id="message"
                     placeholder="Your message here"
+                    required
                   ></textarea>
                 </div>
               </div>
