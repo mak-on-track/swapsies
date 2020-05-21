@@ -97,7 +97,6 @@ class OtherUser extends Component {
           <hr />
 
           <div>
-            <h2>Inventory:</h2>
             <ItemInventory
               user={this.state.otherUser}
               loggedInUser={this.props.user}

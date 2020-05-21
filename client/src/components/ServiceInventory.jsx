@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./style.css";
+import "./style/Inventory.css";
 
 class ServiceInventory extends Component {
   // state = {
@@ -35,41 +36,54 @@ class ServiceInventory extends Component {
 
     const displayServices = filteredServices.map((service) => {
       return (
-        <div className="main">
-          <div key={service._id}>
-            <ul>
-              <li>Name: {service.name}</li>
-              <li>
-                <img src={service.itemImgPath} alt="picture of service" />
-              </li>
+        <div className="card inventory-card">
+          <div className="card-content">
+            <div className="media">
+              <div class="media-left">
+                <figure class="image is-96x96">
+                  <img src={service.itemImgPath} alt="picture of thing" />
+                </figure>
+              </div>
 
-              <li>Description: {service.description}</li>
-              <li>Location(s): {service.location}</li>
+              <div className="content">
+                <p className="title is-5 has-margin-bottom-1">{service.name}</p>
+                <p className="has-margin-bottom-1">
+                  Location: {service.location}
+                </p>
+                <p className="has-margin-bottom-1">
+                  Description: {service.description}
+                </p>
 
-              {this.props.user._id === this.props.loggedInUser._id ? (
-                <>
-                  <Link to={`/items/${service._id}`}>
-                    <button>Edit</button>
-                  </Link>
-                  <button
-                    id={service._id}
-                    name={service}
-                    value={service._id}
-                    onClick={this.deleteService}
-                  >
-                    Delete
-                  </button>
-                </>
-              ) : (
-                <>
-                  <li>Status: {service.status}</li>
-                  <Link to={`/swap/${service._id}`}>
-                    <button id={service._id}>Offer Swap</button>
-                  </Link>
-                </>
-              )}
-            </ul>
-            <hr />
+                {this.props.user._id === this.props.loggedInUser._id ? (
+                  <>
+                    <div className="buttons are-small inventory-button">
+                      <Link to={`/items/${service._id}`}>
+                        <button className="button">Edit</button>
+                      </Link>
+                      <button
+                        id={service._id}
+                        name={service}
+                        value={service._id}
+                        onClick={this.deleteService}
+                        className="button"
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="buttons are-small inventory-button">
+                      <Link to={`/swap/${service._id}`}>
+                        <button className="button" id={service._id}>
+                          Offer Swap
+                        </button>
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -81,9 +95,9 @@ class ServiceInventory extends Component {
         this.props.loggedInUser._id === this.props.user._id ? (
           <></>
         ) : (
-          <div>
-            <h4>List of Services</h4>
-            <div> {displayServices}</div>
+          <div >
+            <h4 className="title is-4 has-margin-top-1">List of Services</h4>
+            <div className="inventory-container"> {displayServices}</div>
           </div>
         )}
       </div>

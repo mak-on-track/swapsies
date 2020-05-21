@@ -43,12 +43,15 @@ class ItemInventory extends Component {
                     Category: {thing.category}
                   </p>
                   <p className="has-margin-bottom-1">
+                    Location: {thing.location}
+                  </p>
+                  <p className="has-margin-bottom-1">
                     Description: {thing.description}
                   </p>
 
                   {this.props.user._id === this.props.loggedInUser._id ? (
                     <>
-                      <p>Status: {thing.status}</p>
+                      <p className="has-margin-bottom-1">Status: {thing.status}</p>
                       <div className="buttons are-small inventory-button">
                         <Link to={`/items/${thing._id}`}>
                           <button className="button">Edit</button>
@@ -66,10 +69,12 @@ class ItemInventory extends Component {
                     </>
                   ) : (
                     <>
-                      <p>Status: {thing.status}</p>
+                      <p className="has-margin-bottom-1">Status: {thing.status}</p>
+                       <div className="buttons are-small inventory-button">
                       <Link to={`/swap/${thing._id}`}>
-                        <button id={thing._id}>Offer Swap</button>
+                        <button className="button" id={thing._id}>Offer Swap</button>
                       </Link>
+                      </div>
                     </>
                   )}
                 </div>
@@ -93,7 +98,7 @@ class ItemInventory extends Component {
         ) : (
           <div>
             <h4 className="title is-4 has-margin-top-1">List of Things</h4>
-            <div> {displayThings}</div>
+            <div className="inventory-container"> {displayThings}</div>
           </div>
         )}
       </div>
