@@ -254,6 +254,7 @@ class AddItem extends Component {
                     onChange={this.handleChange}
                     id="description"
                     placeholder="Add a description"
+                    rows="3"
                   ></textarea>
                 </div>
               </div>
