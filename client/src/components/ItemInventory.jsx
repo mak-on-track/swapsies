@@ -26,18 +26,28 @@ class ItemInventory extends Component {
       console.log(thing.itemImgPath, "thing.itemimgpath");
       return (
         <>
-          <div className="main" key={thing._id}>
-            <ul>
-              <li>Name: {thing.name}</li>
-              <li>
-                <img src={thing.itemImgPath} alt="picture of thing" />
-              </li>
-              <li>Category: {thing.category}</li>
-              <li>Description: {thing.description}</li>
+          <div className="card">
+            <div className="card-content">
+              <div class="media">
+                <div className="card-image">
+                  <figure class="image is-96x96">
+                    <img src={thing.itemImgPath} alt="picture of thing" />
+                  </figure>
+                </div>
 
-              {this.props.user._id === this.props.loggedInUser._id ? (
-                <>
-                  <li>Status: {thing.status}</li>
+                <div className="card-content">
+                  <p>Name: {thing.name}</p>
+
+                  <p>Category: {thing.category}</p>
+                  <p>Description: {thing.description}</p>
+                </div>
+              </div>
+            </div>
+            {this.props.user._id === this.props.loggedInUser._id ? (
+              <>
+                {/*    <p>Status: {thing.status}</p> */}
+
+                <footer class="card-footer">
                   <br />
                   <Link to={`/items/${thing._id}`}>
                     <button>Edit</button>
@@ -50,17 +60,20 @@ class ItemInventory extends Component {
                   >
                     Delete
                   </button>
-                </>
-              ) : (
-                <>
-                  <li>Status: {thing.status}</li>
+                </footer>
+              </>
+            ) : (
+              <>
+                {/*   <div>
+                  <p>Status: {thing.status}</p>
+                  </div> */}
+                <footer class="card-footer">
                   <Link to={`/swap/${thing._id}`}>
                     <button id={thing._id}>Offer Swap</button>
                   </Link>
-                </>
-              )}
-            </ul>
-            <hr />
+                </footer>
+              </>
+            )}
           </div>
         </>
       );
