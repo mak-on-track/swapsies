@@ -58,8 +58,8 @@ class Dashboard extends Component {
               </figure>
             </div>
 
-            <div className="media" style={{ marginBottom: "0.5rem" }}>
-              <div className="media-content">
+            <div className="media">
+              <div className="media-content dashboard">
                 <p className="title is-2">{username}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {email ? email : null}
@@ -75,13 +75,15 @@ class Dashboard extends Component {
           </div>
           <div className="content wishlist">
             <b>Wishlist</b>
+            <ul className="wish-items">
               {wishList.length > 0 ? (
-                  wishList.map((wish) => {
-                    return <li key={wish}>{wish}</li>
-                  })
+                wishList.map((wish) => {
+                  return <li key={wish}>{wish}</li>
+                })
               ) : (
-                <p>Nothing yet.</p>
+                <p className="empty-item">Nothing yet.</p>
               )}
+            </ul>
           </div>
           <footer className="card-footer" style={{ padding: "0.5rem" }}>
             <a href="/edit" className="card-footer-item">
