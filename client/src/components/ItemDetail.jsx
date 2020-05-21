@@ -175,15 +175,15 @@ class ItemDetail extends Component {
       return (
         <div className="main">
           <form onSubmit={this.handleSubmit}>
-            <div class="field">
+            <div className="field">
               <label class="label">Edit {item.name}</label>
             </div>
 
             {/* Dropdown for selecting thing or service */}
-            <div class="field">
+            <div className="field">
               <label class="label">Is this a service or thing?</label>
-              <div class="control">
-                <div class="select">
+              <div className="control">
+                <div className="select">
                   <select
                     id="type"
                     value={this.state.type}
@@ -199,9 +199,9 @@ class ItemDetail extends Component {
               </div>
             </div>
 
-            <div class="field">
+            <div className="field">
               <label class="label">Update photo</label>
-              <div class="control">
+              <div className="control">
                 <input
                   type="file"
                   name="itemImageUrl"
@@ -214,10 +214,10 @@ class ItemDetail extends Component {
             {this.state.type !== "Service" && (
               <>
                 {/* Dropdown for selecting category */}
-                <div class="field">
+                <div className="field">
                   <label class="label">Category</label>
-                  <div class="control">
-                    <div class="select">
+                  <div className="control">
+                    <div className="select">
                       <select
                         id="category"
                         name="category"
@@ -243,11 +243,11 @@ class ItemDetail extends Component {
             )}
 
             {/* Name of item */}
-            <div class="field">
+            <div className="field">
               <label htmlFor="name" class="label">
                 Name
               </label>
-              <div class="control">
+              <div className="control">
                 <input
                   class="input"
                   type="text"
@@ -262,11 +262,11 @@ class ItemDetail extends Component {
             </div>
 
             {/* Description of item */}
-            <div class="field">
+            <div className="field">
               <label htmlFor="description" class="label">
                 Description
               </label>
-              <div class="control">
+              <div className="control">
                 <input
                   class="input"
                   type="text"
@@ -300,9 +300,9 @@ class ItemDetail extends Component {
             {/* Check for whether type is thing to have functionality of adding image */}
             {item.type !== "Service" && (
               <>
-                {/*  <div class="field">
+                {/*  <div className="field">
               <label class="label">Add photos</label>
-              <div class="control">
+              <div className="control">
                 <input
                   type="file"
                   name="itemImageUrl"
@@ -319,7 +319,7 @@ class ItemDetail extends Component {
                 <label htmlFor="status" class="label">
                   Status
                 </label>
-                <div class="select">
+                <div className="select">
                   <select
                     id="status"
                     name="status"
@@ -334,7 +334,7 @@ class ItemDetail extends Component {
                 </div>
               </>
             )}
-            <div class="control">
+            <div className="control">
               <button type="submit" value="add" class="button is-link is-light">
                 Edit
               </button>

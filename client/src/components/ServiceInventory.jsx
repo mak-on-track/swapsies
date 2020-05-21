@@ -39,7 +39,7 @@ class ServiceInventory extends Component {
         <div className="card inventory-card">
           <div className="card-content">
             <div className="media">
-              <div class="media-left">
+              <div className="media-left">
                 <figure class="image is-96x96">
                   <img src={service.itemImgPath} alt="picture of thing" />
                 </figure>

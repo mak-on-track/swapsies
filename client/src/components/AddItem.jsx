@@ -203,11 +203,11 @@ class AddItem extends Component {
           </div>
 
           {/* Description of item */}
-          <div class="field">
+          <div className="field">
             <label class="label">Description</label>
-            <div class="field-body">
-              <div class="field">
-                <div class="control">
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
                   <textarea
                     className="textarea"
                     type="text"
