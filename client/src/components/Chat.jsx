@@ -55,13 +55,13 @@ class Chat extends Component {
         <ul className="chat-message">
           <li> {ele.sentByOwner
             ? this.props.user._id === userReceive._id
-              ? "You"
-              : userReceive.username
+              ? <b>You</b>
+              : <b>{userReceive.username}</b>
             : this.props.user._id === userSend._id
-            ? "You"
-            : userSend.username}: {" "} {ele.msg}</li>
+            ? <b>You</b>
+            : <b>{userSend.username}</b>}: {" "} {ele.msg}</li>
           <li>  
-            Sent:{" "}{moment(ele.time).format("LLL")}
+            <b>Sent:{" "}</b>{moment(ele.time).format("LLL")}
           </li>
         </ul>
       );
@@ -108,6 +108,7 @@ class Chat extends Component {
                     value={this.state.message}
                     onChange={this.handleChange}
                     id="message"
+                    rows="2"
                     placeholder="Your message here"
                     required
                   ></textarea>
