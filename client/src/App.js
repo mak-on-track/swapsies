@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Redirect, Route } from "react-router-dom";
 
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -99,14 +99,21 @@ class App extends Component {
           <Route
             exact
             path="/add"
-            render={(props) => (
-              <AddItem
-                user={this.state.user}
-                setUser={this.setUser}
-                getData={this.getData}
-                {...props}
-              />
-            )}
+            render={props => {
+              if (this.state.user) {
+                return (
+                  <AddItem
+                    user={this.state.user}
+                    setUser={this.setUser}
+                    getData={this.getData}
+                    {...props}
+                  />
+                )
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
+
           />
           <Route
             exact
