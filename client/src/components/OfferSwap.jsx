@@ -121,6 +121,7 @@ class OfferSwap extends Component {
                       placeholder="Hey! Care to swap?"
                       type="text"
                       value={this.state.message}
+                      rows="3"
                     />
                     <div className="control" style={{"marginTop":"0.5rem"}}>
                       <button 

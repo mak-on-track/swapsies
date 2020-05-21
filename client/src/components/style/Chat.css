@@ -15,3 +15,7 @@
   margin: 10px;
   padding: 10px;
 }
+
+.chat-message b{
+  font-weight: 500;
+}

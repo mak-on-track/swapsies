@@ -232,6 +232,7 @@ class EditProfile extends Component {
                     onChange={this.handleChange}
                     id="bio"
                     placeholder="Add your bio"
+                    rows="3"
                   ></textarea>
                 </div>
               </div>
