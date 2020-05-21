@@ -6,8 +6,6 @@
   margin: 2rem 0rem;
 }
 
-
-
 .card {
   width: 50rem;
 }
@@ -24,6 +22,7 @@
   columns: 3;
   -webkit-columns: 3;
   -moz-columns: 3;
+  margin-left: 1.1rem;
 }
 
 .wishlist {
@@ -31,6 +30,12 @@
   margin-left: 2rem;
 }
 
-.media-content {
+.empty-item {
+  margin-left: -1.1rem;
+}
+
+.media-content, dashboard {
   margin-top: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 0.5rem;
 }
