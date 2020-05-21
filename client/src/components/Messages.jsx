@@ -41,14 +41,12 @@ class Messages extends Component {
 
     const incomingMsg = incomingFilter.map((msg) => {
       return (
-        <div className="main">
-          <Chat
-            setUser={this.props.setUser}
-            setChat={this.setChat}
-            chat={msg}
-            user={this.props.user}
-          />
-        </div>
+        <Chat
+          setUser={this.props.setUser}
+          setChat={this.setChat}
+          chat={msg}
+          user={this.props.user}
+        />
       );
     });
 
@@ -58,29 +56,29 @@ class Messages extends Component {
 
     const outgoingMsg = outgoingFilter.map((msg) => {
       return (
-        <div className="main">
-          <Chat
-            setUser={this.props.setUser}
-            chat={msg}
-            setChat={this.setChat}
-            user={this.props.user}
-          />
-        </div>
+        <Chat
+          setUser={this.props.setUser}
+          chat={msg}
+          setChat={this.setChat}
+          user={this.props.user}
+        />
       );
     });
 
     return (
-      <div className="main">
-        <h2>Incoming Offers</h2>
-        <hr />
-        {incomingMsg.length < 1 && <p>No Incoming Offers</p>}
-        {incomingMsg}
-        <hr />
-        <hr />
-        <h2>Sent Offers</h2>
-        <hr />
-        {outgoingMsg.length < 1 && <p>No Outgoing Offers</p>}
-        {outgoingMsg}
+      <div className="main in-out-msg">
+
+        <div className="field thread">
+          <h4 className="title is-4">Incoming</h4>
+          {incomingMsg.length < 1 && <p>No received messages</p>}
+          {incomingMsg}
+        </div>
+
+        <div className="field thread">
+          <h4 className="title is-4">Sent</h4>
+          {outgoingMsg.length < 1 && <p>No sent messages</p>}
+          {outgoingMsg}
+        </div>
       </div>
     );
   }

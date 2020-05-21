@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./style.css"
+import "./style.css";
+import "./style/Chat.css";
+import moment from "moment";
 
 class Chat extends Component {
   state = {
@@ -47,49 +49,84 @@ class Chat extends Component {
   render() {
 
     const { item, messages, userSend, userReceive } = this.props.chat;
-    console.log(item.name)
     const chatLog = messages.map((ele) => {
       return (
-        <div className="main">
-          <ul>
-        
-            <li> {ele.sentByOwner
-                ? this.props.user._id === userReceive._id
-                  ? "You"
-                  : userReceive.username
-                : this.props.user._id === userSend._id
-                ? "You"
-                : userSend.username}: {" "} {ele.msg}</li>
-                <li>
-               Sent:{" "}{ele.time}
-            </li>
-          </ul>
-        </div>
+        <ul className="chat-message">
+          {/* List of single messages */}
+          <li> {ele.sentByOwner
+            ? this.props.user._id === userReceive._id
+              ? "You"
+              : userReceive.username
+            : this.props.user._id === userSend._id
+            ? "You"
+            : userSend.username}: {" "} {ele.msg}</li>
+          <li>
+            
+            Sent:{" "}{moment(ele.time).format("LLL")}
+          </li>
+        </ul>
       );
     });
 
     return (
-      <div className="main">
-        <h3>Item: {item.name}</h3>
-        <ul>
-           <li>From: {this.props.user._id === userSend._id ? <Link to={`/user/${userReceive._id}`}>{userReceive.username}</Link>: <Link to={`/user/${userSend._id}`}>{userSend.username}</Link> }</li>
-          <li>Type: {item.type}</li>
-          <li>Description: {item.description}</li>
-          <li>Status: {item.status}</li>
-          
-        </ul>
-        <h2>Messages:</h2>
+      <>
+        {/* Summary of item for chat */}
+        <div style={{"display": "flex"}}>
+          <div className="media-left">
+            <figure class="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image"/>
+            </figure>
+          </div>
+          <div className="media-content">
+            <div className="content">
+              <p>
+                <strong>{item.name}</strong><br/>
+                <small>
+                  {item.type} {" · "}{item.status}
+                <br/>
+                  from {" "}{this.props.user._id === userSend._id ? <a href={`/user/${userReceive._id}`}>{userReceive.username}</a>: <a href={`/user/${userSend._id}`}>{userSend.username}</a> }
+                </small>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="content">
+          {item.description}
+        </div>
+        <h5 className="title is-5">Thread</h5>
         {chatLog}
+
+        {/* Send message box */}
         <form onSubmit={this.handleSubmit}>
-          <textarea
-            id="message"
-            onChange={this.handleChange}
-            value={this.state.message}
-            placeholder="Your message here"
-          />
-          <button>Send</button>
+          <div className="field">
+            <div className="field-body">
+              <div className="field">
+                <div className="control">
+
+                  <textarea
+                    className="textarea"
+                    type="text"
+                    name="message"
+                    value={this.state.message}
+                    onChange={this.handleChange}
+                    id="message"
+                    placeholder="Your message here"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="control">
+            <button
+              type="submit"
+              value="submit"
+              className="button is-light"
+            >
+              Send
+            </button>
+          </div>
         </form>
-      </div>
+      </>
     );
   }
 }
