@@ -50,19 +50,21 @@ class OtherUser extends Component {
         <div className="main">
           
           <div className="card">
-            
-            <div className="card-image" style={{"padding": "1.5rem"}}>
-              <figure className="image is-128x128">
-                <img
-                  className="is-rounded"
-                  src={
-                    profileImgPath
-                      ? profileImgPath
-                      : "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
-                  }
-                  alt="profileImg"
-                />
-              </figure>
+            <div className="card-container">
+
+              <div className="card-image" style={{"padding": "1.5rem"}}>
+                <figure className="image is-128x128">
+                  <img
+                    className="is-rounded"
+                    src={
+                      profileImgPath
+                        ? profileImgPath
+                        : "https://images.unsplash.com/photo-1534528741775-53994a69daeb"
+                    }
+                    alt="profileImg"
+                  />
+                </figure>
+              </div>
             </div>
 
             <div className="card-content">
