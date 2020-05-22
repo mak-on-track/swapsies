@@ -67,13 +67,19 @@ class App extends Component {
           <Route
             exact
             path="/edit"
-            render={(props) => (
-              <EditProfile
-                user={this.state.user}
-                setUser={this.setUser}
-                {...props}
-              />
-            )}
+            render={(props) => {
+              if (this.state.user) {
+                return (
+                  <EditProfile
+                    user={this.state.user}
+                    setUser={this.setUser}
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           <Route
             exact
@@ -83,13 +89,19 @@ class App extends Component {
           <Route
             exact
             path="/messages/:id"
-            render={(props) => (
-              <Messages
-                setUser={this.setUser}
-                user={this.state.user}
-                {...props}
-              />
-            )}
+            render={(props) => {
+              if (this.state.user) {
+                return (
+                  <Messages
+                    setUser={this.setUser}
+                    user={this.state.user}
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           <Route
             exact
@@ -99,7 +111,7 @@ class App extends Component {
           <Route
             exact
             path="/add"
-            render={props => {
+            render={(props) => {
               if (this.state.user) {
                 return (
                   <AddItem
@@ -108,34 +120,45 @@ class App extends Component {
                     getData={this.getData}
                     {...props}
                   />
-                )
+                );
               } else {
                 return <Redirect to="/" />;
               }
             }}
-
           />
           <Route
             exact
             path="/swap/:item"
-            render={(props) => (
-              <OfferSwap
-                user={this.state.user}
-                setUser={this.setUser}
-                {...props}
-              />
-            )}
+            render={(props) => {
+              if (this.state.user) {
+                return (
+                  <OfferSwap
+                    user={this.state.user}
+                    setUser={this.setUser}
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           <Route
             exact
             path="/items/:id"
-            render={(props) => (
-              <ItemDetail
-                user={this.state.user}
-                setUser={this.setUser}
-                {...props}
-              />
-            )}
+            render={(props) => {
+              if (this.state.user) {
+                return (
+                  <ItemDetail
+                    user={this.state.user}
+                    setUser={this.setUser}
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           {/* <Route
             exact
@@ -145,40 +168,65 @@ class App extends Component {
           <Route
             exact
             path="/user/:userId"
-            render={(props) => (
-              <OtherUser
-                user={this.state.user}
-                setUser={this.setUser}
-                {...props}
-              />
-            )}
+            render={(props) => {
+              if (this.state.user) {
+                return (
+                  <OtherUser
+                    user={this.state.user}
+                    setUser={this.setUser}
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           <Route
             exact
             path="/search"
-            render={(props) => (
-              <ItemSearch
-                itemsList={this.state.allItems}
-                user={this.state.user}
-                {...props}
-              />
-            )}
+            render={(props) => {
+              if (this.state.user) {
+                return (
+                  <ItemSearch
+                    itemsList={this.state.allItems}
+                    user={this.state.user}
+                    {...props}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           <Route
             exact
             path="/myfavs"
-            render={(props) => <Favourites {...props} />}
+            render={(props) => {
+              if (this.state.user) {
+                return <Favourites {...props} />;
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
+
           <Route
             exact
             path="/dashboard"
-            render={(props) => (
-              <Dashboard
-                setUser={this.setUser}
-                itemsList={this.state.allItems}
-                user={this.state.user}
-              />
-            )}
+            render={(props) => {
+              if (this.state.user) {
+                return (
+                  <Dashboard
+                    setUser={this.setUser}
+                    itemsList={this.state.allItems}
+                    user={this.state.user}
+                  />
+                );
+              } else {
+                return <Redirect to="/" />;
+              }
+            }}
           />
           <Route exact path="/:notfound" component={NotFound} />
         </Switch>
