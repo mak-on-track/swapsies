@@ -91,7 +91,7 @@ class Chat extends Component {
         <div className="content">
           {item.description}
         </div>
-        <h5 className="title is-5">Thread</h5>
+        <h5 className="title is-5 is-size-6-mobile">Thread</h5>
         {chatLog}
 
         {/* Send message box */}

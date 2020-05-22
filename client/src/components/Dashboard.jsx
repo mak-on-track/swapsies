@@ -60,7 +60,7 @@ class Dashboard extends Component {
 
             <div className="media">
               <div className="media-content dashboard">
-                <p className="title is-2">{username}</p>
+                <p className="title is-2 is-size-4-mobile">{username}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {email ? email : null}
                   {email && location ? " · " : null}

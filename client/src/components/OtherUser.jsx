@@ -68,7 +68,7 @@ class OtherUser extends Component {
             <div className="card-content">
               <div className="media" style={{ marginBottom: "0.5rem" }}>
                 <div className="media-content">
-                  <p className="title is-4">{username}</p>
+                  <p className="title is-4 is-size-5-mobile">{username}</p>
                   <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                     {email ? email : null}
                     {email && location ? " · " : null}

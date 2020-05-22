@@ -37,7 +37,7 @@ class ItemInventory extends Component {
                 </div>
 
                 <div className="content">
-                  <p className="title is-5 has-margin-bottom-1">{thing.name}</p>
+                  <p className="title is-5 is-size-6-mobile has-margin-bottom-1">{thing.name}</p>
 
                   <p className="has-margin-bottom-1">
                     Category: {thing.category}
@@ -97,7 +97,7 @@ class ItemInventory extends Component {
           <></>
         ) : (
           <div>
-            <h4 className="title is-4 has-margin-top-1">List of Things</h4>
+            <h4 className="title is-4 is-size-5-mobile has-margin-top-1">List of Things</h4>
             <div className="inventory-container"> {displayThings}</div>
           </div>
         )}
