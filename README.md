@@ -27,8 +27,8 @@ You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
 
 ## Team
 - [alkico](https://github.com/alkico)
-- [bl00dymarie](https://github.com/orgs/mok-trial/people/bl00dymarie/)
-- [karlkristopher](https://github.com/orgs/mok-trial/people/karlkristopher/)
+- [bl00dymarie](https://github.com//bl00dymarie/)
+- [karlkristopher](https://github.com/karlkristopher/)
 
 
 
