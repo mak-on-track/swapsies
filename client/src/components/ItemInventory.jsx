@@ -54,14 +54,18 @@ class ItemInventory extends Component {
                       <p className="has-margin-bottom-1">Status: {thing.status}</p>
                       <div className="buttons are-small inventory-button">
                         <Link to={`/items/${thing._id}`}>
-                          <button className="button">Edit</button>
+                          <button 
+                            className="button"
+                          >
+                            Edit
+                          </button>
                         </Link>
                         <button
                           id={thing._id}
                           name={thing}
                           value={thing._id}
                           onClick={this.deleteItem}
-                          className="button"
+                          className="button negative"
                         >
                           Delete
                         </button>

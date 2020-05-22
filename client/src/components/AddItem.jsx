@@ -303,16 +303,14 @@ class AddItem extends Component {
                   <span className="file-icon">
                     <i className="fas fa-upload"></i>
                   </span>
-                  <span className="file-label">Choose a file</span>
                 </span>
-                {/* <span className="file-name"></span> */}
               </label>
             </div>
           </div>
 
           {/* Submit button */}
           <div className="control">
-            <button type="submit" value="add" class="button is-link is-light">
+            <button type="submit" value="add" className="button positive">
               Add
             </button>
           </div>

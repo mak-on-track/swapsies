@@ -79,7 +79,7 @@ class Navbar extends Component {
                 <div className="navbar-item">
                   <div className="buttons">
                     <a
-                      className="button is-danger is-light"
+                      className="button negative"
                       href="/"
                       onClick={() => handleLogout(this.props)}
                     >

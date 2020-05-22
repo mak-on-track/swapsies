@@ -97,7 +97,7 @@ class OfferSwap extends Component {
                   {name}
                 </p>
                 <p className="subtitle is-6">
-                  Posted by: <a href={`/user/${owner._id}`}>{owner.username}</a>
+                  Posted by <a href={`/user/${owner._id}`}>{owner.username}</a>
                   {owner.email ? " · " + owner.email : null }
                 </p>
               </div>
@@ -127,7 +127,7 @@ class OfferSwap extends Component {
                       <button 
                         type="submit"
                         value="submit"
-                        className="button is-link is-light"
+                        className="button positive"
                       >
                         Send message
                       </button>

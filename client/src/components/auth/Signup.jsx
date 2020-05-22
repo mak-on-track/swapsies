@@ -86,7 +86,7 @@ class Signup extends Component {
                   <button
                     type="submit"
                     value="Signup"
-                    class="button is-link is-light"
+                    class="button positive"
                   >
                     Sign up
                   </button>

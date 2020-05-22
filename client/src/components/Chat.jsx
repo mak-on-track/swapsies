@@ -120,7 +120,7 @@ class Chat extends Component {
             <button
               type="submit"
               value="submit"
-              className="button is-light"
+              className="button positive"
             >
               Send
             </button>

@@ -251,7 +251,7 @@ class EditProfile extends Component {
                       <li key={wish}>
                         {wish}
                         <button
-                          className="button is-light"
+                          className="button negative"
                           type="button"
                           name="deleteWish"
                           value={wish}
@@ -279,7 +279,7 @@ class EditProfile extends Component {
               <div className="control">
                 <button
                   type="button"
-                  className="button is-light"
+                  className="button positive"
                   onClick={this.handleWishlistChange}
                 >
                   Add item to wish list
@@ -292,7 +292,7 @@ class EditProfile extends Component {
             <button
               type="submit"
               value="submit"
-              className="button is-link is-light"
+              className="button positive"
             >
               Update profile
             </button>
