@@ -27,7 +27,7 @@ You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
 
 ## Team
 - [alkico](https://github.com/alkico)
-- [bl00dymarie](https://github.com//bl00dymarie/)
+- [bl00dymarie](https://github.com/bl00dymarie/)
 - [karlkristopher](https://github.com/karlkristopher/)
 
 
