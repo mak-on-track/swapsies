@@ -65,7 +65,7 @@ class ServiceInventory extends Component {
                         name={service}
                         value={service._id}
                         onClick={this.deleteService}
-                        className="button"
+                        className="button negative"
                       >
                         Delete
                       </button>

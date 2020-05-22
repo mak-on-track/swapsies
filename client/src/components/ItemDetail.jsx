@@ -352,7 +352,7 @@ class ItemDetail extends Component {
               <button 
                 type="submit"
                 value="add"
-                className="button is-link is-light gimmespace"
+                className="button positive gimmespace"
               >
                 Edit
               </button>

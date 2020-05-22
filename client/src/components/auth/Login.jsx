@@ -87,7 +87,7 @@ class Login extends Component {
                   <button
                     type="submit"
                     value="Login"
-                    className="button is-link is-light"
+                    className="button positive"
                   >
                     Login
                   </button>

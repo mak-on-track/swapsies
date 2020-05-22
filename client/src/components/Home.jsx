@@ -19,10 +19,10 @@ class Home extends Component {
             <strong> Find the perfect swap on Swapsies!</strong>
           </h3>
           <div className="buttons" style={{ display: "block", margin: "1rem" }}>
-            <a className="button is-link is-light" href="/signup">
+            <a className="button neutral" href="/signup">
               Sign up
             </a>
-            <a className="button is-link is-light" href="/login">
+            <a className="button neutral" href="/login">
               Log in
             </a>
           </div>
