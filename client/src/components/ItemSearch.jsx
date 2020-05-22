@@ -147,8 +147,11 @@ class ItemSearch extends Component {
     const displayThings = statusThings.map((thing) => {
       return (
         <div className="card card-itemsearch">
-          <div className="card-content is-flex">
-            <div className="media" style={{ marginBottom: "0.7rem" }}>
+          <div className="card-content">
+            <div
+              className="media-content"
+              style={{ marginBottom: "0.7rem" }}
+            >
               <div className="media-left">
                 <figure className="item-image">
                   <img src={thing.itemImgPath} alt="picture of thing" />
@@ -157,15 +160,14 @@ class ItemSearch extends Component {
             </div>
 
             <div className="content">
-              <div className="media-content">
-                <p className="title is-4 is-size-5-mobile">{thing.name}</p>
-                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
-                  {thing.location}
-                </p>
-                <p className="subtitle is-7" style={{ marginBottom: "0.5rem" }}>
-                  Favourites: {thing.favourites}
-                </p>
-              </div>
+              
+              <p className="title is-4 is-size-5-mobile">{thing.name}</p>
+              <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                {thing.location}
+              </p>
+              <p className="subtitle is-7" style={{ marginBottom: "0.5rem" }}>
+                Favourites: {thing.favourites}
+              </p>
               {thing.description}
               <br />
               Status: {thing.status}
@@ -199,8 +201,7 @@ class ItemSearch extends Component {
         <div className="card">
           <div className="card-content">
             <div
-
-              className="media flex-container-center-content"
+              className="media-content"
               style={{ marginBottom: "0.7rem" }}
             >
               <div className="media-left">
@@ -210,18 +211,16 @@ class ItemSearch extends Component {
                 </figure>
                 {/* </div> */}
               </div>
-              <div className="media-content">
-                <p className="title is-4 is-size-5-mobile">{service.name}</p>
-                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
-                  {service.location}
-                </p>
-                <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
-                  Favourites: {service.favourites}
-                </p>
-              </div>
             </div>
 
             <div className="content">
+              <p className="title is-4 is-size-5-mobile">{service.name}</p>
+              <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                {service.location}
+              </p>
+              <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
+                Favourites: {service.favourites}
+              </p>
               {service.description}
               {service.owner._id === userId ? (
                 <p>My post</p>
