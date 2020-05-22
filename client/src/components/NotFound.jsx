@@ -6,7 +6,12 @@ class NotFound extends Component {
   render() { 
     return ( 
       <div className="main">
-        Oops! Page Not Found
+        <h1 className="title is-1 has-text-centered">Oops! Page Not Found</h1>
+        <p className="has-text-centered">Ok but here is a cute gif for you.</p>
+        <figure class="image is-16by9">
+          <iframe class="has-ratio" width="640" height="360" src="https://giphy.com/embed/vvbVmC7mKsvOhlmkSz" frameborder="0" allowfullscreen></iframe>
+        </figure>
+
       </div>
     );
   }
