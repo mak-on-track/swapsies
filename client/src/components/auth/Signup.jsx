@@ -48,7 +48,7 @@ class Signup extends Component {
               <a href="/">
                 <img className="auth-logo" src="/icon_swap.png" alt="" />
               </a>
-              <h1 className="title is-1">Sign Up</h1>
+              <h1 className="title is-1 is-size-3-mobile">Sign Up</h1>
               <div className="field">
                 <label className="label">Username</label>
                 <div className="control">

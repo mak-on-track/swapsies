@@ -158,7 +158,7 @@ class ItemSearch extends Component {
 
             <div className="content">
               <div className="media-content">
-                <p className="title is-4">{thing.name}</p>
+                <p className="title is-4 is-size-5-mobile">{thing.name}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {thing.location}
                 </p>
@@ -211,7 +211,7 @@ class ItemSearch extends Component {
                 {/* </div> */}
               </div>
               <div className="media-content">
-                <p className="title is-4">{service.name}</p>
+                <p className="title is-4 is-size-5-mobile">{service.name}</p>
                 <p className="subtitle is-6" style={{ marginBottom: "0.5rem" }}>
                   {service.location}
                 </p>

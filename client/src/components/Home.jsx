@@ -11,8 +11,8 @@ class Home extends Component {
           <img className="home-logo" src="/icon_swap.png" alt="" />
         </a>
         <div className="hero-text">
-          <h1 style={{ fontSize: "4.5rem" }}>Swapsies</h1>
-          <h3>
+          <h1 className="is-size-1 is-size-3-mobile">Swapsies</h1>
+          <h3 className="is-size-6-mobile">
             Have an item that might be better suited for someone else? <br />
             You know how to cook, sing, or maybe code?
             <br />

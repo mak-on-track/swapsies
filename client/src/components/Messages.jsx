@@ -69,13 +69,13 @@ class Messages extends Component {
       <div className="main in-out-msg">
 
         <div className="field thread">
-          <h4 className="title is-4">Incoming Swap Requests</h4>
+          <h4 className="title is-4 is-size-5-mobile">Incoming Swap Requests</h4>
           {incomingMsg.length < 1 && <p>Nothing yet.</p>}
           {incomingMsg}
         </div>
 
         <div className="field thread">
-          <h4 className="title is-4">Outgoing Swap Offers</h4>
+          <h4 className="title is-4 is-size-5-mobile">Outgoing Swap Offers</h4>
           {outgoingMsg.length < 1 && <p>Nothing yet.</p>}
           {outgoingMsg}
         </div>

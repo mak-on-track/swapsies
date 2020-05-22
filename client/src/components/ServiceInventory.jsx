@@ -46,7 +46,7 @@ class ServiceInventory extends Component {
               </div>
 
               <div className="content">
-                <p className="title is-5 has-margin-bottom-1">{service.name}</p>
+                <p className="title is-5 is-size-6-mobile has-margin-bottom-1">{service.name}</p>
                 <p className="has-margin-bottom-1">
                   Location: {service.location}
                 </p>
@@ -96,7 +96,7 @@ class ServiceInventory extends Component {
           <></>
         ) : (
           <div >
-            <h4 className="title is-4 has-margin-top-1">List of Services</h4>
+            <h4 className="title is-4 is-size-5-mobile has-margin-top-1">List of Services</h4>
             <div className="inventory-container"> {displayServices}</div>
           </div>
         )}

@@ -49,7 +49,7 @@ class Login extends Component {
               <a href="/">
                 <img className="auth-logo" src="/icon_swap.png" alt="" />
               </a>
-              <h1 className="title is-1">Login</h1>
+              <h1 className="title is-1 is-size-3-mobile">Login</h1>
               <div className="field">
                 <label className="label">Username</label>
                 <div className="control">

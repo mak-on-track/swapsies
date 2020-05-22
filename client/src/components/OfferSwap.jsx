@@ -74,7 +74,7 @@ class OfferSwap extends Component {
     return (
       <div className="main">
         <div className="field">
-          <label className="label title is-3">Offer a Swap</label>
+          <label className="label title is-3 is-size-5-mobile">Offer a Swap</label>
         </div>
         <div className="card">
 
@@ -93,7 +93,7 @@ class OfferSwap extends Component {
                 </figure>
               </div>
               <div className="media-content">
-                <p className="title is-4">
+                <p className="title is-4 is-size-5-mobile">
                   {name}
                 </p>
                 <p className="subtitle is-6">
