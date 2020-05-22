@@ -55,7 +55,8 @@ class ItemInventory extends Component {
                       <div className="buttons are-small inventory-button">
                         <Link to={`/items/${thing._id}`}>
                           <button 
-                            className="button"
+                            className="button neutral"
+                            style={{"color": "#05004e", "borderColor": "#05004e"}}
                           >
                             Edit
                           </button>
