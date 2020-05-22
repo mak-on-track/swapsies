@@ -147,7 +147,7 @@ class ItemSearch extends Component {
     const displayThings = statusThings.map((thing) => {
       return (
         <div className="card card-itemsearch">
-          <div className="card-content">
+          <div className="card-content is-flex">
             <div className="media" style={{ marginBottom: "0.7rem" }}>
               <div className="media-left">
                 <figure className="item-image">
@@ -199,8 +199,8 @@ class ItemSearch extends Component {
         <div className="card">
           <div className="card-content">
             <div
-              className="media"
-              className="flex-container-center-content"
+
+              className="media flex-container-center-content"
               style={{ marginBottom: "0.7rem" }}
             >
               <div className="media-left">
