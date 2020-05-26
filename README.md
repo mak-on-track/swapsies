@@ -21,7 +21,8 @@ You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
 <br />
 
 ## Demo
-- Coming Soon
+<img src="https://res.cloudinary.com/karlkris/image/upload/v1590504770/github/demo_sum4e3.gif" alt="swapsies_demo"  />
+
 
 <br />
 
