@@ -26,6 +26,52 @@ You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
 
 <br />
 
+## Setup
+
+### Requirements
+
+* [Node JS](https://nodejs.org/en/)
+* [npm](https://www.npmjs.com/get-npm)
+* [MongoDB](https://docs.mongodb.com/manual/installation/)
+* [Cloudinary API Key](https://www.cloudinary.com)
+
+### Get Started
+
+First, create the required environment files.
+
+```console
+cp .env.template .env
+cd client
+cp .env.template .env
+```
+
+Second, install the dependencies.
+
+```console
+npm install
+cd client
+npm install
+```
+
+### Running BCB
+
+#### Run the following commands from the root folder.
+
+For Backend Server (Express.js + MongoDB).
+
+```console
+sudo service mongodb start
+npm start
+```
+
+For Frontend Server (React.js).
+```console
+cd client
+npm start
+```
+
+<br />
+
 ## Team
 - [alkico](https://github.com/alkico)
 - [bl00dymarie](https://github.com/bl00dymarie/)
