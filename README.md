@@ -22,6 +22,8 @@ You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
   <img src="https://img.shields.io/badge/node.js-339933?style=flat-square&logo=node.js&logoColor=white&labelColor=2C2C30" alt="nodejs-badge" height="22"  />
   <img src="https://img.shields.io/badge/ex-express-000000?style=flat-square&labelColor=2C2C30" alt="express-badge" height="22"  />
   <img src="https://img.shields.io/badge/mongodb-47A248?style=flat-square&logo=mongodb&logoColor=white&labelColor=2C2C30" alt="mongodb-badge" height="22"  />
+  <img src="https://img.shields.io/badge/bulma-00D1B2?style=flat-square&logo=bulma&logoColor=white&labelColor=2C2C30" alt="bulma-badge" height="22"  />
+
 </p>
 
 <br />
