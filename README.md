@@ -1,6 +1,6 @@
 
 
-# Swapsies <img src="https://res.cloudinary.com/karlkris/image/upload/v1590072369/github/icon_swap_nr3ojh.png" alt="swapsies" width="5%"  />
+# Swapsies <img src="https://res.cloudinary.com/karlkris/image/upload/v1590072369/github/icon_swap_nr3ojh.png" alt="swapsies" height="35"  />
 
 Have an item that might be better suited for someone else? <br />
 You know how to cook, sing, or maybe code? Find the perfect swap on Swapsies!
